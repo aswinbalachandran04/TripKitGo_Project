@@ -29,7 +29,7 @@
       background-color: var(--navy-primary);
     }
 
-    /* Fullscreen Travel Background Video (YouTube Embed) */
+    /* Fullscreen Travel Background Video (Local MP4) */
     .bg-video-wrap {
       position: fixed;
       inset: 0;
@@ -41,17 +41,11 @@
       pointer-events: none;
     }
 
-    .bg-video-wrap iframe {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100vw;
-      height: 56.25vw;
-      /* 16:9 aspect ratio */
-      min-width: 177.78vh;
-      min-height: 100vh;
-      transform: translate(-50%, -50%) scale(1.12);
-      border: 0;
+    .bg-video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
 
     /* Light Gradient Overlay (No Backdrop Blur) */
@@ -116,12 +110,11 @@
 
 <body>
 
-  <!-- Background Tour & Travel Video (YouTube) -->
+  <!-- Background Tour & Travel Video (Local) -->
   <div class="bg-video-wrap" aria-hidden="true">
-    <iframe
-      src="https://www.youtube.com/embed/g3Z79rr2JqE?autoplay=1&mute=1&loop=1&playlist=g3Z79rr2JqE&controls=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3"
-      title="TripKitGo Travel Background Video" allow="autoplay; encrypted-media; picture-in-picture"
-      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <video autoplay muted loop playsinline poster="../images/travel-bg-poster.jpg">
+      <source src="../images/travel-bg.mp4" type="video/mp4">
+    </video>
   </div>
   <div class="bg-video-overlay"></div>
 
