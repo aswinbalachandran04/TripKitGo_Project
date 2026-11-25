@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bookings — TripKitGo Admin Studio</title>
+
+  <!-- Plus Jakarta Sans Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS & Icons (Zero JS) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Shared Stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/auth-guard.js"></script>
+</head>
+
+<body data-page="bookings">
+
+  <!-- Responsive Sticky Glass Navbar (Zero JS Checkbox Toggler) -->
+  <nav class="studio-navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-logo-wrap">
+        <img src="../images/tripkitgo_logo.png" alt="TripKitGo Logo" class="navbar-logo-img">
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
+      <label for="nav-toggle" class="nav-toggler-btn" aria-label="Toggle navigation">
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+      </label>
+
+      <div class="navbar-collapse-custom">
+        <ul class="navbar-links-list">
+          <li><a href="index.html" class="nav-quick-link"><i class="bi bi-grid-fill"></i> Hub</a></li>
+          <li><a href="bookings.html" class="nav-quick-link active"><i class="bi bi-journal-check"></i> Bookings</a>
+          </li>
+          <li><a href="customized-packages.html" class="nav-quick-link"><i class="bi bi-sliders"></i> Customized
+              Packages</a></li>
+          <li><a href="destinations.html" class="nav-quick-link"><i class="bi bi-geo-alt"></i> Destinations</a></li>
+          <li><a href="payments.html" class="nav-quick-link"><i class="bi bi-credit-card"></i> Payments</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+          <span class="studio-pill-badge">
+            <span class="pulse-dot"></span> Admin Studio
+          </span>
+          <a href="login.html" class="btn-studio-logout" title="Sign out of Admin Studio"
+            onclick="event.preventDefault(); window.TripKitGoAuth.logout();">
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Logout</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Bookings Workspace -->
+  <main class="container pb-5">
+
+    <!-- Editorial Hero Banner -->
+    <div class="workspace-banner">
+      <img src="../images/bookings.avif" alt="Bookings Banner">
+      <div class="workspace-banner-content">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+          <a href="index.html" class="btn-back-hub mb-0">
+            <i class="bi bi-arrow-left me-1"></i> Back to Hub
+          </a>
+          <span class="featured-tag"><i class="bi bi-compass me-1"></i> Primary Desk</span>
+        </div>
+        <h1 class="display-6 fw-extrabold mb-1">Bookings Desk</h1>
+        <p class="mb-0 text-white-50">Manage tour reservations, live manifests, standard bookings, and custom trip
+          requests.</p>
+      </div>
+    </div>
+
+    <!-- Pure CSS Sub-Option Radio Tabs -->
+    <div class="css-tabs-wrapper">
+      <input type="radio" name="booking-tabs" id="tab-1" checked>
+      <input type="radio" name="booking-tabs" id="tab-2">
+      <input type="radio" name="booking-tabs" id="tab-3">
+      <input type="radio" name="booking-tabs" id="tab-4">
+
+      <!-- Sub-Option Pill Bar -->
+      <div class="suboption-bar">
+        <label for="tab-1" class="suboption-pill">
+          <i class="bi bi-layers me-1"></i> Booking Overview
+        </label>
+        <label for="tab-2" class="suboption-pill">
+          <i class="bi bi-card-checklist me-1"></i> Booking Summary
+        </label>
+        <label for="tab-3" class="suboption-pill">
+          <i class="bi bi-plus-circle me-1"></i> New Booking
+        </label>
+        <label for="tab-4" class="suboption-pill">
+          <i class="bi bi-sliders me-1"></i> Customized New Booking
+        </label>
+      </div>
+
+      <!-- TAB PANELS -->
+      <div class="tab-panels">
+
+        <!-- ==========================================
+             PANEL 1: BOOKING OVERVIEW
+             ========================================== -->
+        <div id="panel-1" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">Live Pulse</span>
+              <h3 class="fw-bold mb-0">Booking Overview</h3>
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-3 mt-md-0">
+              <label for="tab-3" class="btn-brand-teal">
+                <i class="bi bi-plus-lg me-1"></i> New Booking
+              </label>
+              <label for="tab-4" class="btn-brand-outline">
+                <i class="bi bi-sliders me-1"></i> Custom Booking
+              </label>
+            </div>
+          </div>
+
+          <!-- Aesthetic Metric Cards -->
+          <div class="row g-4 mb-4">
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box teal">
+                  <i class="bi bi-check2-circle"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Confirmed Trips</p>
+                  <h4 class="metric-value" id="confirmedTripsCount">3</h4>
+                  <span class="metric-sub">Ready for departure</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box sky">
+                  <i class="bi bi-hourglass-split"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Pending Approval</p>
+                  <h4 class="metric-value" id="pendingApprovalCount">1</h4>
+                  <span class="metric-sub">Awaiting confirmation</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box coral">
+                  <i class="bi bi-stars"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Total Bookings</p>
+                  <h4 class="metric-value" id="totalBookingsCount">4</h4>
+                  <span class="metric-sub">Active &amp; scheduled</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box navy">
+                  <i class="bi bi-people"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Total Travelers</p>
+                  <h4 class="metric-value" id="totalTravelersCount">12</h4>
+                  <span class="metric-sub">Adults &amp; children</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Overview Table -->
+          <div class="table-responsive studio-table-wrap">
+            <table class="table studio-table align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>Booking ID</th>
+                  <th>Primary Traveler</th>
+                  <th>Package / Route</th>
+                  <th>Schedule</th>
+                  <th>Guests</th>
+                  <th>Consultant</th>
+                  <th>Status</th>
+                  <th class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="bookingOverviewBody">
+                <tr data-booking-id="BK-1041" data-guests="2" data-status="Confirmed" data-name="Vikramaditya Pillai"
+                  data-email="vikram.pillai@example.com" data-phone="+91 98471 22019" data-package="Munnar Hill Escape"
+                  data-start="2026-12-05" data-end="2026-12-08" data-adults="2" data-children="0"
+                  data-consultant="Neha Kurian"
+                  data-remarks="Morning pickup from Kochi airport and tea-garden view room.">
+                  <td class="fw-bold">BK-1041</td>
+                  <td>
+                    <div class="fw-semibold">Vikramaditya Pillai</div>
+                    <div class="small text-muted">vikram.pillai@example.com</div>
+                  </td>
+                  <td>Munnar Hill Escape</td>
+                  <td>2026-12-05 &rarr; 2026-12-08</td>
+                  <td>2 Adults</td>
+                  <td>Neha Kurian</td>
+                  <td><span class="badge bg-success-subtle text-success border border-success-subtle">Confirmed</span>
+                  </td>
+                  <td class="text-end">
+                    <div class="d-inline-flex gap-1">
+                      <button type="button" class="btn-brand-outline py-1 px-2 small js-edit-booking"
+                        title="Edit booking">
+                        <i class="bi bi-pencil-square"></i>
+                      </button>
+                      <button type="button"
+                        class="btn-brand-outline py-1 px-2 small text-danger border-danger-subtle js-delete-booking"
+                        title="Delete booking">
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-booking-id="BK-1042" data-guests="4" data-status="Pending" data-name="Tanvi Deshmukh"
+                  data-email="tanvi.d@example.com" data-phone="+91 98204 77182" data-package="Wayanad Nature Trail"
+                  data-start="2026-12-12" data-end="2026-12-15" data-adults="3" data-children="1"
+                  data-consultant="Devika Shenoy"
+                  data-remarks="Awaiting advance confirmation; mild vegetarian meals requested.">
+                  <td class="fw-bold">BK-1042</td>
+                  <td>
+                    <div class="fw-semibold">Tanvi Deshmukh</div>
+                    <div class="small text-muted">tanvi.d@example.com</div>
+                  </td>
+                  <td>Wayanad Nature Trail</td>
+                  <td>2026-12-12 &rarr; 2026-12-15</td>
+                  <td>3 Adults, 1 Child</td>
+                  <td>Devika Shenoy</td>
+                  <td><span
+                      class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle">Pending</span>
+                  </td>
+                  <td class="text-end">
+                    <div class="d-inline-flex gap-1">
+                      <button type="button" class="btn-brand-outline py-1 px-2 small js-edit-booking"
+                        title="Edit booking">
+                        <i class="bi bi-pencil-square"></i>
+                      </button>
+                      <button type="button"
+                        class="btn-brand-outline py-1 px-2 small text-danger border-danger-subtle js-delete-booking"
+                        title="Delete booking">
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-booking-id="BK-1043" data-guests="2" data-status="Confirmed" data-name="Harishankaran Nambiar"
+                  data-email="hari.nambiar@example.com" data-phone="+91 94463 88510"
+                  data-package="Alleppey Backwater Cruise" data-start="2026-12-18" data-end="2026-12-20" data-adults="2"
+                  data-children="0" data-consultant="Pranav Hegde"
+                  data-remarks="Private houseboat check-in at 12:00 PM.">
+                  <td class="fw-bold">BK-1043</td>
+                  <td>
+                    <div class="fw-semibold">Harishankaran Nambiar</div>
+                    <div class="small text-muted">hari.nambiar@example.com</div>
+                  </td>
+                  <td>Alleppey Backwater Cruise</td>
+                  <td>2026-12-18 &rarr; 2026-12-20</td>
+                  <td>2 Adults</td>
+                  <td>Pranav Hegde</td>
+                  <td><span class="badge bg-success-subtle text-success border border-success-subtle">Confirmed</span>
+                  </td>
+                  <td class="text-end">
+                    <div class="d-inline-flex gap-1">
+                      <button type="button" class="btn-brand-outline py-1 px-2 small js-edit-booking"
+                        title="Edit booking">
+                        <i class="bi bi-pencil-square"></i>
+                      </button>
+                      <button type="button"
+                        class="btn-brand-outline py-1 px-2 small text-danger border-danger-subtle js-delete-booking"
+                        title="Delete booking">
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-booking-id="BK-1044" data-guests="4" data-status="Confirmed" data-name="Nandini Chatterjee"
+                  data-email="nandini.c@example.com" data-phone="+91 98312 50944" data-package="Goa Coastal Getaway"
+                  data-start="2026-12-26" data-end="2026-12-30" data-adults="4" data-children="0"
+                  data-consultant="Neha Kurian" data-remarks="Stay requested near North Goa beach access.">
+                  <td class="fw-bold">BK-1044</td>
+                  <td>
+                    <div class="fw-semibold">Nandini Chatterjee</div>
+                    <div class="small text-muted">nandini.c@example.com</div>
+                  </td>
+                  <td>Goa Coastal Getaway</td>
+                  <td>2026-12-26 &rarr; 2026-12-30</td>
+                  <td>4 Adults</td>
+                  <td>Neha Kurian</td>
+                  <td><span class="badge bg-success-subtle text-success border border-success-subtle">Confirmed</span>
+                  </td>
+                  <td class="text-end">
+                    <div class="d-inline-flex gap-1">
+                      <button type="button" class="btn-brand-outline py-1 px-2 small js-edit-booking"
+                        title="Edit booking">
+                        <i class="bi bi-pencil-square"></i>
+                      </button>
+                      <button type="button"
+                        class="btn-brand-outline py-1 px-2 small text-danger border-danger-subtle js-delete-booking"
+                        title="Delete booking">
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             PANEL 2: BOOKING SUMMARY
+             ========================================== -->
+        <div id="panel-2" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">Manifest &amp; Ledger</span>
+              <h3 class="fw-bold mb-0">Booking Summary</h3>
+            </div>
+            <label for="tab-3" class="btn-brand-teal mt-3 mt-md-0">
+              <i class="bi bi-plus-lg me-1"></i> Add Reservation
+            </label>
+          </div>
+
+          <div id="bookingSummaryList" class="row g-3">
+            <div class="col-12 col-md-6" data-booking-id="BK-1041">
+              <div class="metric-glass-card flex-column align-items-start h-100">
+                <div class="d-flex justify-content-between align-items-center w-100 mb-2">
+                  <span class="fw-bold small" style="color: var(--teal-primary);">BK-1041</span>
+                  <span class="badge bg-success-subtle text-success border border-success-subtle">Confirmed</span>
+                </div>
+                <h6 class="fw-bold mb-1" style="color: var(--navy-primary);">Vikramaditya Pillai</h6>
+                <div class="small fw-semibold mb-2">Munnar Hill Escape</div>
+                <div class="small mb-1"><i class="bi bi-calendar3 me-1"></i> 2026-12-05 &rarr; 2026-12-08</div>
+                <div class="small mb-1"><i class="bi bi-people me-1"></i> 2 Adults</div>
+                <div class="small mb-1"><i class="bi bi-telephone me-1"></i> +91 98471 22019</div>
+                <div class="small text-muted"><i class="bi bi-person-badge me-1"></i> Neha Kurian</div>
+                <div class="small text-muted mt-2 pt-2 border-top w-100">Morning pickup from Kochi airport and
+                  tea-garden view room.</div>
+                <div class="d-flex justify-content-end gap-2 pt-3 mt-auto border-top w-100">
+                  <button type="button" class="btn-brand-outline py-1 px-2 small js-edit-booking">
+                    <i class="bi bi-pencil-square me-1"></i> Edit
+                  </button>
+                  <button type="button"
+                    class="btn-brand-outline py-1 px-2 small text-danger border-danger-subtle js-delete-booking">
+                    <i class="bi bi-trash3 me-1"></i> Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6" data-booking-id="BK-1042">
+              <div class="metric-glass-card flex-column align-items-start h-100">
+                <div class="d-flex justify-content-between align-items-center w-100 mb-2">
+                  <span class="fw-bold small" style="color: var(--teal-primary);">BK-1042</span>
+                  <span
+                    class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle">Pending</span>
+                </div>
+                <h6 class="fw-bold mb-1" style="color: var(--navy-primary);">Tanvi Deshmukh</h6>
+                <div class="small fw-semibold mb-2">Wayanad Nature Trail</div>
+                <div class="small mb-1"><i class="bi bi-calendar3 me-1"></i> 2026-12-12 &rarr; 2026-12-15</div>
+                <div class="small mb-1"><i class="bi bi-people me-1"></i> 3 Adults, 1 Child</div>
+                <div class="small mb-1"><i class="bi bi-telephone me-1"></i> +91 98204 77182</div>
+                <div class="small text-muted"><i class="bi bi-person-badge me-1"></i> Devika Shenoy</div>
+                <div class="small text-muted mt-2 pt-2 border-top w-100">Awaiting advance confirmation; mild vegetarian
+                  meals requested.</div>
+                <div class="d-flex justify-content-end gap-2 pt-3 mt-auto border-top w-100">
+                  <button type="button" class="btn-brand-outline py-1 px-2 small js-edit-booking">
+                    <i class="bi bi-pencil-square me-1"></i> Edit
+                  </button>
+                  <button type="button"
+                    class="btn-brand-outline py-1 px-2 small text-danger border-danger-subtle js-delete-booking">
+                    <i class="bi bi-trash3 me-1"></i> Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6" data-booking-id="BK-1043">
+              <div class="metric-glass-card flex-column align-items-start h-100">
+                <div class="d-flex justify-content-between align-items-center w-100 mb-2">
+                  <span class="fw-bold small" style="color: var(--teal-primary);">BK-1043</span>
+                  <span class="badge bg-success-subtle text-success border border-success-subtle">Confirmed</span>
+                </div>
+                <h6 class="fw-bold mb-1" style="color: var(--navy-primary);">Harishankaran Nambiar</h6>
+                <div class="small fw-semibold mb-2">Alleppey Backwater Cruise</div>
+                <div class="small mb-1"><i class="bi bi-calendar3 me-1"></i> 2026-12-18 &rarr; 2026-12-20</div>
+                <div class="small mb-1"><i class="bi bi-people me-1"></i> 2 Adults</div>
+                <div class="small mb-1"><i class="bi bi-telephone me-1"></i> +91 94463 88510</div>
+                <div class="small text-muted"><i class="bi bi-person-badge me-1"></i> Pranav Hegde</div>
+                <div class="small text-muted mt-2 pt-2 border-top w-100">Private houseboat check-in at 12:00 PM.</div>
+                <div class="d-flex justify-content-end gap-2 pt-3 mt-auto border-top w-100">
+                  <button type="button" class="btn-brand-outline py-1 px-2 small js-edit-booking">
+                    <i class="bi bi-pencil-square me-1"></i> Edit
+                  </button>
+                  <button type="button"
+                    class="btn-brand-outline py-1 px-2 small text-danger border-danger-subtle js-delete-booking">
+                    <i class="bi bi-trash3 me-1"></i> Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6" data-booking-id="BK-1044">
+              <div class="metric-glass-card flex-column align-items-start h-100">
+                <div class="d-flex justify-content-between align-items-center w-100 mb-2">
+                  <span class="fw-bold small" style="color: var(--teal-primary);">BK-1044</span>
+                  <span class="badge bg-success-subtle text-success border border-success-subtle">Confirmed</span>
+                </div>
+                <h6 class="fw-bold mb-1" style="color: var(--navy-primary);">Nandini Chatterjee</h6>
+                <div class="small fw-semibold mb-2">Goa Coastal Getaway</div>
+                <div class="small mb-1"><i class="bi bi-calendar3 me-1"></i> 2026-12-26 &rarr; 2026-12-30</div>
+                <div class="small mb-1"><i class="bi bi-people me-1"></i> 4 Adults</div>
+                <div class="small mb-1"><i class="bi bi-telephone me-1"></i> +91 98312 50944</div>
+                <div class="small text-muted"><i class="bi bi-person-badge me-1"></i> Neha Kurian</div>
+                <div class="small text-muted mt-2 pt-2 border-top w-100">Stay requested near North Goa beach access.
+                </div>
+                <div class="d-flex justify-content-end gap-2 pt-3 mt-auto border-top w-100">
+                  <button type="button" class="btn-brand-outline py-1 px-2 small js-edit-booking">
+                    <i class="bi bi-pencil-square me-1"></i> Edit
+                  </button>
+                  <button type="button"
+                    class="btn-brand-outline py-1 px-2 small text-danger border-danger-subtle js-delete-booking">
+                    <i class="bi bi-trash3 me-1"></i> Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             PANEL 3: NEW BOOKING (STANDARD PACKAGE)
+             ========================================== -->
+        <div id="panel-3" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">Standard Catalog</span>
+              <h3 class="fw-bold mb-0">Create New Booking</h3>
+            </div>
+            <label for="tab-4" class="btn-brand-outline mt-3 mt-md-0">
+              Need a tailor-made trip? Switch to Customized <i class="bi bi-arrow-right ms-1"></i>
+            </label>
+          </div>
+
+          <!-- Standard Booking Success Message -->
+          <div id="standardBookingSuccess"
+            class="alert alert-success d-none align-items-center justify-content-between gap-3 mb-4" role="alert">
+            <div class="d-flex align-items-center gap-2">
+              <i class="bi bi-check-circle-fill fs-5"></i>
+              <div>
+                <strong id="standardSuccessTitle">Booking Confirmed!</strong>
+                <div class="small" id="standardSuccessText">Your reservation has been saved.</div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <label for="tab-1" class="btn btn-sm btn-success mb-0">View Overview</label>
+              <button type="button" id="closeStandardSuccessBtn" class="btn-close" aria-label="Close"></button>
+            </div>
+          </div>
+
+          <form id="createBookingForm" action="#" method="post" novalidate>
+            <div class="row g-4">
+              <div class="col-12">
+                <h6 class="form-section-heading"><i class="bi bi-person-vcard me-2"></i>1. Traveler Details</h6>
+              </div>
+              <div class="col-12 col-md-4">
+                <label for="primaryTravelerName" class="studio-label">Primary Traveler Name</label>
+                <input type="text" id="primaryTravelerName" name="primary_traveler_name"
+                  class="form-control studio-input" placeholder="Enter full name">
+                <div class="field-error" id="err-primaryTravelerName"></div>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <label for="travelerEmail" class="studio-label">Email Address</label>
+                <input type="email" id="travelerEmail" name="email" class="form-control studio-input"
+                  placeholder="traveler@email.com">
+                <div class="field-error" id="err-travelerEmail"></div>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <label for="travelerPhone" class="studio-label">Phone / WhatsApp Number</label>
+                <input type="tel" id="travelerPhone" name="phone" class="form-control studio-input"
+                  placeholder="+91 00000 00000">
+                <div class="field-error" id="err-travelerPhone"></div>
+              </div>
+
+              <div class="col-12 mt-4">
+                <h6 class="form-section-heading"><i class="bi bi-suitcase-lg me-2"></i>2. Package &amp; Travel Schedule
+                </h6>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="publishedPackage" class="studio-label">Select Published Package</label>
+                <select id="publishedPackage" name="published_package" class="form-select studio-input">
+                  <option value="" selected disabled>Choose a curated tour package...</option>
+                  <option value="Munnar Hill Escape">Munnar Hill Escape</option>
+                  <option value="Wayanad Nature Trail">Wayanad Nature Trail</option>
+                  <option value="Alleppey Backwater Cruise">Alleppey Backwater Cruise</option>
+                  <option value="Goa Coastal Getaway">Goa Coastal Getaway</option>
+                  <option value="Ooty Highland Retreat">Ooty Highland Retreat</option>
+                </select>
+                <div class="field-error" id="err-publishedPackage"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="departureDate" class="studio-label">Departure Date</label>
+                <input type="date" id="departureDate" name="departure_date" class="form-control studio-input">
+                <div class="field-error" id="err-departureDate"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="returnDate" class="studio-label">Return Date</label>
+                <input type="date" id="returnDate" name="return_date" class="form-control studio-input">
+                <div class="field-error" id="err-returnDate"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="adultsCount" class="studio-label">Adults (12+ yrs)</label>
+                <input type="number" id="adultsCount" name="adults" min="1" class="form-control studio-input"
+                  placeholder="e.g., 2">
+                <div class="field-error" id="err-adultsCount"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="childrenCount" class="studio-label">Children</label>
+                <input type="number" id="childrenCount" name="children" min="0" class="form-control studio-input"
+                  placeholder="e.g., 0">
+                <div class="field-error" id="err-childrenCount"></div>
+              </div>
+
+              <div class="col-12 col-md-3">
+                <label for="assignedConsultant" class="studio-label">Assigned Consultant</label>
+                <select id="assignedConsultant" name="assigned_consultant" class="form-select studio-input">
+                  <option value="" selected>Assign travel consultant...</option>
+                  <option value="Neha Kurian">Neha Kurian</option>
+                  <option value="Devika Shenoy">Devika Shenoy</option>
+                  <option value="Pranav Hegde">Pranav Hegde</option>
+                </select>
+                <div class="field-error" id="err-assignedConsultant"></div>
+              </div>
+
+              <div class="col-12 col-md-3">
+                <label for="bookingStatus" class="studio-label">Booking Status</label>
+                <select id="bookingStatus" name="booking_status" class="form-select studio-input">
+                  <option value="Confirmed" selected>Confirmed</option>
+                  <option value="Pending">Pending</option>
+                  <option value="On Hold">On Hold</option>
+                </select>
+              </div>
+
+              <div class="col-12">
+                <label for="bookingRemarks" class="studio-label">Booking Remarks / Pickup Instructions</label>
+                <textarea id="bookingRemarks" name="remarks" rows="3" class="form-control studio-input"
+                  placeholder="Add arrival flight/train details, dietary notes, or special requests..."></textarea>
+              </div>
+
+              <div class="col-12 d-flex justify-content-end gap-3 pt-3 border-top">
+                <button type="reset" class="btn-brand-outline">Clear Form</button>
+                <button type="submit" class="btn-brand-teal">
+                  <i class="bi bi-check2-circle me-1"></i> Save &amp; Confirm Booking
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- ==========================================
+             PANEL 4: CUSTOMIZED NEW BOOKING (DISTINCT FIELDS)
+             ========================================== -->
+        <div id="panel-4" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow" style="color: var(--coral-accent);">Bespoke Desk</span>
+              <h3 class="fw-bold mb-0">Customized New Booking</h3>
+            </div>
+            <span class="badge rounded-pill px-3 py-2"
+              style="background: rgba(255, 107, 90, 0.12); color: var(--coral-accent);">
+              <i class="bi bi-magic me-1"></i> Tailor-Made Itinerary Builder
+            </span>
+          </div>
+
+          <!-- Custom Booking Success Message -->
+          <div id="customBookingSuccess"
+            class="alert alert-success d-none align-items-center justify-content-between gap-3 mb-4" role="alert">
+            <div class="d-flex align-items-center gap-2">
+              <i class="bi bi-check-circle-fill fs-5"></i>
+              <div>
+                <strong id="customSuccessTitle">Custom Booking Created!</strong>
+                <div class="small" id="customSuccessText">Your tailor-made trip request has been saved.</div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <label for="tab-1" class="btn btn-sm btn-success mb-0">View Overview</label>
+              <button type="button" id="closeCustomSuccessBtn" class="btn-close" aria-label="Close"></button>
+            </div>
+          </div>
+
+          <form id="customBookingForm" action="#" method="post" novalidate>
+            <div class="row g-4">
+              <div class="col-12">
+                <h6 class="form-section-heading"><i class="bi bi-person-vcard me-2"></i>1. Traveler Details</h6>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <label for="customTravelerName" class="studio-label">Primary Traveler Name</label>
+                <input type="text" id="customTravelerName" name="custom_traveler_name" class="form-control studio-input"
+                  placeholder="Enter full name">
+                <div class="field-error" id="err-customTravelerName"></div>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <label for="customTravelerEmail" class="studio-label">Email Address</label>
+                <input type="email" id="customTravelerEmail" name="custom_email" class="form-control studio-input"
+                  placeholder="traveler@email.com">
+                <div class="field-error" id="err-customTravelerEmail"></div>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <label for="customTravelerPhone" class="studio-label">Phone / WhatsApp Number</label>
+                <input type="tel" id="customTravelerPhone" name="custom_phone" class="form-control studio-input"
+                  placeholder="+91 9847011204">
+                <div class="field-error" id="err-customTravelerPhone"></div>
+              </div>
+
+              <div class="col-12 mt-4">
+                <h6 class="form-section-heading"><i class="bi bi-map me-2"></i>2. Custom Route, Guests &amp; Preferences
+                </h6>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="customDestinations" class="studio-label">Custom Route &amp; Stops</label>
+                <input type="text" id="customDestinations" name="custom_destinations" class="form-control studio-input"
+                  placeholder="e.g., Kochi &rarr; Munnar (2N) &rarr; Alleppey (1N)">
+                <div class="field-error" id="err-customDestinations"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="customDepartureDate" class="studio-label">Departure Date</label>
+                <input type="date" id="customDepartureDate" name="custom_departure_date"
+                  class="form-control studio-input">
+                <div class="field-error" id="err-customDepartureDate"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="customReturnDate" class="studio-label">Return Date</label>
+                <input type="date" id="customReturnDate" name="custom_return_date" class="form-control studio-input">
+                <div class="field-error" id="err-customReturnDate"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="customAdultsCount" class="studio-label">Adults (12+ yrs)</label>
+                <input type="number" id="customAdultsCount" name="custom_adults" min="1" class="form-control studio-input"
+                  placeholder="e.g., 2">
+                <div class="field-error" id="err-customAdultsCount"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="customChildrenCount" class="studio-label">Children</label>
+                <input type="number" id="customChildrenCount" name="custom_children" min="0"
+                  class="form-control studio-input" placeholder="e.g., 0">
+                <div class="field-error" id="err-customChildrenCount"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="customStayTier" class="studio-label">Preferred Stay Tier</label>
+                <select id="customStayTier" name="custom_stay_tier" class="form-select studio-input">
+                  <option value="Boutique &amp; Heritage" selected>Boutique &amp; Heritage</option>
+                  <option value="5-Star Luxury">5-Star Luxury</option>
+                  <option value="4-Star Comfort">4-Star Comfort</option>
+                  <option value="Homestay / Eco-Stay">Homestay / Eco-Stay</option>
+                </select>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="customTransportMode" class="studio-label">Transport Mode</label>
+                <select id="customTransportMode" name="custom_transport" class="form-select studio-input">
+                  <option value="Private SUV" selected>Private SUV</option>
+                  <option value="Private Sedan">Private Sedan</option>
+                  <option value="Tempo Traveller">Tempo Traveller</option>
+                  <option value="Self-Planned">Self-Planned</option>
+                </select>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="customConsultant" class="studio-label">Assigned Trip Planner</label>
+                <select id="customConsultant" name="custom_consultant" class="form-select studio-input">
+                  <option value="Devika Shenoy" selected>Devika Shenoy</option>
+                  <option value="Neha Kurian">Neha Kurian</option>
+                  <option value="Pranav Hegde">Pranav Hegde</option>
+                </select>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="customBookingStatus" class="studio-label">Custom Booking Status</label>
+                <select id="customBookingStatus" name="custom_status" class="form-select studio-input">
+                  <option value="Pending" selected>Pending</option>
+                  <option value="Confirmed">Confirmed</option>
+                  <option value="On Hold">On Hold</option>
+                </select>
+              </div>
+
+              <div class="col-12">
+                <label for="customItineraryNotes" class="studio-label">Custom Itinerary &amp; Stay Notes</label>
+                <textarea id="customItineraryNotes" name="custom_notes" rows="3" class="form-control studio-input"
+                  placeholder="Describe stay preferences, pace, houseboat/trek requests, or special stops..."></textarea>
+                <div class="field-error" id="err-customItineraryNotes"></div>
+              </div>
+
+              <div class="col-12 d-flex justify-content-end gap-3 pt-3 border-top">
+                <button type="reset" class="btn-brand-outline">Clear Form</button>
+                <button type="submit" class="btn-brand-coral">
+                  <i class="bi bi-stars me-1"></i> Create Custom Booking
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Edit Booking Modal -->
+  <div id="editBookingModal" class="d-none"
+    style="position: fixed; inset: 0; z-index: 1055; background: rgba(11, 31, 58, 0.55); backdrop-filter: blur(4px); overflow-y: auto; padding: 1.5rem;">
+    <div class="container" style="max-width: 720px; margin-top: 2rem;">
+      <div class="metric-glass-card flex-column align-items-stretch p-4 bg-white shadow-lg">
+        <div class="d-flex justify-content-between align-items-center pb-3 mb-3 border-bottom">
+          <div>
+            <span class="panel-eyebrow" style="color: var(--coral-accent);">Reservation Editor</span>
+            <h4 class="fw-bold mb-0" style="color: var(--navy-primary);">Edit Booking <span id="editBookingCodeBadge"
+                class="text-muted fs-6"></span></h4>
+          </div>
+          <button type="button" id="closeEditBookingBtn" class="btn-brand-outline py-1 px-2" aria-label="Close editor">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <form id="editBookingForm" action="#" method="post" novalidate>
+          <input type="hidden" id="editBookingId">
+          <div class="row g-3">
+            <div class="col-12 col-md-4">
+              <label for="editBookingName" class="studio-label">Primary Traveler Name</label>
+              <input type="text" id="editBookingName" class="form-control studio-input">
+              <div class="field-error" id="err-editBookingName"></div>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <label for="editBookingEmail" class="studio-label">Email Address</label>
+              <input type="email" id="editBookingEmail" class="form-control studio-input">
+              <div class="field-error" id="err-editBookingEmail"></div>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <label for="editBookingPhone" class="studio-label">Phone / WhatsApp</label>
+              <input type="tel" id="editBookingPhone" class="form-control studio-input">
+              <div class="field-error" id="err-editBookingPhone"></div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label for="editBookingPackage" class="studio-label">Package / Route</label>
+              <input type="text" id="editBookingPackage" class="form-control studio-input">
+              <div class="field-error" id="err-editBookingPackage"></div>
+            </div>
+
+            <div class="col-6 col-md-3">
+              <label for="editBookingStart" class="studio-label">Departure Date</label>
+              <input type="date" id="editBookingStart" class="form-control studio-input">
+              <div class="field-error" id="err-editBookingStart"></div>
+            </div>
+
+            <div class="col-6 col-md-3">
+              <label for="editBookingEnd" class="studio-label">Return Date</label>
+              <input type="date" id="editBookingEnd" class="form-control studio-input">
+              <div class="field-error" id="err-editBookingEnd"></div>
+            </div>
+
+            <div class="col-6 col-md-3">
+              <label for="editBookingAdults" class="studio-label">Adults</label>
+              <input type="number" id="editBookingAdults" min="1" class="form-control studio-input">
+              <div class="field-error" id="err-editBookingAdults"></div>
+            </div>
+
+            <div class="col-6 col-md-3">
+              <label for="editBookingChildren" class="studio-label">Children</label>
+              <input type="number" id="editBookingChildren" min="0" class="form-control studio-input">
+              <div class="field-error" id="err-editBookingChildren"></div>
+            </div>
+
+            <div class="col-12 col-md-3">
+              <label for="editBookingConsultant" class="studio-label">Assigned Consultant</label>
+              <input type="text" id="editBookingConsultant" class="form-control studio-input">
+              <div class="field-error" id="err-editBookingConsultant"></div>
+            </div>
+
+            <div class="col-12 col-md-3">
+              <label for="editBookingStatus" class="studio-label">Status</label>
+              <select id="editBookingStatus" class="form-select studio-input">
+                <option value="Confirmed">Confirmed</option>
+                <option value="Pending">Pending</option>
+                <option value="On Hold">On Hold</option>
+              </select>
+            </div>
+
+            <div class="col-12">
+              <label for="editBookingRemarks" class="studio-label">Booking Remarks</label>
+              <textarea id="editBookingRemarks" rows="2" class="form-control studio-input"></textarea>
+            </div>
+
+            <div class="col-12 d-flex justify-content-end gap-2 pt-3 border-top">
+              <button type="button" id="cancelEditBookingBtn" class="btn-brand-outline">Cancel</button>
+              <button type="submit" class="btn-brand-coral">
+                <i class="bi bi-save me-1"></i> Save Booking Changes
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- TripKitGo Admin Studio Footer -->
+  <footer class="studio-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo-wrap">
+            <img src="../images/tripkitgo_logo.png" alt="TripKitGo Logo" class="footer-logo-img">
+          </a>
+          <p class="footer-tagline">Admin Studio &bull; Travel Operations &amp; Management</p>
+        </div>
+
+        <span class="footer-status">
+          <span class="status-dot"></span> Admin Portal v1.0
+        </span>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 TripKitGo. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/page-bookings.js"></script>
+</body>
+
+</html>

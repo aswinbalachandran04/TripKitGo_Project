@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Consultants — TripKitGo Admin Studio</title>
+
+  <!-- Plus Jakarta Sans Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS & Icons (Zero JS) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Shared Stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/auth-guard.js"></script>
+</head>
+<body data-page="consultants">
+
+  <!-- Responsive Sticky Glass Navbar (Zero JS Checkbox Toggler) -->
+  <nav class="studio-navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-logo-wrap">
+        <img src="../images/tripkitgo_logo.png" alt="TripKitGo Logo" class="navbar-logo-img">
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
+      <label for="nav-toggle" class="nav-toggler-btn" aria-label="Toggle navigation">
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+      </label>
+
+      <div class="navbar-collapse-custom">
+        <ul class="navbar-links-list">
+          <li><a href="index.html" class="nav-quick-link"><i class="bi bi-grid-fill"></i> Hub</a></li>
+          <li><a href="bookings.html" class="nav-quick-link"><i class="bi bi-journal-check"></i> Bookings</a></li>
+          <li><a href="customized-packages.html" class="nav-quick-link"><i class="bi bi-sliders"></i> Customized Packages</a></li>
+          <li><a href="destinations.html" class="nav-quick-link"><i class="bi bi-geo-alt"></i> Destinations</a></li>
+          <li><a href="payments.html" class="nav-quick-link"><i class="bi bi-credit-card"></i> Payments</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+          <span class="studio-pill-badge">
+            <span class="pulse-dot"></span> Admin Studio
+          </span>
+          <a
+            href="login.html"
+            class="btn-studio-logout"
+            title="Sign out of Admin Studio"
+            onclick="event.preventDefault(); window.TripKitGoAuth.logout();"
+          >
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Logout</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Consultants Workspace -->
+  <main class="container pb-5">
+
+    <!-- Editorial Hero Banner -->
+    <div class="workspace-banner">
+      <img src="../images/consultants.avif" alt="Consultants Banner">
+      <div class="workspace-banner-content">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+          <a href="index.html" class="btn-back-hub mb-0">
+            <i class="bi bi-arrow-left me-1"></i> Back to Hub
+          </a>
+          <span class="featured-tag"><i class="bi bi-person-badge me-1"></i> Travel Advisors</span>
+        </div>
+        <h1 class="display-6 fw-extrabold mb-1">Consultants</h1>
+        <p class="mb-0 text-white-50">View and manage your tour consultants, roles, and booking assignments.</p>
+      </div>
+    </div>
+
+    <!-- Pure CSS Sub-Option Radio Tabs -->
+    <div class="css-tabs-wrapper">
+      <input type="radio" name="consultant-tabs" id="tab-1" checked>
+      <input type="radio" name="consultant-tabs" id="tab-2">
+      <input type="radio" name="consultant-tabs" id="tab-3">
+      <input type="radio" name="consultant-tabs" id="tab-4">
+
+      <!-- Sub-Option Pill Bar -->
+      <div class="suboption-bar">
+        <label for="tab-1" class="suboption-pill">
+          <i class="bi bi-compass me-1"></i> Overview
+        </label>
+        <label for="tab-2" class="suboption-pill">
+          <i class="bi bi-person-lines-fill me-1"></i> Consultant List
+        </label>
+        <label for="tab-3" class="suboption-pill">
+          <i class="bi bi-person-plus me-1"></i> Add Consultant
+        </label>
+        <label for="tab-4" class="suboption-pill">
+          <i class="bi bi-pencil-square me-1"></i> Update Consultant
+        </label>
+      </div>
+
+      <!-- TAB PANELS -->
+      <div class="tab-panels">
+
+        <!-- ==========================================
+             PANEL 1: OVERVIEW
+             ========================================== -->
+        <div id="panel-1" class="tab-panel">
+          <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">Advisory Team</span>
+              <h3 class="fw-bold mb-0">Consultant Overview</h3>
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-3 mt-md-0">
+              <label for="tab-3" class="btn-brand-teal">
+                <i class="bi bi-person-plus me-1"></i> Add Consultant
+              </label>
+              <label for="tab-2" class="btn-brand-outline">
+                <i class="bi bi-person-lines-fill me-1"></i> Consultant List
+              </label>
+            </div>
+          </div>
+
+          <div class="row g-4 mb-4">
+            <div class="col-12 col-md-4">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box teal">
+                  <i class="bi bi-person-badge"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Total Consultants</p>
+                  <h4 class="metric-value" id="totalConsultantsCount">4</h4>
+                  <span class="metric-sub">Registered advisors</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box sky">
+                  <i class="bi bi-person-check"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Active Consultants</p>
+                  <h4 class="metric-value" id="activeConsultantsCount">3</h4>
+                  <span class="metric-sub">Available for bookings</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box coral">
+                  <i class="bi bi-briefcase"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Assigned Bookings</p>
+                  <h4 class="metric-value" id="assignedBookingsCount">19</h4>
+                  <span class="metric-sub">Active trips handled</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="metric-glass-card flex-column align-items-start">
+            <div class="fw-bold mb-1" style="color: var(--navy-primary);">Advisory Desk Coverage</div>
+            <div class="small text-muted">
+              Advisors stationed across <strong>Kochi</strong>, <strong>Bengaluru</strong>, and <strong>Thiruvananthapuram</strong> handle standard bookings, custom itineraries, and on-ground trip coordination.
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             PANEL 2: CONSULTANT LIST
+             ========================================== -->
+        <div id="panel-2" class="tab-panel">
+          <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">Directory</span>
+              <h3 class="fw-bold mb-0">Consultant List</h3>
+            </div>
+            <label for="tab-3" class="btn-brand-teal mt-3 mt-md-0">
+              <i class="bi bi-person-plus me-1"></i> Add Consultant
+            </label>
+          </div>
+
+          <div class="row g-3 mb-4">
+            <div class="col-12 col-md-6">
+              <div class="studio-input-group">
+                <i class="bi bi-search"></i>
+                <input type="text" id="conSearchInput" class="form-control studio-input" placeholder="Search by name, code, role, or city...">
+              </div>
+            </div>
+            <div class="col-6 col-md-4">
+              <select id="conStatusFilter" class="form-select studio-input">
+                <option value="">All Statuses</option>
+                <option value="active">Active</option>
+                <option value="on_leave">On Leave</option>
+                <option value="inactive">Inactive</option>
+              </select>
+            </div>
+            <div class="col-6 col-md-2 d-grid">
+              <button type="button" id="conFilterBtn" class="btn-brand-outline justify-content-center">
+                <i class="bi bi-funnel me-1"></i> Filter
+              </button>
+            </div>
+          </div>
+
+          <div class="table-responsive studio-table-wrap">
+            <table class="table studio-table align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Name</th>
+                  <th>Role</th>
+                  <th>Phone</th>
+                  <th>Base City</th>
+                  <th>Assigned Trips</th>
+                  <th>Status</th>
+                  <th class="text-end">Profile</th>
+                </tr>
+              </thead>
+              <tbody id="consultantsListBody">
+                <tr
+                  data-consultant-code="CON-01"
+                  data-status="active"
+                  data-trips="7"
+                  data-email="neha.kurian@tripkitgo.com"
+                  data-role="trip_planner"
+                  data-experience="6"
+                  data-joining-date="2022-04-12"
+                  data-alt-phone="+91 9847110299"
+                  data-bio="Senior advisor specializing in Munnar, Wayanad, and family hill getaways across Kerala."
+                  data-notes="Top performer for hill-station packages; prefers morning client briefings."
+                >
+                  <td class="fw-bold">CON-01</td>
+                  <td class="fw-semibold">Neha Kurian</td>
+                  <td>Senior Trip Planner</td>
+                  <td>+91 9847110291</td>
+                  <td>Kochi, Kerala</td>
+                  <td>7</td>
+                  <td><span class="badge bg-success-subtle text-success border border-success-subtle">Active</span></td>
+                  <td class="text-end">
+                    <button type="button" class="btn-brand-outline py-1 px-2 small js-view-consultant">
+                      <i class="bi bi-person-vcard me-1"></i> View
+                    </button>
+                  </td>
+                </tr>
+                <tr
+                  data-consultant-code="CON-02"
+                  data-status="active"
+                  data-trips="6"
+                  data-email="devika.shenoy@tripkitgo.com"
+                  data-role="custom_architect"
+                  data-experience="5"
+                  data-joining-date="2023-01-18"
+                  data-alt-phone="+91 9845220490"
+                  data-bio="Designs bespoke honeymoon routes and private houseboat backwater itineraries."
+                  data-notes="Leads custom honeymoon routes and coastal backwater itineraries."
+                >
+                  <td class="fw-bold">CON-02</td>
+                  <td class="fw-semibold">Devika Shenoy</td>
+                  <td>Custom Itinerary Architect</td>
+                  <td>+91 9845220483</td>
+                  <td>Bengaluru, Karnataka</td>
+                  <td>6</td>
+                  <td><span class="badge bg-success-subtle text-success border border-success-subtle">Active</span></td>
+                  <td class="text-end">
+                    <button type="button" class="btn-brand-outline py-1 px-2 small js-view-consultant">
+                      <i class="bi bi-person-vcard me-1"></i> View
+                    </button>
+                  </td>
+                </tr>
+                <tr
+                  data-consultant-code="CON-03"
+                  data-status="active"
+                  data-trips="6"
+                  data-email="pranav.hegde@tripkitgo.com"
+                  data-role="coordinator"
+                  data-experience="4"
+                  data-joining-date="2023-08-05"
+                  data-alt-phone="+91 9846330722"
+                  data-bio="Coordinates road-trip logistics, SUV/motorcycle fleets, and Western Ghats routes."
+                  data-notes="Handles road-trip logistics, SUV/bike rentals, and ghat routes."
+                >
+                  <td class="fw-bold">CON-03</td>
+                  <td class="fw-semibold">Pranav Hegde</td>
+                  <td>On-Ground Coordinator</td>
+                  <td>+91 9846330715</td>
+                  <td>Thiruvananthapuram, Kerala</td>
+                  <td>6</td>
+                  <td><span class="badge bg-success-subtle text-success border border-success-subtle">Active</span></td>
+                  <td class="text-end">
+                    <button type="button" class="btn-brand-outline py-1 px-2 small js-view-consultant">
+                      <i class="bi bi-person-vcard me-1"></i> View
+                    </button>
+                  </td>
+                </tr>
+                <tr
+                  data-consultant-code="CON-04"
+                  data-status="on_leave"
+                  data-trips="0"
+                  data-email="siddharth.menon@tripkitgo.com"
+                  data-role="destination_specialist"
+                  data-experience="3"
+                  data-joining-date="2024-02-14"
+                  data-alt-phone="+91 9895440935"
+                  data-bio="Regional specialist covering Goa, Ooty, and Coorg leisure circuits."
+                  data-notes="Scheduled leave until next week; reassign new leads."
+                >
+                  <td class="fw-bold">CON-04</td>
+                  <td class="fw-semibold">Siddharth Menon</td>
+                  <td>Destination Specialist</td>
+                  <td>+91 9895440928</td>
+                  <td>Kochi, Kerala</td>
+                  <td>0</td>
+                  <td><span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle">On Leave</span></td>
+                  <td class="text-end">
+                    <button type="button" class="btn-brand-outline py-1 px-2 small js-view-consultant">
+                      <i class="bi bi-person-vcard me-1"></i> View
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             PANEL 3: ADD CONSULTANT
+             ========================================== -->
+        <div id="panel-3" class="tab-panel">
+          <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">Advisor Onboarding</span>
+              <h3 class="fw-bold mb-0">Add Consultant Profile</h3>
+            </div>
+            <span class="badge rounded-pill px-3 py-2" style="background: rgba(14, 159, 154, 0.12); color: var(--teal-primary);">
+              <i class="bi bi-person-vcard me-1"></i> Advisor Profile
+            </span>
+          </div>
+
+          <form id="addConsultantForm" action="#" method="post" enctype="multipart/form-data" novalidate>
+            <div class="row g-4">
+              <!-- Section 1: Identity & Contact -->
+              <div class="col-12">
+                <h6 class="form-section-heading"><i class="bi bi-person-circle me-2"></i>1. Identity &amp; Contact Information</h6>
+              </div>
+
+              <div class="col-12 col-lg-3">
+                <label for="conPhotoInput" class="studio-label">Profile Photo</label>
+                <label id="conPhotoDropzone" class="media-dropzone" style="min-height: 168px;">
+                  <input type="file" id="conPhotoInput" name="consultant_photo" accept="image/*" class="d-none">
+                  <i class="bi bi-person-bounding-box fs-2 d-block mb-2" style="color: var(--teal-primary);"></i>
+                  <span class="fw-bold d-block small" id="conPhotoLabel">Upload Portrait</span>
+                  <span class="text-muted" style="font-size: 0.72rem;">Square JPG/PNG</span>
+                </label>
+                <div class="field-error" id="err-conPhotoInput"></div>
+              </div>
+
+              <div class="col-12 col-lg-9">
+                <div class="row g-3">
+                  <div class="col-12 col-md-5">
+                    <label for="conFullName" class="studio-label">Full Name</label>
+                    <input type="text" id="conFullName" name="full_name" class="form-control studio-input" placeholder="Enter consultant full name">
+                    <div class="field-error" id="err-conFullName"></div>
+                  </div>
+
+                  <div class="col-6 col-md-3">
+                    <label for="conCode" class="studio-label">Advisor Code / ID</label>
+                    <input type="text" id="conCode" name="advisor_code" class="form-control studio-input" placeholder="e.g., CON-01">
+                    <div class="field-error" id="err-conCode"></div>
+                  </div>
+
+                  <div class="col-6 col-md-4">
+                    <label for="conRole" class="studio-label">Role / Designation</label>
+                    <select id="conRole" name="role" class="form-select studio-input">
+                      <option value="trip_planner">Senior Trip Planner</option>
+                      <option value="destination_specialist">Destination Specialist</option>
+                      <option value="custom_architect">Custom Itinerary Architect</option>
+                      <option value="coordinator">On-Ground Coordinator</option>
+                    </select>
+                  </div>
+
+                  <div class="col-12 col-md-4">
+                    <label for="conEmail" class="studio-label">Official Email</label>
+                    <input type="email" id="conEmail" name="email" class="form-control studio-input" placeholder="name@tripkitgo.com">
+                    <div class="field-error" id="err-conEmail"></div>
+                  </div>
+
+                  <div class="col-6 col-md-4">
+                    <label for="conPhone" class="studio-label">Phone / WhatsApp</label>
+                    <input type="tel" id="conPhone" name="phone" class="form-control studio-input" placeholder="+91 9847011204">
+                    <div class="field-error" id="err-conPhone"></div>
+                  </div>
+
+                  <div class="col-6 col-md-4">
+                    <label for="conCity" class="studio-label">Base Location / City</label>
+                    <input type="text" id="conCity" name="city" class="form-control studio-input" placeholder="e.g., Kochi, Kerala">
+                    <div class="field-error" id="err-conCity"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Section 2: Experience & Availability -->
+              <div class="col-12 mt-4">
+                <h6 class="form-section-heading"><i class="bi bi-calendar-check me-2"></i>2. Experience &amp; Availability</h6>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="conExperience" class="studio-label">Experience (Years)</label>
+                <input type="number" id="conExperience" name="experience_years" min="0" class="form-control studio-input" placeholder="e.g., 4">
+                <div class="field-error" id="err-conExperience"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="conJoiningDate" class="studio-label">Joining Date</label>
+                <input type="date" id="conJoiningDate" name="joining_date" class="form-control studio-input">
+                <div class="field-error" id="err-conJoiningDate"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="conStatus" class="studio-label">Availability Status</label>
+                <select id="conStatus" name="status" class="form-select studio-input">
+                  <option value="active">Active (Available)</option>
+                  <option value="on_leave">On Leave</option>
+                  <option value="inactive">Inactive</option>
+                </select>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="conAltPhone" class="studio-label">Emergency / Alternate Phone</label>
+                <input type="tel" id="conAltPhone" name="alt_phone" class="form-control studio-input" placeholder="+91 9847011204">
+                <div class="field-error" id="err-conAltPhone"></div>
+              </div>
+
+              <!-- Section 3: Bio & Internal Notes -->
+              <div class="col-12 mt-4">
+                <h6 class="form-section-heading"><i class="bi bi-journal-text me-2"></i>3. Profile Bio &amp; Internal Notes</h6>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="conBio" class="studio-label">Advisor Short Bio (Shown on Trip Assignments)</label>
+                <textarea id="conBio" name="bio" rows="3" class="form-control studio-input" placeholder="Brief intro about the consultant..."></textarea>
+                <div class="field-error" id="err-conBio"></div>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="conNotes" class="studio-label">Admin / Internal Notes</label>
+                <textarea id="conNotes" name="notes" rows="3" class="form-control studio-input" placeholder="Internal notes or remarks..."></textarea>
+                <div class="field-error" id="err-conNotes"></div>
+              </div>
+
+              <div class="col-12 d-flex justify-content-end gap-3 pt-3 border-top">
+                <button type="reset" class="btn-brand-outline">Clear Form</button>
+                <button type="submit" class="btn-brand-teal">
+                  <i class="bi bi-check2-circle me-1"></i> Save Consultant Profile
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- ==========================================
+             PANEL 4: UPDATE CONSULTANT (WITH SEARCH)
+             ========================================== -->
+        <div id="panel-4" class="tab-panel">
+          <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow" style="color: var(--coral-accent);">Edit Details</span>
+              <h3 class="fw-bold mb-0">Update Consultant</h3>
+            </div>
+          </div>
+
+          <!-- Step 1: Search Consultant -->
+          <form id="findConsultantForm" action="#" method="get" class="mb-4 pb-4 border-bottom" novalidate>
+            <label for="findConsultantQuery" class="studio-label">Find Consultant</label>
+            <div class="row g-3">
+              <div class="col-12 col-md-9">
+                <div class="studio-input-group">
+                  <i class="bi bi-search"></i>
+                  <input
+                    type="search"
+                    id="findConsultantQuery"
+                    name="consultant_query"
+                    list="consultant-suggestions"
+                    class="form-control studio-input"
+                    placeholder="Search consultant by code, name, email, or phone number..."
+                  >
+                  <datalist id="consultant-suggestions"></datalist>
+                </div>
+                <div class="field-error" id="err-findConsultantQuery"></div>
+              </div>
+              <div class="col-12 col-md-3 d-grid">
+                <button type="submit" class="btn-brand-teal justify-content-center">
+                  <i class="bi bi-search me-1"></i> Find Consultant
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- Step 2: Edit Consultant Details -->
+          <form id="updateConsultantForm" action="#" method="post" enctype="multipart/form-data" novalidate>
+            <div class="row g-4">
+              <div class="col-12 col-lg-3">
+                <label for="editConPhotoInput" class="studio-label">Profile Photo</label>
+                <label id="editConPhotoDropzone" class="media-dropzone" style="min-height: 168px;">
+                  <input type="file" id="editConPhotoInput" name="edit_consultant_photo" accept="image/*" class="d-none">
+                  <i class="bi bi-person-bounding-box fs-2 d-block mb-2" style="color: var(--teal-primary);"></i>
+                  <span class="fw-bold d-block small" id="editConPhotoLabel">Update Portrait</span>
+                  <span class="text-muted" style="font-size: 0.72rem;">Square JPG/PNG</span>
+                </label>
+                <div class="field-error" id="err-editConPhotoInput"></div>
+              </div>
+
+              <div class="col-12 col-lg-9">
+                <div class="row g-3">
+                  <div class="col-12 col-md-5">
+                    <label for="editConName" class="studio-label">Full Name</label>
+                    <input type="text" id="editConName" class="form-control studio-input" placeholder="Full name">
+                    <div class="field-error" id="err-editConName"></div>
+                  </div>
+
+                  <div class="col-6 col-md-3">
+                    <label for="editConCode" class="studio-label">Advisor Code / ID</label>
+                    <input type="text" id="editConCode" class="form-control studio-input" placeholder="e.g., CON-01" readonly>
+                    <div class="field-error" id="err-editConCode"></div>
+                  </div>
+
+                  <div class="col-6 col-md-4">
+                    <label for="editConRole" class="studio-label">Role / Designation</label>
+                    <select id="editConRole" class="form-select studio-input">
+                      <option value="trip_planner">Senior Trip Planner</option>
+                      <option value="destination_specialist">Destination Specialist</option>
+                      <option value="custom_architect">Custom Itinerary Architect</option>
+                      <option value="coordinator">On-Ground Coordinator</option>
+                    </select>
+                  </div>
+
+                  <div class="col-12 col-md-4">
+                    <label for="editConEmail" class="studio-label">Official Email</label>
+                    <input type="email" id="editConEmail" class="form-control studio-input" placeholder="name@tripkitgo.com">
+                    <div class="field-error" id="err-editConEmail"></div>
+                  </div>
+
+                  <div class="col-6 col-md-4">
+                    <label for="editConPhone" class="studio-label">Phone / WhatsApp</label>
+                    <input type="tel" id="editConPhone" class="form-control studio-input" placeholder="+91 9847011204">
+                    <div class="field-error" id="err-editConPhone"></div>
+                  </div>
+
+                  <div class="col-6 col-md-4">
+                    <label for="editConCity" class="studio-label">Base Location / City</label>
+                    <input type="text" id="editConCity" class="form-control studio-input" placeholder="e.g., Kochi, Kerala">
+                    <div class="field-error" id="err-editConCity"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="editConExperience" class="studio-label">Experience (Years)</label>
+                <input type="number" id="editConExperience" min="0" class="form-control studio-input" placeholder="e.g., 4">
+                <div class="field-error" id="err-editConExperience"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="editConJoiningDate" class="studio-label">Joining Date</label>
+                <input type="date" id="editConJoiningDate" class="form-control studio-input">
+                <div class="field-error" id="err-editConJoiningDate"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="editConStatus" class="studio-label">Availability Status</label>
+                <select id="editConStatus" class="form-select studio-input">
+                  <option value="active">Active (Available)</option>
+                  <option value="on_leave">On Leave</option>
+                  <option value="inactive">Inactive</option>
+                </select>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="editConAltPhone" class="studio-label">Emergency / Alternate Phone</label>
+                <input type="tel" id="editConAltPhone" class="form-control studio-input" placeholder="+91 9847011204">
+                <div class="field-error" id="err-editConAltPhone"></div>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="editConBio" class="studio-label">Advisor Short Bio (Shown on Trip Assignments)</label>
+                <textarea id="editConBio" rows="3" class="form-control studio-input" placeholder="Brief intro about the consultant..."></textarea>
+                <div class="field-error" id="err-editConBio"></div>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="editConNotes" class="studio-label">Admin / Internal Notes</label>
+                <textarea id="editConNotes" rows="3" class="form-control studio-input" placeholder="Internal notes or remarks..."></textarea>
+                <div class="field-error" id="err-editConNotes"></div>
+              </div>
+
+              <div class="col-12 d-flex justify-content-end gap-3 pt-3 border-top">
+                <button type="reset" class="btn-brand-outline">Reset</button>
+                <button type="submit" class="btn-brand-coral">
+                  <i class="bi bi-save me-1"></i> Update Consultant
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Complete Consultant Profile Modal -->
+  <div id="consultantProfileModal" class="d-none" style="position: fixed; inset: 0; z-index: 1055; background: rgba(11, 31, 58, 0.55); backdrop-filter: blur(4px); overflow-y: auto; padding: 1.5rem;">
+    <div class="container" style="max-width: 720px; margin-top: 2rem;">
+      <div class="metric-glass-card flex-column align-items-stretch p-4 bg-white shadow-lg">
+        <div class="d-flex justify-content-between align-items-start gap-3 pb-3 mb-3 border-bottom">
+          <div class="d-flex align-items-center gap-3">
+            <img id="profileModalPhoto" src="" alt="Consultant Portrait" class="rounded-circle d-none" style="width: 64px; height: 64px; object-fit: cover; border: 2px solid var(--teal-primary);">
+            <div id="profileModalInitials" class="metric-icon-box teal" style="width: 64px; height: 64px; font-size: 1.25rem; font-weight: 700;">CN</div>
+            <div>
+              <div class="d-flex align-items-center gap-2 mb-1">
+                <span id="profileModalCode" class="fw-bold small" style="color: var(--teal-primary);">CON-01</span>
+                <span id="profileModalStatus"></span>
+              </div>
+              <h4 id="profileModalName" class="fw-bold mb-0" style="color: var(--navy-primary);">Consultant Name</h4>
+              <div id="profileModalRole" class="small text-muted">Role</div>
+            </div>
+          </div>
+          <button type="button" id="closeProfileModalBtn" class="btn-brand-outline py-1 px-2" aria-label="Close profile">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <div class="row g-3 small mb-3">
+          <div class="col-12 col-sm-6">
+            <div class="text-muted">Official Email</div>
+            <div id="profileModalEmail" class="fw-semibold">&mdash;</div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="text-muted">Phone / WhatsApp</div>
+            <div id="profileModalPhone" class="fw-semibold">&mdash;</div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="text-muted">Base Location / City</div>
+            <div id="profileModalCity" class="fw-semibold">&mdash;</div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="text-muted">Emergency / Alternate Phone</div>
+            <div id="profileModalAltPhone" class="fw-semibold">&mdash;</div>
+          </div>
+          <div class="col-6 col-sm-4">
+            <div class="text-muted">Experience</div>
+            <div id="profileModalExperience" class="fw-semibold">&mdash;</div>
+          </div>
+          <div class="col-6 col-sm-4">
+            <div class="text-muted">Joining Date</div>
+            <div id="profileModalJoiningDate" class="fw-semibold">&mdash;</div>
+          </div>
+          <div class="col-12 col-sm-4">
+            <div class="text-muted">Assigned Trips</div>
+            <div id="profileModalTrips" class="fw-semibold">&mdash;</div>
+          </div>
+        </div>
+
+        <div class="p-3 rounded-3 mb-3" style="background: rgba(14, 159, 154, 0.06);">
+          <div class="small fw-bold mb-1" style="color: var(--navy-primary);">Advisor Short Bio</div>
+          <div id="profileModalBio" class="small text-muted">&mdash;</div>
+        </div>
+
+        <div class="p-3 rounded-3 mb-4" style="background: rgba(11, 31, 58, 0.04);">
+          <div class="small fw-bold mb-1" style="color: var(--navy-primary);">Admin / Internal Notes</div>
+          <div id="profileModalNotes" class="small text-muted">&mdash;</div>
+        </div>
+
+        <div class="d-flex justify-content-end gap-2 pt-3 border-top">
+          <button type="button" id="cancelProfileModalBtn" class="btn-brand-outline">Close</button>
+          <button type="button" id="editFromProfileModalBtn" class="btn-brand-teal">
+            <i class="bi bi-pencil-square me-1"></i> Edit in Update Tab
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TripKitGo Admin Studio Footer -->
+  <footer class="studio-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <!-- Brand & Tagline -->
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo-wrap">
+            <img src="../images/tripkitgo_logo.png" alt="TripKitGo Logo" class="footer-logo-img">
+          </a>
+          <p class="footer-tagline">Admin Studio &bull; Travel Operations &amp; Management</p>
+        </div>
+
+        <!-- Portal Status -->
+        <span class="footer-status">
+          <span class="status-dot"></span> Admin Portal v1.0
+        </span>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 TripKitGo. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/page-consultants.js"></script>
+</body>
+</html>

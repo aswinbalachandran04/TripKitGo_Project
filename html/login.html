@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login — TripKitGo Admin Studio</title>
+
+  <!-- Plus Jakarta Sans Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Shared Stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/auth-guard.js"></script>
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+      background-color: var(--navy-primary);
+    }
+
+    /* Fullscreen Travel Background Video (YouTube Embed) */
+    .bg-video-wrap {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -2;
+      overflow: hidden;
+      background-color: var(--navy-primary);
+      pointer-events: none;
+    }
+
+    .bg-video-wrap iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100vw;
+      height: 56.25vw;
+      /* 16:9 aspect ratio */
+      min-width: 177.78vh;
+      min-height: 100vh;
+      transform: translate(-50%, -50%) scale(1.12);
+      border: 0;
+    }
+
+    /* Light Gradient Overlay (No Backdrop Blur) */
+    .bg-video-overlay {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+      background: linear-gradient(135deg,
+          rgba(215, 216, 218, 0.153) 0%,
+          rgba(241, 245, 249, 0.134) 50%,
+          rgba(247, 249, 249, 0.135) 100%);
+    }
+
+    /* Extra vertical space to push footer further down */
+    .login-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1rem;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 24px;
+      padding: 2.25rem 2rem;
+      box-shadow: 0 24px 54px rgba(10, 26, 42, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+    }
+
+    .login-logo {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .login-error {
+      display: none;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: #b42318;
+      background: rgba(255, 107, 90, 0.14);
+      border: 1px solid rgba(255, 107, 90, 0.4);
+      border-radius: 12px;
+      padding: 0.65rem 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .studio-footer {
+      margin-top: 0;
+      background: rgba(18, 48, 74, 0.96);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Background Tour & Travel Video (YouTube) -->
+  <div class="bg-video-wrap" aria-hidden="true">
+    <iframe
+      src="https://www.youtube.com/embed/g3Z79rr2JqE?autoplay=1&mute=1&loop=1&playlist=g3Z79rr2JqE&controls=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3"
+      title="TripKitGo Travel Background Video" allow="autoplay; encrypted-media; picture-in-picture"
+      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+  <div class="bg-video-overlay"></div>
+
+  <!-- Login Form Container -->
+  <main class="login-wrapper">
+    <div class="login-card">
+      <!-- Brand Header -->
+      <div class="text-center mb-4">
+        <img src="../images/tripkitgo_logo.png" alt="TripKitGo Logo" class="login-logo mb-3">
+
+        <h4 class="fw-bold mb-1" style="color: var(--navy-primary);">Administrator Login</h4>
+        <p class="text-muted small mb-0">Enter your username and password to continue</p>
+      </div>
+
+      <!-- Error Alert -->
+      <div id="loginError" class="login-error">
+        <i class="bi bi-exclamation-circle me-1"></i> Invalid username or password.
+      </div>
+
+      <!-- Login Form -->
+      <form id="adminLoginForm">
+        <div class="mb-3">
+          <label for="username" class="studio-label">Username</label>
+          <div class="studio-input-group">
+            <i class="bi bi-person"></i>
+            <input type="text" id="username" class="form-control studio-input" placeholder="Enter username" required>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label for="password" class="studio-label">Password</label>
+          <div class="studio-input-group">
+            <i class="bi bi-lock"></i>
+            <input type="password" id="password" class="form-control studio-input" placeholder="Enter password"
+              required>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-brand-teal w-100 justify-content-center py-2">
+          <i class="bi bi-box-arrow-in-right me-2"></i> Sign In
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <!-- TripKitGo Admin Studio Footer -->
+  <footer class="studio-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="../html/index.html" class="footer-logo-wrap">
+            <img src="../images/tripkitgo_logo.png" alt="TripKitGo Logo" class="footer-logo-img">
+          </a>
+          <p class="footer-tagline">Admin Studio &bull; Travel Operations &amp; Management</p>
+        </div>
+
+        <span class="footer-status">
+          <span class="status-dot"></span> Admin Portal v1.0
+        </span>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 TripKitGo. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const HARDCODED_USER = "admin";
+    const HARDCODED_PASS = "tripkitgo123";
+
+    document.getElementById("adminLoginForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const user = document.getElementById("username").value.trim();
+      const pass = document.getElementById("password").value;
+      const errorBox = document.getElementById("loginError");
+
+      if (user === HARDCODED_USER && pass === HARDCODED_PASS) {
+        errorBox.style.display = "none";
+        window.TripKitGoAuth.loginSuccess();
+      } else {
+        errorBox.style.display = "block";
+      }
+    });
+  </script>
+
+</body>
+
+</html>

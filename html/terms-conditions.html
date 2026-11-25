@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms and Conditions — TripKitGo Admin Studio</title>
+
+  <!-- Plus Jakarta Sans Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS & Icons (Zero JS) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Shared Stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/auth-guard.js"></script>
+</head>
+
+<body data-page="policies">
+
+  <!-- Responsive Sticky Glass Navbar (Zero JS Checkbox Toggler) -->
+  <nav class="studio-navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-logo-wrap">
+        <img src="../images/tripkitgo_logo.png" alt="TripKitGo Logo" class="navbar-logo-img">
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
+      <label for="nav-toggle" class="nav-toggler-btn" aria-label="Toggle navigation">
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+      </label>
+
+      <div class="navbar-collapse-custom">
+        <ul class="navbar-links-list">
+          <li><a href="index.html" class="nav-quick-link"><i class="bi bi-grid-fill"></i> Hub</a></li>
+          <li><a href="bookings.html" class="nav-quick-link"><i class="bi bi-journal-check"></i> Bookings</a></li>
+          <li><a href="customized-packages.html" class="nav-quick-link"><i class="bi bi-sliders"></i> Customized
+              Packages</a></li>
+          <li><a href="destinations.html" class="nav-quick-link"><i class="bi bi-geo-alt"></i> Destinations</a></li>
+          <li><a href="payments.html" class="nav-quick-link"><i class="bi bi-credit-card"></i> Payments</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+          <span class="studio-pill-badge">
+            <span class="pulse-dot"></span> Admin Studio
+          </span>
+          <a href="login.html" class="btn-studio-logout" title="Sign out of Admin Studio"
+            onclick="event.preventDefault(); window.TripKitGoAuth.logout();">
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Logout</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Terms & Conditions Workspace -->
+  <main class="container pb-5">
+
+    <!-- Editorial Hero Banner -->
+    <div class="workspace-banner">
+      <img src="../images/terms-conditions.avif" alt="Terms and Conditions Banner">
+      <div class="workspace-banner-content">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+          <a href="index.html" class="btn-back-hub mb-0">
+            <i class="bi bi-arrow-left me-1"></i> Back to Hub
+          </a>
+          <span class="featured-tag"><i class="bi bi-shield-check me-1"></i> Policies &amp; Legal</span>
+        </div>
+        <h1 class="display-6 fw-extrabold mb-1">Terms and Conditions</h1>
+        <p class="mb-0 text-white-50">Add, update, and manage booking rules, cancellation terms, refund policies, and
+          travel guidelines.</p>
+      </div>
+    </div>
+
+    <!-- Pure CSS Sub-Option Radio Tabs -->
+    <div class="css-tabs-wrapper">
+      <input type="radio" name="terms-tabs" id="tab-1" checked>
+      <input type="radio" name="terms-tabs" id="tab-2">
+      <input type="radio" name="terms-tabs" id="tab-3">
+      <input type="radio" name="terms-tabs" id="tab-4">
+
+      <!-- Sub-Option Pill Bar -->
+      <div class="suboption-bar">
+        <label for="tab-1" class="suboption-pill">
+          <i class="bi bi-compass me-1"></i> Overview
+        </label>
+        <label for="tab-2" class="suboption-pill">
+          <i class="bi bi-file-earmark-text me-1"></i> Active Policies
+        </label>
+        <label for="tab-3" class="suboption-pill">
+          <i class="bi bi-plus-circle me-1"></i> Add Policy
+        </label>
+        <label for="tab-4" class="suboption-pill">
+          <i class="bi bi-pencil-square me-1"></i> Edit Policy
+        </label>
+      </div>
+
+      <!-- TAB PANELS -->
+      <div class="tab-panels">
+
+        <!-- ==========================================
+             PANEL 1: OVERVIEW
+             ========================================== -->
+        <div id="panel-1" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">Policy Governance</span>
+              <h3 class="fw-bold mb-0">Terms &amp; Policies Overview</h3>
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-3 mt-md-0">
+              <label for="tab-3" class="btn-brand-teal">
+                <i class="bi bi-plus-lg me-1"></i> Add Policy
+              </label>
+              <label for="tab-4" class="btn-brand-outline">
+                <i class="bi bi-pencil-square me-1"></i> Edit Policy
+              </label>
+            </div>
+          </div>
+
+          <div class="row g-4 mb-4">
+            <div class="col-12 col-md-4">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box teal">
+                  <i class="bi bi-shield-check"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Published Policies</p>
+                  <h4 class="metric-value" id="publishedPoliciesCount">3</h4>
+                  <span class="metric-sub">Live terms &amp; conditions</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box sky">
+                  <i class="bi bi-file-earmark-diff"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Draft Policies</p>
+                  <h4 class="metric-value" id="draftPoliciesCount">1</h4>
+                  <span class="metric-sub">Unpublished clauses</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box coral">
+                  <i class="bi bi-clock-history"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Last Updated</p>
+                  <h4 class="metric-value" id="lastUpdatedDate">2026-11-20</h4>
+                  <span class="metric-sub">Most recent revision</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="metric-glass-card flex-column align-items-start">
+            <div class="fw-bold mb-1" style="color: var(--navy-primary);">Active Legal &amp; Booking Documentation</div>
+            <div class="small text-muted">
+              Standardized clauses govern advance deposits, rescheduling windows, refund slabs, and custom itinerary
+              approvals across all TripKitGo packages. Open <strong>Active Policies</strong> to read or inspect live
+              terms.
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             PANEL 2: ACTIVE POLICIES
+             ========================================== -->
+        <div id="panel-2" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">Published Terms</span>
+              <h3 class="fw-bold mb-0">Active Policies</h3>
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-3 mt-md-0">
+              <label for="tab-3" class="btn-brand-teal">
+                <i class="bi bi-plus-lg me-1"></i> Add Policy
+              </label>
+              <label for="tab-4" class="btn-brand-outline">
+                <i class="bi bi-pencil-square me-1"></i> Edit Policy
+              </label>
+            </div>
+          </div>
+
+          <div class="table-responsive studio-table-wrap">
+            <table class="table studio-table align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>Policy ID</th>
+                  <th>Policy Title</th>
+                  <th>Category</th>
+                  <th>Version</th>
+                  <th>Effective Date</th>
+                  <th>Status</th>
+                  <th class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="policiesListBody">
+                <tr data-policy-id="POL-101" data-category="booking_terms" data-status="published"
+                  data-content="1. A minimum 30% advance deposit is required to lock hotel and transport allocations.&#10;2. Remaining 70% balance must be settled at least 7 days prior to departure.&#10;3. Valid government-issued photo ID is mandatory for all travelers at check-in.">
+                  <td class="fw-bold">POL-101</td>
+                  <td class="fw-semibold">Standard Tour Booking &amp; Payment Terms</td>
+                  <td>Booking &amp; Payments</td>
+                  <td>v1.2</td>
+                  <td>2026-10-01</td>
+                  <td><span class="badge bg-success-subtle text-success border border-success-subtle">Published</span>
+                  </td>
+                  <td class="text-end">
+                    <div class="d-inline-flex gap-1">
+                      <button type="button" class="btn-brand-outline py-1 px-2 small js-view-policy"><i
+                          class="bi bi-eye me-1"></i> View</button>
+                      <button type="button"
+                        class="btn-brand-outline py-1 px-2 small text-danger border-danger-subtle js-delete-policy"
+                        title="Delete policy"><i class="bi bi-trash3"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-policy-id="POL-102" data-category="cancellation" data-status="published"
+                  data-content="1. Cancellations made 15+ days before departure receive a 90% refund of the deposited amount.&#10;2. Cancellations between 7 and 14 days before departure incur a 40% retention fee.&#10;3. Cancellations within 6 days of travel are non-refundable, though date rescheduling may be requested subject to partner availability.">
+                  <td class="fw-bold">POL-102</td>
+                  <td class="fw-semibold">Cancellation &amp; Refund Slab Policy</td>
+                  <td>Cancellation &amp; Refunds</td>
+                  <td>v1.1</td>
+                  <td>2026-10-15</td>
+                  <td><span class="badge bg-success-subtle text-success border border-success-subtle">Published</span>
+                  </td>
+                  <td class="text-end">
+                    <div class="d-inline-flex gap-1">
+                      <button type="button" class="btn-brand-outline py-1 px-2 small js-view-policy"><i
+                          class="bi bi-eye me-1"></i> View</button>
+                      <button type="button"
+                        class="btn-brand-outline py-1 px-2 small text-danger border-danger-subtle js-delete-policy"
+                        title="Delete policy"><i class="bi bi-trash3"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-policy-id="POL-103" data-category="custom_trips" data-status="published"
+                  data-content="1. Customized itinerary quotes remain valid for 5 calendar days from issue date.&#10;2. Route changes requested after confirmation may revise vehicle and accommodation tariffs.&#10;3. Hill-station and wildlife reserve permits are subject to forest department timings and weather advisories.">
+                  <td class="fw-bold">POL-103</td>
+                  <td class="fw-semibold">Customized Package &amp; Route Guidelines</td>
+                  <td>Custom Packages</td>
+                  <td>v1.0</td>
+                  <td>2026-11-05</td>
+                  <td><span class="badge bg-success-subtle text-success border border-success-subtle">Published</span>
+                  </td>
+                  <td class="text-end">
+                    <div class="d-inline-flex gap-1">
+                      <button type="button" class="btn-brand-outline py-1 px-2 small js-view-policy"><i
+                          class="bi bi-eye me-1"></i> View</button>
+                      <button type="button"
+                        class="btn-brand-outline py-1 px-2 small text-danger border-danger-subtle js-delete-policy"
+                        title="Delete policy"><i class="bi bi-trash3"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-policy-id="POL-104" data-category="privacy" data-status="draft"
+                  data-content="1. Traveler contact details and ID records are collected strictly for hotel check-in, permit issuance, and trip coordination.&#10;2. TripKitGo does not sell or rent customer information to third-party marketers.">
+                  <td class="fw-bold">POL-104</td>
+                  <td class="fw-semibold">Traveler Data Privacy &amp; Liability Clause</td>
+                  <td>Privacy &amp; Liability</td>
+                  <td>v0.9</td>
+                  <td>2026-11-20</td>
+                  <td><span
+                      class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle">Draft</span>
+                  </td>
+                  <td class="text-end">
+                    <div class="d-inline-flex gap-1">
+                      <button type="button" class="btn-brand-outline py-1 px-2 small js-view-policy"><i
+                          class="bi bi-eye me-1"></i> View</button>
+                      <button type="button"
+                        class="btn-brand-outline py-1 px-2 small text-danger border-danger-subtle js-delete-policy"
+                        title="Delete policy"><i class="bi bi-trash3"></i></button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             PANEL 3: ADD POLICY
+             ========================================== -->
+        <div id="panel-3" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">New Document</span>
+              <h3 class="fw-bold mb-0">Add New Policy</h3>
+            </div>
+            <span class="badge rounded-pill px-3 py-2"
+              style="background: rgba(14, 159, 154, 0.12); color: var(--teal-primary);">
+              <i class="bi bi-file-earmark-plus me-1"></i> Policy Builder
+            </span>
+          </div>
+
+          <form id="addPolicyForm" action="#" method="post" novalidate>
+            <div class="row g-4">
+              <div class="col-12 col-md-6">
+                <label for="polTitle" class="studio-label">Policy Title</label>
+                <input type="text" id="polTitle" name="policy_title" class="form-control studio-input"
+                  placeholder="e.g., Standard Tour Booking &amp; Payment Terms">
+                <div class="field-error" id="err-polTitle"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="polVersion" class="studio-label">Version Label</label>
+                <input type="text" id="polVersion" name="version_label" class="form-control studio-input"
+                  placeholder="e.g., v1.0">
+                <div class="field-error" id="err-polVersion"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="polEffectiveDate" class="studio-label">Effective Date</label>
+                <input type="date" id="polEffectiveDate" name="effective_date" class="form-control studio-input">
+                <div class="field-error" id="err-polEffectiveDate"></div>
+              </div>
+
+              <div class="col-12 col-md-8">
+                <label class="studio-label">Policy Category</label>
+                <div class="inclusion-pill-grid mt-1">
+                  <label class="inclusion-check-pill">
+                    <input type="radio" name="new_policy_category" value="booking_terms" checked>
+                    <span><i class="bi bi-journal-check me-1"></i> Booking &amp; Payments</span>
+                  </label>
+                  <label class="inclusion-check-pill">
+                    <input type="radio" name="new_policy_category" value="cancellation">
+                    <span><i class="bi bi-arrow-counterclockwise me-1"></i> Cancellation &amp; Refunds</span>
+                  </label>
+                  <label class="inclusion-check-pill">
+                    <input type="radio" name="new_policy_category" value="custom_trips">
+                    <span><i class="bi bi-sliders me-1"></i> Custom Packages</span>
+                  </label>
+                  <label class="inclusion-check-pill">
+                    <input type="radio" name="new_policy_category" value="privacy">
+                    <span><i class="bi bi-shield-lock me-1"></i> Privacy &amp; Liability</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <label for="polStatus" class="studio-label">Publish Status</label>
+                <select id="polStatus" name="publish_status" class="form-select studio-input">
+                  <option value="published">Published (Live)</option>
+                  <option value="draft">Save as Draft</option>
+                </select>
+              </div>
+
+              <div class="col-12">
+                <label for="polContent" class="studio-label">Policy Terms &amp; Clauses</label>
+                <textarea id="polContent" name="policy_content" rows="8" class="form-control studio-input"
+                  placeholder="Write the full policy clauses, payment deadlines, cancellation slabs, and traveler guidelines..."></textarea>
+                <div class="field-error" id="err-polContent"></div>
+              </div>
+
+              <div class="col-12 d-flex justify-content-end gap-3 pt-3 border-top">
+                <button type="reset" class="btn-brand-outline">Clear</button>
+                <button type="submit" class="btn-brand-teal">
+                  <i class="bi bi-check2-circle me-1"></i> Publish Policy
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- ==========================================
+             PANEL 4: EDIT POLICY (WITH SEARCH)
+             ========================================== -->
+        <div id="panel-4" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow" style="color: var(--coral-accent);">Policy Editor</span>
+              <h3 class="fw-bold mb-0">Edit Terms &amp; Conditions</h3>
+            </div>
+          </div>
+
+          <!-- Step 1: Search Policy -->
+          <form id="findPolicyForm" action="#" method="get" class="mb-4 pb-4 border-bottom" novalidate>
+            <label for="findPolicyQuery" class="studio-label">Find Policy to Edit</label>
+            <div class="row g-3">
+              <div class="col-12 col-md-9">
+                <div class="studio-input-group">
+                  <i class="bi bi-search"></i>
+                  <input type="search" id="findPolicyQuery" name="policy_query" list="policy-suggestions"
+                    class="form-control studio-input" placeholder="Search policy by ID, title, or category...">
+                  <datalist id="policy-suggestions"></datalist>
+                </div>
+                <div class="field-error" id="err-findPolicyQuery"></div>
+              </div>
+              <div class="col-12 col-md-3 d-grid">
+                <button type="submit" class="btn-brand-teal justify-content-center">
+                  <i class="bi bi-search me-1"></i> Find Policy
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- Step 2: Edit Policy Content -->
+          <form id="editPolicyForm" action="#" method="post" novalidate>
+            <input type="hidden" id="editPolicyId">
+            <div class="row g-4">
+              <div class="col-12 col-md-6">
+                <label for="editPolTitle" class="studio-label">Policy Title</label>
+                <input type="text" id="editPolTitle" class="form-control studio-input"
+                  placeholder="Updated policy title">
+                <div class="field-error" id="err-editPolTitle"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="editPolVersion" class="studio-label">Version Label</label>
+                <input type="text" id="editPolVersion" class="form-control studio-input" placeholder="e.g., v1.1">
+                <div class="field-error" id="err-editPolVersion"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="editPolEffectiveDate" class="studio-label">Effective Date</label>
+                <input type="date" id="editPolEffectiveDate" class="form-control studio-input">
+                <div class="field-error" id="err-editPolEffectiveDate"></div>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="editPolCategory" class="studio-label">Policy Category</label>
+                <select id="editPolCategory" class="form-select studio-input">
+                  <option value="booking_terms">Booking &amp; Payments</option>
+                  <option value="cancellation">Cancellation &amp; Refunds</option>
+                  <option value="custom_trips">Custom Packages</option>
+                  <option value="privacy">Privacy &amp; Liability</option>
+                </select>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="editPolStatus" class="studio-label">Status</label>
+                <select id="editPolStatus" class="form-select studio-input">
+                  <option value="published">Published (Live)</option>
+                  <option value="draft">Draft</option>
+                  <option value="archived">Archived</option>
+                </select>
+              </div>
+
+              <div class="col-12">
+                <label for="editPolContent" class="studio-label">Updated Terms &amp; Conditions Content</label>
+                <textarea id="editPolContent" rows="8" class="form-control studio-input"
+                  placeholder="Edit your terms, conditions, refund rules, and travel guidelines..."></textarea>
+                <div class="field-error" id="err-editPolContent"></div>
+              </div>
+
+              <div class="col-12 d-flex justify-content-end gap-3 pt-3 border-top">
+                <button type="reset" class="btn-brand-outline">Reset</button>
+                <button type="submit" class="btn-brand-coral">
+                  <i class="bi bi-save me-1"></i> Update Policy
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Policy Document Viewer Modal -->
+  <div id="policyDocumentModal" class="d-none"
+    style="position: fixed; inset: 0; z-index: 1055; background: rgba(11, 31, 58, 0.55); backdrop-filter: blur(4px); overflow-y: auto; padding: 1.5rem;">
+    <div class="container" style="max-width: 720px; margin-top: 2rem;">
+      <div class="metric-glass-card flex-column align-items-stretch p-4 bg-white shadow-lg">
+        <div class="d-flex justify-content-between align-items-start gap-3 pb-3 mb-3 border-bottom">
+          <div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <span id="polModalId" class="fw-bold small" style="color: var(--teal-primary);">POL-101</span>
+              <span id="polModalStatus"></span>
+            </div>
+            <h4 id="polModalTitle" class="fw-bold mb-1" style="color: var(--navy-primary);">Policy Title</h4>
+            <div class="small text-muted">
+              <span id="polModalCategory">Category</span> &bull; Version <strong id="polModalVersion">v1.0</strong>
+              &bull; Effective <span id="polModalDate">&mdash;</span>
+            </div>
+          </div>
+          <button type="button" id="closePolModalBtn" class="btn-brand-outline py-1 px-2" aria-label="Close policy">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <div class="p-3 rounded-3 mb-4" style="background: rgba(14, 159, 154, 0.06);">
+          <div class="small fw-bold mb-2" style="color: var(--navy-primary);">Policy Clauses &amp; Terms</div>
+          <div id="polModalContent" class="small text-muted" style="white-space: pre-line; line-height: 1.65;"></div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center gap-2 pt-3 border-top">
+          <button type="button" id="deleteFromPolModalBtn" class="btn-brand-outline text-danger border-danger-subtle">
+            <i class="bi bi-trash3 me-1"></i> Delete Policy
+          </button>
+          <div class="d-flex gap-2">
+            <button type="button" id="cancelPolModalBtn" class="btn-brand-outline">Close</button>
+            <button type="button" id="editFromPolModalBtn" class="btn-brand-teal">
+              <i class="bi bi-pencil-square me-1"></i> Edit in Policy Editor
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TripKitGo Admin Studio Footer -->
+  <footer class="studio-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <!-- Brand & Tagline -->
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo-wrap">
+            <img src="../images/tripkitgo_logo.png" alt="TripKitGo Logo" class="footer-logo-img">
+          </a>
+          <p class="footer-tagline">Admin Studio &bull; Travel Operations &amp; Management</p>
+        </div>
+
+        <!-- Portal Status -->
+        <span class="footer-status">
+          <span class="status-dot"></span> Admin Portal v1.0
+        </span>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 TripKitGo. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/page-policies.js"></script>
+</body>
+
+</html>

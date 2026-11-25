@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Packages — TripKitGo Admin Studio</title>
+
+  <!-- Plus Jakarta Sans Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS & Icons (Zero JS) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Shared Stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/auth-guard.js"></script>
+</head>
+
+<body data-page="packages">
+
+  <!-- Responsive Sticky Glass Navbar (Zero JS Checkbox Toggler) -->
+  <nav class="studio-navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-logo-wrap">
+        <img src="../images/tripkitgo_logo.png" alt="TripKitGo Logo" class="navbar-logo-img">
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
+      <label for="nav-toggle" class="nav-toggler-btn" aria-label="Toggle navigation">
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+      </label>
+
+      <div class="navbar-collapse-custom">
+        <ul class="navbar-links-list">
+          <li><a href="index.html" class="nav-quick-link"><i class="bi bi-grid-fill"></i> Hub</a></li>
+          <li><a href="bookings.html" class="nav-quick-link"><i class="bi bi-journal-check"></i> Bookings</a></li>
+          <li><a href="customized-packages.html" class="nav-quick-link"><i class="bi bi-sliders"></i> Customized
+              Packages</a></li>
+          <li><a href="destinations.html" class="nav-quick-link"><i class="bi bi-geo-alt"></i> Destinations</a></li>
+          <li><a href="payments.html" class="nav-quick-link"><i class="bi bi-credit-card"></i> Payments</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+          <span class="studio-pill-badge">
+            <span class="pulse-dot"></span> Admin Studio
+          </span>
+          <a href="login.html" class="btn-studio-logout" title="Sign out of Admin Studio"
+            onclick="event.preventDefault(); window.TripKitGoAuth.logout();">
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Logout</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Packages Workspace -->
+  <main class="container pb-5">
+
+    <!-- Editorial Hero Banner -->
+    <div class="workspace-banner">
+      <img src="../images/packages.avif" alt="Packages Banner">
+      <div class="workspace-banner-content">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+          <a href="index.html" class="btn-back-hub mb-0">
+            <i class="bi bi-arrow-left me-1"></i> Back to Hub
+          </a>
+          <span class="featured-tag"><i class="bi bi-suitcase2 me-1"></i> Tour Catalog</span>
+        </div>
+        <h1 class="display-6 fw-extrabold mb-1">Tour Packages Studio</h1>
+        <p class="mb-0 text-white-50">Build multi-day itineraries, manage package inclusions, pricing, and seasonal
+          departures.</p>
+      </div>
+    </div>
+
+    <!-- Pure CSS Sub-Option Radio Tabs -->
+    <div class="css-tabs-wrapper">
+      <input type="radio" name="package-tabs" id="tab-1" checked>
+      <input type="radio" name="package-tabs" id="tab-2">
+      <input type="radio" name="package-tabs" id="tab-3">
+      <input type="radio" name="package-tabs" id="tab-4">
+
+      <!-- Sub-Option Pill Bar -->
+      <div class="suboption-bar">
+        <label for="tab-1" class="suboption-pill">
+          <i class="bi bi-compass me-1"></i> Catalog Overview
+        </label>
+        <label for="tab-2" class="suboption-pill">
+          <i class="bi bi-grid-3x3-gap me-1"></i> Package Catalog
+        </label>
+        <label for="tab-3" class="suboption-pill">
+          <i class="bi bi-plus-circle me-1"></i> Create New Package
+        </label>
+      </div>
+
+      <!-- TAB PANELS -->
+      <div class="tab-panels">
+
+        <!-- ==========================================
+             PANEL 1: CATALOG OVERVIEW
+             ========================================== -->
+        <div id="panel-1" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">Inventory Pulse</span>
+              <h3 class="fw-bold mb-0">Catalog Overview</h3>
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-3 mt-md-0">
+              <label for="tab-3" class="btn-brand-teal">
+                <i class="bi bi-plus-lg me-1"></i> Create Package
+              </label>
+              <label for="tab-2" class="btn-brand-outline">
+                <i class="bi bi-grid-3x3-gap me-1"></i> View Catalog
+              </label>
+            </div>
+          </div>
+
+          <!-- Metric Cards -->
+          <div class="row g-4 mb-4">
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box teal">
+                  <i class="bi bi-suitcase2"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Total Packages</p>
+                  <h4 class="metric-value" id="totalPackagesCount">4</h4>
+                  <span class="metric-sub">Curated tour listings</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box sky">
+                  <i class="bi bi-broadcast"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Published</p>
+                  <h4 class="metric-value" id="publishedPackagesCount">2</h4>
+                  <span class="metric-sub">Visible to travelers</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box coral">
+                  <i class="bi bi-stars"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Featured</p>
+                  <h4 class="metric-value" id="featuredPackagesCount">2</h4>
+                  <span class="metric-sub">Homepage spotlights</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box navy">
+                  <i class="bi bi-file-earmark-text"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Drafts</p>
+                  <h4 class="metric-value" id="draftPackagesCount">0</h4>
+                  <span class="metric-sub">Pending publishing</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Packages Overview Table -->
+          <div class="table-responsive studio-table-wrap">
+            <table class="table studio-table align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Package Title</th>
+                  <th>Category</th>
+                  <th>Duration</th>
+                  <th>Price / Person</th>
+                  <th>Max Pax</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="packagesOverviewBody">
+                <tr data-pkg-code="PKG-MNR01" data-status="featured">
+                  <td class="fw-bold">PKG-MNR01</td>
+                  <td>
+                    <div class="fw-semibold">Munnar &amp; Tea Valley Escape</div>
+                    <div class="small text-muted">Munnar &bull; Eravikulam &bull; Top Station</div>
+                  </td>
+                  <td>Hill Stations</td>
+                  <td>4 Days / 3 Nights</td>
+                  <td class="fw-semibold">&#8377;14,500</td>
+                  <td>16</td>
+                  <td><span class="badge bg-danger-subtle text-danger border border-danger-subtle">Featured</span></td>
+                </tr>
+                <tr data-pkg-code="PKG-WYD02" data-status="published">
+                  <td class="fw-bold">PKG-WYD02</td>
+                  <td>
+                    <div class="fw-semibold">Wayanad Rainforest &amp; Caves Trail</div>
+                    <div class="small text-muted">Wayanad &bull; Edakkal Caves &bull; Banasura</div>
+                  </td>
+                  <td>Adventure &amp; Trek</td>
+                  <td>3 Days / 2 Nights</td>
+                  <td class="fw-semibold">&#8377;11,800</td>
+                  <td>12</td>
+                  <td><span class="badge bg-success-subtle text-success border border-success-subtle">Published</span>
+                  </td>
+                </tr>
+                <tr data-pkg-code="PKG-ALP03" data-status="featured">
+                  <td class="fw-bold">PKG-ALP03</td>
+                  <td>
+                    <div class="fw-semibold">Alleppey Backwater Houseboat Retreat</div>
+                    <div class="small text-muted">Alleppey &bull; Vembanad Lake &bull; Kumarakom</div>
+                  </td>
+                  <td>Honeymoon &amp; Romance</td>
+                  <td>3 Days / 2 Nights</td>
+                  <td class="fw-semibold">&#8377;16,900</td>
+                  <td>8</td>
+                  <td><span class="badge bg-danger-subtle text-danger border border-danger-subtle">Featured</span></td>
+                </tr>
+                <tr data-pkg-code="PKG-GOA04" data-status="published">
+                  <td class="fw-bold">PKG-GOA04</td>
+                  <td>
+                    <div class="fw-semibold">Goa &amp; Ooty Highland-Coast Combo</div>
+                    <div class="small text-muted">Goa &bull; Dudhsagar &bull; Ooty Botanical Gardens</div>
+                  </td>
+                  <td>Beach &amp; Coastal</td>
+                  <td>5 Days / 4 Nights</td>
+                  <td class="fw-semibold">&#8377;19,500</td>
+                  <td>20</td>
+                  <td><span class="badge bg-success-subtle text-success border border-success-subtle">Published</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             PANEL 2: PACKAGE CATALOG
+             ========================================== -->
+        <div id="panel-2" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">Active Inventory</span>
+              <h3 class="fw-bold mb-0">Package Catalog</h3>
+            </div>
+            <label for="tab-3" class="btn-brand-teal mt-3 mt-md-0">
+              <i class="bi bi-plus-lg me-1"></i> New Package
+            </label>
+          </div>
+
+          <!-- Filter & Search Bar -->
+          <div class="row g-3 mb-4">
+            <div class="col-12 col-md-4">
+              <div class="studio-input-group">
+                <i class="bi bi-search"></i>
+                <input type="text" id="pkgSearchInput" class="form-control studio-input"
+                  placeholder="Search package title, code, or destination...">
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <select id="pkgCategoryFilter" class="form-select studio-input">
+                <option value="">All Categories</option>
+                <option value="hills">Hill Stations</option>
+                <option value="beach">Beach &amp; Coastal</option>
+                <option value="adventure">Adventure &amp; Trek</option>
+                <option value="heritage">Heritage &amp; Culture</option>
+                <option value="honeymoon">Honeymoon &amp; Romance</option>
+              </select>
+            </div>
+            <div class="col-6 col-md-3">
+              <select id="pkgStatusFilter" class="form-select studio-input">
+                <option value="">All Statuses</option>
+                <option value="published">Published</option>
+                <option value="featured">Featured</option>
+                <option value="draft">Draft</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-2 d-grid">
+              <button type="button" id="pkgFilterBtn" class="btn-brand-outline justify-content-center">
+                <i class="bi bi-funnel me-1"></i> Filter
+              </button>
+            </div>
+          </div>
+
+          <!-- Package Catalog Cards -->
+          <div id="packagesCatalogList" class="row g-4">
+            <!-- PKG-MNR01 -->
+            <div class="col-12 col-md-6 pkg-card-col" data-pkg-code="PKG-MNR01" data-status="featured"
+              data-category="hills" data-category-label="Hill Stations" data-title="Munnar &amp; Tea Valley Escape"
+              data-duration="4 Days / 3 Nights" data-pax="16" data-price="14500" data-difficulty="easy"
+              data-difficulty-label="Easy / Leisure" data-inclusions="Hotel Stay|Daily Meals|Transfers|Sightseeing"
+              data-itinerary="Day 1: Kochi pickup &amp; scenic drive to Munnar via Cheeyappara waterfalls.&#10;Day 2: Eravikulam National Park, Tea Museum &amp; Mattupetty Dam.&#10;Day 3: Top Station sunrise viewpoint &amp; Kundala Lake boating.&#10;Day 4: Spice plantation walk &amp; return drop to Kochi."
+              data-slides='[{"src":"../images/packages.avif","caption":"Munnar Tea Valley Panorama"},{"src":"../images/destinations.avif","caption":"Top Station Sunrise Ridge"},{"src":"../images/categories.avif","caption":"Plantation Stay &amp; Mist Trails"}]'>
+              <div class="metric-glass-card flex-column align-items-start h-100 p-0 overflow-hidden">
+                <div class="position-relative w-100" style="height: 185px; background: #0b1f3a;">
+                  <img src="../images/packages.avif" alt="Munnar &amp; Tea Valley Escape"
+                    class="w-100 h-100 pkg-card-thumb" style="object-fit: cover;">
+                  <span class="badge bg-dark bg-opacity-75 position-absolute top-0 end-0 m-2">
+                    <i class="bi bi-images me-1"></i> <span class="pkg-slide-count">3 Photos</span>
+                  </span>
+                </div>
+                <div class="p-4 w-100 d-flex flex-column flex-grow-1">
+                  <div class="d-flex justify-content-between align-items-center w-100 mb-2">
+                    <span class="fw-bold small" style="color: var(--teal-primary);">PKG-MNR01</span>
+                    <span class="badge bg-danger-subtle text-danger border border-danger-subtle">Featured</span>
+                  </div>
+                  <h6 class="fw-bold mb-1" style="color: var(--navy-primary);">Munnar &amp; Tea Valley Escape</h6>
+                  <div class="small text-muted mb-2">Hill Stations &bull; Easy / Leisure</div>
+                  <div class="small mb-2"><i class="bi bi-clock me-1"></i> 4 Days / 3 Nights &bull; Max 16 Pax</div>
+                  <div class="fw-bold mb-2" style="color: var(--navy-primary);">&#8377;14,500 <span
+                      class="fw-normal small text-muted">/ person</span></div>
+                  <div class="small text-muted mb-3">Includes: Hotel Stay, Daily Meals, Transfers, Sightseeing</div>
+
+                  <div
+                    class="d-flex flex-wrap justify-content-between align-items-center gap-2 pt-3 mt-auto border-top w-100">
+                    <div class="d-flex gap-2">
+                      <button type="button" class="btn-brand-teal py-1 px-3 small js-view-package">
+                        <i class="bi bi-eye me-1"></i> View
+                      </button>
+                      <button type="button" class="btn-brand-outline py-1 px-3 small js-edit-package">
+                        <i class="bi bi-pencil-square me-1"></i> Edit
+                      </button>
+                    </div>
+                    <button type="button"
+                      class="btn-brand-outline py-1 px-3 small text-danger border-danger-subtle js-delete-package">
+                      <i class="bi bi-trash3 me-1"></i> Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PKG-WYD02 -->
+            <div class="col-12 col-md-6 pkg-card-col" data-pkg-code="PKG-WYD02" data-status="published"
+              data-category="adventure" data-category-label="Adventure &amp; Trek"
+              data-title="Wayanad Rainforest &amp; Caves Trail" data-duration="3 Days / 2 Nights" data-pax="12"
+              data-price="11800" data-difficulty="moderate" data-difficulty-label="Moderate Activity"
+              data-inclusions="Hotel Stay|Daily Meals|Transfers|Sightseeing|Local Guide"
+              data-itinerary="Day 1: Calicut / Kozhikode arrival, Lakkidi Viewpoint &amp; Pookode Lake.&#10;Day 2: Edakkal Caves morning trek &amp; Soochipara Waterfalls exploration.&#10;Day 3: Banasura Sagar Dam &amp; spice market visit before departure."
+              data-slides='[{"src":"../images/destinations.avif","caption":"Wayanad Misty Forest Canopy"},{"src":"../images/packages.avif","caption":"Edakkal &amp; Western Ghats Trail"},{"src":"../images/categories.avif","caption":"Banasura Reservoir Viewpoint"}]'>
+              <div class="metric-glass-card flex-column align-items-start h-100 p-0 overflow-hidden">
+                <div class="position-relative w-100" style="height: 185px; background: #0b1f3a;">
+                  <img src="../images/destinations.avif" alt="Wayanad Rainforest &amp; Caves Trail"
+                    class="w-100 h-100 pkg-card-thumb" style="object-fit: cover;">
+                  <span class="badge bg-dark bg-opacity-75 position-absolute top-0 end-0 m-2">
+                    <i class="bi bi-images me-1"></i> <span class="pkg-slide-count">3 Photos</span>
+                  </span>
+                </div>
+                <div class="p-4 w-100 d-flex flex-column flex-grow-1">
+                  <div class="d-flex justify-content-between align-items-center w-100 mb-2">
+                    <span class="fw-bold small" style="color: var(--teal-primary);">PKG-WYD02</span>
+                    <span class="badge bg-success-subtle text-success border border-success-subtle">Published</span>
+                  </div>
+                  <h6 class="fw-bold mb-1" style="color: var(--navy-primary);">Wayanad Rainforest &amp; Caves Trail</h6>
+                  <div class="small text-muted mb-2">Adventure &amp; Trek &bull; Moderate Activity</div>
+                  <div class="small mb-2"><i class="bi bi-clock me-1"></i> 3 Days / 2 Nights &bull; Max 12 Pax</div>
+                  <div class="fw-bold mb-2" style="color: var(--navy-primary);">&#8377;11,800 <span
+                      class="fw-normal small text-muted">/ person</span></div>
+                  <div class="small text-muted mb-3">Includes: Hotel Stay, Daily Meals, Transfers, Sightseeing, Local
+                    Guide</div>
+
+                  <div
+                    class="d-flex flex-wrap justify-content-between align-items-center gap-2 pt-3 mt-auto border-top w-100">
+                    <div class="d-flex gap-2">
+                      <button type="button" class="btn-brand-teal py-1 px-3 small js-view-package">
+                        <i class="bi bi-eye me-1"></i> View
+                      </button>
+                      <button type="button" class="btn-brand-outline py-1 px-3 small js-edit-package">
+                        <i class="bi bi-pencil-square me-1"></i> Edit
+                      </button>
+                    </div>
+                    <button type="button"
+                      class="btn-brand-outline py-1 px-3 small text-danger border-danger-subtle js-delete-package">
+                      <i class="bi bi-trash3 me-1"></i> Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PKG-ALP03 -->
+            <div class="col-12 col-md-6 pkg-card-col" data-pkg-code="PKG-ALP03" data-status="featured"
+              data-category="honeymoon" data-category-label="Honeymoon &amp; Romance"
+              data-title="Alleppey Backwater Houseboat Retreat" data-duration="3 Days / 2 Nights" data-pax="8"
+              data-price="16900" data-difficulty="easy" data-difficulty-label="Easy / Leisure"
+              data-inclusions="Hotel Stay|Daily Meals|Transfers|Sightseeing"
+              data-itinerary="Day 1: Check in to private deluxe houseboat at Alleppey finishing point; Vembanad cruise.&#10;Day 2: Kumarakom bird sanctuary &amp; lakeside heritage resort stay with candlelight dinner.&#10;Day 3: Morning canoe village tour &amp; transfer to Cochin Airport."
+              data-slides='[{"src":"../images/categories.avif","caption":"Alleppey Private Houseboat Cruise"},{"src":"../images/destinations.avif","caption":"Vembanad Sunset Lagoon"},{"src":"../images/packages.avif","caption":"Lakeside Boutique Retreat"}]'>
+              <div class="metric-glass-card flex-column align-items-start h-100 p-0 overflow-hidden">
+                <div class="position-relative w-100" style="height: 185px; background: #0b1f3a;">
+                  <img src="../images/categories.avif" alt="Alleppey Backwater Houseboat Retreat"
+                    class="w-100 h-100 pkg-card-thumb" style="object-fit: cover;">
+                  <span class="badge bg-dark bg-opacity-75 position-absolute top-0 end-0 m-2">
+                    <i class="bi bi-images me-1"></i> <span class="pkg-slide-count">3 Photos</span>
+                  </span>
+                </div>
+                <div class="p-4 w-100 d-flex flex-column flex-grow-1">
+                  <div class="d-flex justify-content-between align-items-center w-100 mb-2">
+                    <span class="fw-bold small" style="color: var(--teal-primary);">PKG-ALP03</span>
+                    <span class="badge bg-danger-subtle text-danger border border-danger-subtle">Featured</span>
+                  </div>
+                  <h6 class="fw-bold mb-1" style="color: var(--navy-primary);">Alleppey Backwater Houseboat Retreat</h6>
+                  <div class="small text-muted mb-2">Honeymoon &amp; Romance &bull; Easy / Leisure</div>
+                  <div class="small mb-2"><i class="bi bi-clock me-1"></i> 3 Days / 2 Nights &bull; Max 8 Pax</div>
+                  <div class="fw-bold mb-2" style="color: var(--navy-primary);">&#8377;16,900 <span
+                      class="fw-normal small text-muted">/ person</span></div>
+                  <div class="small text-muted mb-3">Includes: Hotel Stay, Daily Meals, Transfers, Sightseeing</div>
+
+                  <div
+                    class="d-flex flex-wrap justify-content-between align-items-center gap-2 pt-3 mt-auto border-top w-100">
+                    <div class="d-flex gap-2">
+                      <button type="button" class="btn-brand-teal py-1 px-3 small js-view-package">
+                        <i class="bi bi-eye me-1"></i> View
+                      </button>
+                      <button type="button" class="btn-brand-outline py-1 px-3 small js-edit-package">
+                        <i class="bi bi-pencil-square me-1"></i> Edit
+                      </button>
+                    </div>
+                    <button type="button"
+                      class="btn-brand-outline py-1 px-3 small text-danger border-danger-subtle js-delete-package">
+                      <i class="bi bi-trash3 me-1"></i> Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PKG-GOA04 -->
+            <div class="col-12 col-md-6 pkg-card-col" data-pkg-code="PKG-GOA04" data-status="published"
+              data-category="beach" data-category-label="Beach &amp; Coastal"
+              data-title="Goa &amp; Ooty Highland-Coast Combo" data-duration="5 Days / 4 Nights" data-pax="20"
+              data-price="19500" data-difficulty="easy" data-difficulty-label="Easy / Leisure"
+              data-inclusions="Hotel Stay|Transfers|Sightseeing|Flight / Train"
+              data-itinerary="Day 1: Arrival in Goa &amp; North Goa fort and sunset beach tour.&#10;Day 2: South Goa heritage churches &amp; Palolem cove leisure.&#10;Day 3: Overnight transit to Ooty; Botanical Gardens &amp; Ooty Lake.&#10;Day 4: Doddabetta Peak &amp; Coonoor Nilgiri Mountain Railway ride.&#10;Day 5: Coimbatore Airport drop."
+              data-slides='[{"src":"../images/packages.avif","caption":"Goa &amp; Ooty Highland-Coast Trail"},{"src":"../images/destinations.avif","caption":"Nilgiri Hills &amp; Botanical Gardens"},{"src":"../images/categories.avif","caption":"Coastal Sunset &amp; Heritage Forts"}]'>
+              <div class="metric-glass-card flex-column align-items-start h-100 p-0 overflow-hidden">
+                <div class="position-relative w-100" style="height: 185px; background: #0b1f3a;">
+                  <img src="../images/packages.avif" alt="Goa &amp; Ooty Highland-Coast Combo"
+                    class="w-100 h-100 pkg-card-thumb" style="object-fit: cover;">
+                  <span class="badge bg-dark bg-opacity-75 position-absolute top-0 end-0 m-2">
+                    <i class="bi bi-images me-1"></i> <span class="pkg-slide-count">3 Photos</span>
+                  </span>
+                </div>
+                <div class="p-4 w-100 d-flex flex-column flex-grow-1">
+                  <div class="d-flex justify-content-between align-items-center w-100 mb-2">
+                    <span class="fw-bold small" style="color: var(--teal-primary);">PKG-GOA04</span>
+                    <span class="badge bg-success-subtle text-success border border-success-subtle">Published</span>
+                  </div>
+                  <h6 class="fw-bold mb-1" style="color: var(--navy-primary);">Goa &amp; Ooty Highland-Coast Combo</h6>
+                  <div class="small text-muted mb-2">Beach &amp; Coastal &bull; Easy / Leisure</div>
+                  <div class="small mb-2"><i class="bi bi-clock me-1"></i> 5 Days / 4 Nights &bull; Max 20 Pax</div>
+                  <div class="fw-bold mb-2" style="color: var(--navy-primary);">&#8377;19,500 <span
+                      class="fw-normal small text-muted">/ person</span></div>
+                  <div class="small text-muted mb-3">Includes: Hotel Stay, Transfers, Sightseeing, Flight / Train</div>
+
+                  <div
+                    class="d-flex flex-wrap justify-content-between align-items-center gap-2 pt-3 mt-auto border-top w-100">
+                    <div class="d-flex gap-2">
+                      <button type="button" class="btn-brand-teal py-1 px-3 small js-view-package">
+                        <i class="bi bi-eye me-1"></i> View
+                      </button>
+                      <button type="button" class="btn-brand-outline py-1 px-3 small js-edit-package">
+                        <i class="bi bi-pencil-square me-1"></i> Edit
+                      </button>
+                    </div>
+                    <button type="button"
+                      class="btn-brand-outline py-1 px-3 small text-danger border-danger-subtle js-delete-package">
+                      <i class="bi bi-trash3 me-1"></i> Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             PANEL 3: CREATE NEW PACKAGE
+             ========================================== -->
+        <div id="panel-3" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">Package Architect</span>
+              <h3 class="fw-bold mb-0">Create New Tour Package</h3>
+            </div>
+            <span class="badge rounded-pill px-3 py-2"
+              style="background: rgba(14, 159, 154, 0.12); color: var(--teal-primary);">
+              <i class="bi bi-magic me-1"></i> Catalog Builder
+            </span>
+          </div>
+
+          <!-- New Package Success Message -->
+          <div id="newPackageSuccess"
+            class="alert alert-success d-none align-items-center justify-content-between gap-3 mb-4" role="alert">
+            <div class="d-flex align-items-center gap-2">
+              <i class="bi bi-check-circle-fill fs-5"></i>
+              <div>
+                <strong id="newPackageSuccessTitle">Package Published!</strong>
+                <div class="small" id="newPackageSuccessText">Your tour package has been added to the catalog.</div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <label for="tab-2" class="btn btn-sm btn-success mb-0">View Catalog</label>
+              <button type="button" id="closeNewPackageSuccessBtn" class="btn-close" aria-label="Close"></button>
+            </div>
+          </div>
+
+          <form id="createPackageForm" action="#" method="post" novalidate>
+            <div class="row g-4">
+              <!-- Section 1: Basic Info -->
+              <div class="col-12">
+                <h6 class="form-section-heading"><i class="bi bi-info-circle me-2"></i>1. Basic Package Identity</h6>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="pkgTitle" class="studio-label">Package Title</label>
+                <input type="text" id="pkgTitle" name="package_title" class="form-control studio-input"
+                  placeholder="e.g., Munnar &amp; Tea Valley Escape">
+                <div class="field-error" id="err-pkgTitle"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="pkgCode" class="studio-label">Package Code</label>
+                <input type="text" id="pkgCode" name="package_code" class="form-control studio-input"
+                  placeholder="e.g., PKG-MNR01">
+                <div class="field-error" id="err-pkgCode"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="pkgCategory" class="studio-label">Category</label>
+                <select id="pkgCategory" name="package_category" class="form-select studio-input">
+                  <option value="hills">Hill Stations</option>
+                  <option value="beach">Beach &amp; Coastal</option>
+                  <option value="adventure">Adventure &amp; Trek</option>
+                  <option value="heritage">Heritage &amp; Culture</option>
+                  <option value="honeymoon">Honeymoon &amp; Romance</option>
+                </select>
+              </div>
+
+              <!-- Section 2: Duration & Pricing -->
+              <div class="col-12 mt-4">
+                <h6 class="form-section-heading"><i class="bi bi-currency-rupee me-2"></i>2. Duration, Capacity &amp;
+                  Pricing</h6>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="pkgDuration" class="studio-label">Duration</label>
+                <input type="text" id="pkgDuration" name="package_duration" class="form-control studio-input"
+                  placeholder="e.g., 4 Days / 3 Nights">
+                <div class="field-error" id="err-pkgDuration"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="pkgMaxPax" class="studio-label">Max Group Size</label>
+                <input type="number" id="pkgMaxPax" name="max_pax" min="1" class="form-control studio-input"
+                  placeholder="e.g., 16">
+                <div class="field-error" id="err-pkgMaxPax"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="pkgPrice" class="studio-label">Base Price / Person (&#8377;)</label>
+                <input type="number" id="pkgPrice" name="base_price" min="0" class="form-control studio-input"
+                  placeholder="e.g., 14500">
+                <div class="field-error" id="err-pkgPrice"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="pkgDifficulty" class="studio-label">Difficulty Level</label>
+                <select id="pkgDifficulty" name="difficulty" class="form-select studio-input">
+                  <option value="easy">Easy / Leisure</option>
+                  <option value="moderate">Moderate Activity</option>
+                  <option value="challenging">Challenging Trek</option>
+                </select>
+              </div>
+
+              <!-- Section 3: Pure CSS Interactive Inclusions -->
+              <div class="col-12 mt-4">
+                <h6 class="form-section-heading"><i class="bi bi-check2-square me-2"></i>3. Package Inclusions</h6>
+                <p class="text-muted small mb-2">Click to toggle what is included in the package price:</p>
+                <div class="inclusion-pill-grid">
+                  <label class="inclusion-check-pill">
+                    <input type="checkbox" name="inc" value="hotel" checked>
+                    <span><i class="bi bi-building me-1"></i> Hotel Stay</span>
+                  </label>
+                  <label class="inclusion-check-pill">
+                    <input type="checkbox" name="inc" value="meals" checked>
+                    <span><i class="bi bi-cup-hot me-1"></i> Daily Meals</span>
+                  </label>
+                  <label class="inclusion-check-pill">
+                    <input type="checkbox" name="inc" value="transfers" checked>
+                    <span><i class="bi bi-car-front me-1"></i> Transfers</span>
+                  </label>
+                  <label class="inclusion-check-pill">
+                    <input type="checkbox" name="inc" value="sightseeing">
+                    <span><i class="bi bi-binoculars me-1"></i> Sightseeing</span>
+                  </label>
+                  <label class="inclusion-check-pill">
+                    <input type="checkbox" name="inc" value="guide">
+                    <span><i class="bi bi-person-badge me-1"></i> Local Guide</span>
+                  </label>
+                  <label class="inclusion-check-pill">
+                    <input type="checkbox" name="inc" value="flights">
+                    <span><i class="bi bi-airplane me-1"></i> Flight / Train</span>
+                  </label>
+                </div>
+                <div class="field-error" id="err-pkgInclusions"></div>
+              </div>
+
+              <!-- Section 4: Media & Itinerary -->
+              <div class="col-12 mt-4">
+                <h6 class="form-section-heading"><i class="bi bi-images me-2"></i>4. Cover Media, Multi-Photo Gallery
+                  &amp; Highlights</h6>
+                <p class="text-muted small mb-0">Upload a primary cover photo along with multiple gallery images for the
+                  package carousel.</p>
+              </div>
+
+              <div class="col-12 col-lg-5">
+                <label for="pkgMediaInput" class="studio-label">1. Primary Hero Cover</label>
+                <label id="pkgMediaDropzone" class="media-dropzone mb-1">
+                  <input type="file" id="pkgMediaInput" name="package_cover" accept="image/*" class="d-none">
+                  <i class="bi bi-image-fill fs-2 d-block mb-2" style="color: var(--teal-primary);"></i>
+                  <span class="fw-bold d-block" id="pkgMediaLabel">Upload Primary Cover Photo</span>
+                  <span class="text-muted small">PNG, JPG, WebP up to 5MB</span>
+                </label>
+                <div class="field-error mb-3" id="err-pkgMediaInput"></div>
+
+                <label class="studio-label">2. Package Photo Gallery (Multiple Photos)</label>
+                <div class="gallery-upload-grid">
+                  <label class="gallery-slot-dropzone bulk-slot">
+                    <input type="file" id="pkgGalleryBulk" name="package_gallery[]" accept="image/*" multiple
+                      class="d-none">
+                    <i class="bi bi-collection-play-fill"></i>
+                    <span class="slot-title" id="pkgBulkLabel">Add Multiple Photos</span>
+                    <span class="slot-sub">Ctrl/Shift + select files</span>
+                  </label>
+
+                  <label class="gallery-slot-dropzone">
+                    <input type="file" id="pkgGallerySlot1" name="gallery_slot_1" accept="image/*" class="d-none">
+                    <i class="bi bi-plus-circle-dotted"></i>
+                    <span class="slot-title" id="pkgSlot1Label">Scenic Viewpoint</span>
+                    <span class="slot-sub">Gallery Slot 1</span>
+                  </label>
+
+                  <label class="gallery-slot-dropzone">
+                    <input type="file" id="pkgGallerySlot2" name="gallery_slot_2" accept="image/*" class="d-none">
+                    <i class="bi bi-plus-circle-dotted"></i>
+                    <span class="slot-title" id="pkgSlot2Label">Stay / Experience</span>
+                    <span class="slot-sub">Gallery Slot 2</span>
+                  </label>
+
+                  <label class="gallery-slot-dropzone">
+                    <input type="file" id="pkgGallerySlot3" name="gallery_slot_3" accept="image/*" class="d-none">
+                    <i class="bi bi-plus-circle-dotted"></i>
+                    <span class="slot-title" id="pkgSlot3Label">Activity / Dining</span>
+                    <span class="slot-sub">Gallery Slot 3</span>
+                  </label>
+                </div>
+                <div class="field-error" id="err-pkgGalleryBulk"></div>
+
+                <!-- Live Selected Photos Preview Strip -->
+                <div id="pkgSelectedPreviewWrap" class="d-none mt-3 p-2 rounded-3 border bg-light">
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="small fw-semibold text-muted" id="pkgPreviewCountText">0 photos ready</span>
+                    <button type="button" id="clearPkgPhotosBtn"
+                      class="btn btn-sm btn-link text-danger p-0 text-decoration-none">Clear photos</button>
+                  </div>
+                  <div id="pkgSelectedPreviewGrid" class="d-flex flex-wrap gap-2"></div>
+                </div>
+              </div>
+
+              <div class="col-12 col-lg-7">
+                <label for="pkgGalleryCaptions" class="studio-label">Photo Captions (Optional, comma-separated)</label>
+                <input type="text" id="pkgGalleryCaptions" name="gallery_captions"
+                  class="form-control studio-input mb-3"
+                  placeholder="e.g., Tea Valley Sunrise, Plantation Resort, Eravikulam Trail">
+
+                <label for="pkgItinerary" class="studio-label">Itinerary Overview &amp; Highlights</label>
+                <textarea id="pkgItinerary" name="itinerary_notes" rows="8" class="form-control studio-input"
+                  placeholder="Day 1: Arrival &amp; local sightseeing...&#10;Day 2: Mountain sunrise trek &amp; tea gardens...&#10;Day 3: Departure transfer..."></textarea>
+                <div class="field-error" id="err-pkgItinerary"></div>
+              </div>
+
+              <div class="col-12 d-flex justify-content-end gap-3 pt-3 border-top">
+                <button type="reset" class="btn-brand-outline">Clear Form</button>
+                <button type="submit" class="btn-brand-teal">
+                  <i class="bi bi-check2-circle me-1"></i> Publish Package
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- View Complete Package Details & Carousel Modal -->
+  <div id="packageDetailsModal" class="d-none"
+    style="position: fixed; inset: 0; z-index: 1055; background: rgba(11, 31, 58, 0.55); backdrop-filter: blur(4px); overflow-y: auto; padding: 1.5rem;">
+    <div class="container" style="max-width: 780px; margin-top: 1.5rem;">
+      <div class="metric-glass-card flex-column align-items-stretch p-4 bg-white shadow-lg">
+        <div class="d-flex justify-content-between align-items-start gap-3 pb-3 mb-3 border-bottom">
+          <div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <span id="pkgViewCode" class="fw-bold small" style="color: var(--teal-primary);">PKG-MNR01</span>
+              <span id="pkgViewStatus"></span>
+            </div>
+            <h4 id="pkgViewTitle" class="fw-bold mb-1" style="color: var(--navy-primary);">Package Title</h4>
+            <div id="pkgViewMeta" class="small text-muted">Category &bull; Difficulty</div>
+          </div>
+          <button type="button" id="closePkgViewBtn" class="btn-brand-outline py-1 px-2"
+            aria-label="Close package details">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <!-- Package Images Carousel -->
+        <div class="position-relative w-100 rounded-3 overflow-hidden mb-3" style="height: 280px; background: #0b1f3a;">
+          <img id="pkgViewCarouselImg" src="../images/packages.avif" alt="Package slide" class="w-100 h-100"
+            style="object-fit: cover;">
+          <button type="button" id="pkgViewCarouselPrev"
+            class="btn btn-dark bg-opacity-75 border-0 position-absolute top-50 start-0 translate-middle-y ms-3"
+            aria-label="Previous slide">
+            <i class="bi bi-chevron-left"></i>
+          </button>
+          <button type="button" id="pkgViewCarouselNext"
+            class="btn btn-dark bg-opacity-75 border-0 position-absolute top-50 end-0 translate-middle-y me-3"
+            aria-label="Next slide">
+            <i class="bi bi-chevron-right"></i>
+          </button>
+          <div
+            class="position-absolute bottom-0 start-0 end-0 px-3 py-2 d-flex justify-content-between align-items-center text-white small"
+            style="background: linear-gradient(transparent, rgba(11,31,58,0.85));">
+            <span id="pkgViewCarouselCaption">Slide Caption</span>
+            <span id="pkgViewCarouselCounter" class="badge bg-dark bg-opacity-75">1 / 3</span>
+          </div>
+        </div>
+
+        <!-- Thumbnail Strip -->
+        <div id="pkgViewCarouselThumbs" class="d-flex gap-2 overflow-auto pb-2 mb-3"></div>
+
+        <!-- Key Stats -->
+        <div class="row g-3 small mb-3">
+          <div class="col-6 col-sm-3">
+            <div class="text-muted">Duration</div>
+            <div id="pkgViewDuration" class="fw-semibold">&mdash;</div>
+          </div>
+          <div class="col-6 col-sm-3">
+            <div class="text-muted">Max Group Size</div>
+            <div id="pkgViewPax" class="fw-semibold">&mdash;</div>
+          </div>
+          <div class="col-6 col-sm-3">
+            <div class="text-muted">Base Price / Person</div>
+            <div id="pkgViewPrice" class="fw-bold" style="color: var(--teal-primary);">&mdash;</div>
+          </div>
+          <div class="col-6 col-sm-3">
+            <div class="text-muted">Activity Level</div>
+            <div id="pkgViewDifficulty" class="fw-semibold">&mdash;</div>
+          </div>
+        </div>
+
+        <!-- Inclusions -->
+        <div class="mb-3">
+          <div class="small fw-bold mb-2" style="color: var(--navy-primary);">Included in Package</div>
+          <div id="pkgViewInclusions" class="d-flex flex-wrap gap-2"></div>
+        </div>
+
+        <!-- Itinerary -->
+        <div class="p-3 rounded-3 mb-4" style="background: rgba(14, 159, 154, 0.06);">
+          <div class="small fw-bold mb-1" style="color: var(--navy-primary);">Itinerary Overview &amp; Highlights</div>
+          <div id="pkgViewItinerary" class="small text-muted" style="white-space: pre-line; line-height: 1.65;"></div>
+        </div>
+
+        <div class="d-flex justify-content-end gap-2 pt-3 border-top">
+          <button type="button" id="cancelPkgViewBtn" class="btn-brand-outline">Close</button>
+          <button type="button" id="editFromPkgViewBtn" class="btn-brand-teal">
+            <i class="bi bi-pencil-square me-1"></i> Edit Package
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Package Modal -->
+  <div id="editPackageModal" class="d-none"
+    style="position: fixed; inset: 0; z-index: 1060; background: rgba(11, 31, 58, 0.55); backdrop-filter: blur(4px); overflow-y: auto; padding: 1.5rem;">
+    <div class="container" style="max-width: 780px; margin-top: 1.5rem;">
+      <div class="metric-glass-card flex-column align-items-stretch p-4 bg-white shadow-lg">
+        <div class="d-flex justify-content-between align-items-center pb-3 mb-3 border-bottom">
+          <div>
+            <span class="panel-eyebrow" style="color: var(--coral-accent);">Catalog Editor</span>
+            <h4 class="fw-bold mb-0" style="color: var(--navy-primary);">Edit Tour Package</h4>
+          </div>
+          <button type="button" id="closeEditPkgBtn" class="btn-brand-outline py-1 px-2" aria-label="Close editor">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <form id="editPackageForm" action="#" method="post" novalidate>
+          <input type="hidden" id="editPkgOriginalCode">
+          <div class="row g-3">
+            <div class="col-12 col-md-6">
+              <label for="editPkgTitle" class="studio-label">Package Title</label>
+              <input type="text" id="editPkgTitle" class="form-control studio-input" placeholder="Package title">
+              <div class="field-error" id="err-editPkgTitle"></div>
+            </div>
+
+            <div class="col-6 col-md-3">
+              <label for="editPkgCode" class="studio-label">Package Code</label>
+              <input type="text" id="editPkgCode" class="form-control studio-input" readonly>
+            </div>
+
+            <div class="col-6 col-md-3">
+              <label for="editPkgStatus" class="studio-label">Status</label>
+              <select id="editPkgStatus" class="form-select studio-input">
+                <option value="published">Published</option>
+                <option value="featured">Featured</option>
+                <option value="draft">Draft</option>
+              </select>
+            </div>
+
+            <div class="col-6 col-md-3">
+              <label for="editPkgCategory" class="studio-label">Category</label>
+              <select id="editPkgCategory" class="form-select studio-input">
+                <option value="hills">Hill Stations</option>
+                <option value="beach">Beach &amp; Coastal</option>
+                <option value="adventure">Adventure &amp; Trek</option>
+                <option value="heritage">Heritage &amp; Culture</option>
+                <option value="honeymoon">Honeymoon &amp; Romance</option>
+              </select>
+            </div>
+
+            <div class="col-6 col-md-3">
+              <label for="editPkgDuration" class="studio-label">Duration</label>
+              <input type="text" id="editPkgDuration" class="form-control studio-input"
+                placeholder="e.g., 4 Days / 3 Nights">
+              <div class="field-error" id="err-editPkgDuration"></div>
+            </div>
+
+            <div class="col-6 col-md-3">
+              <label for="editPkgMaxPax" class="studio-label">Max Group Size</label>
+              <input type="number" id="editPkgMaxPax" min="1" class="form-control studio-input">
+              <div class="field-error" id="err-editPkgMaxPax"></div>
+            </div>
+
+            <div class="col-6 col-md-3">
+              <label for="editPkgPrice" class="studio-label">Price / Person (&#8377;)</label>
+              <input type="number" id="editPkgPrice" min="1" class="form-control studio-input">
+              <div class="field-error" id="err-editPkgPrice"></div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label for="editPkgDifficulty" class="studio-label">Difficulty Level</label>
+              <select id="editPkgDifficulty" class="form-select studio-input">
+                <option value="easy">Easy / Leisure</option>
+                <option value="moderate">Moderate Activity</option>
+                <option value="challenging">Challenging Trek</option>
+              </select>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label for="editPkgMediaInput" class="studio-label">Replace Gallery Photos (Optional)</label>
+              <input type="file" id="editPkgMediaInput" accept="image/*" multiple class="form-control studio-input">
+              <div class="field-error" id="err-editPkgMediaInput"></div>
+            </div>
+
+            <div class="col-12">
+              <label class="studio-label">Package Inclusions</label>
+              <div class="inclusion-pill-grid">
+                <label class="inclusion-check-pill">
+                  <input type="checkbox" name="edit_inc" value="Hotel Stay">
+                  <span><i class="bi bi-building me-1"></i> Hotel Stay</span>
+                </label>
+                <label class="inclusion-check-pill">
+                  <input type="checkbox" name="edit_inc" value="Daily Meals">
+                  <span><i class="bi bi-cup-hot me-1"></i> Daily Meals</span>
+                </label>
+                <label class="inclusion-check-pill">
+                  <input type="checkbox" name="edit_inc" value="Transfers">
+                  <span><i class="bi bi-car-front me-1"></i> Transfers</span>
+                </label>
+                <label class="inclusion-check-pill">
+                  <input type="checkbox" name="edit_inc" value="Sightseeing">
+                  <span><i class="bi bi-binoculars me-1"></i> Sightseeing</span>
+                </label>
+                <label class="inclusion-check-pill">
+                  <input type="checkbox" name="edit_inc" value="Local Guide">
+                  <span><i class="bi bi-person-badge me-1"></i> Local Guide</span>
+                </label>
+                <label class="inclusion-check-pill">
+                  <input type="checkbox" name="edit_inc" value="Flight / Train">
+                  <span><i class="bi bi-airplane me-1"></i> Flight / Train</span>
+                </label>
+              </div>
+              <div class="field-error" id="err-editPkgInclusions"></div>
+            </div>
+
+            <div class="col-12">
+              <label for="editPkgItinerary" class="studio-label">Itinerary Overview &amp; Highlights</label>
+              <textarea id="editPkgItinerary" rows="4" class="form-control studio-input"></textarea>
+              <div class="field-error" id="err-editPkgItinerary"></div>
+            </div>
+
+            <div class="col-12 d-flex justify-content-end gap-2 pt-3 border-top">
+              <button type="button" id="cancelEditPkgBtn" class="btn-brand-outline">Cancel</button>
+              <button type="submit" class="btn-brand-coral">
+                <i class="bi bi-save me-1"></i> Save Changes
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- TripKitGo Admin Studio Footer -->
+  <footer class="studio-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <!-- Brand & Tagline -->
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo-wrap">
+            <img src="../images/tripkitgo_logo.png" alt="TripKitGo Logo" class="footer-logo-img">
+          </a>
+          <p class="footer-tagline">Admin Studio &bull; Travel Operations &amp; Management</p>
+        </div>
+
+        <!-- Portal Status -->
+        <span class="footer-status">
+          <span class="status-dot"></span> Admin Portal v1.0
+        </span>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 TripKitGo. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/page-packages.js"></script>
+</body>
+
+</html>

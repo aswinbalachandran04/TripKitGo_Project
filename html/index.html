@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TripKitGo — Admin Studio</title>
+
+  <!-- Plus Jakarta Sans Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS & Icons (Pure CSS/HTML, Zero JS) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Custom Brand Stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/auth-guard.js"></script>
+</head>
+<body>
+
+  <!-- Responsive Sticky Glass Navbar (Zero JS Checkbox Toggler) -->
+  <nav class="studio-navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-logo-wrap">
+        <img src="../images/tripkitgo_logo.png" alt="TripKitGo Logo" class="navbar-logo-img">
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
+      <label for="nav-toggle" class="nav-toggler-btn" aria-label="Toggle navigation">
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+      </label>
+
+      <div class="navbar-collapse-custom">
+        <ul class="navbar-links-list">
+          <li><a href="index.html" class="nav-quick-link active"><i class="bi bi-grid-fill"></i> Hub</a></li>
+          <li><a href="bookings.html" class="nav-quick-link"><i class="bi bi-journal-check"></i> Bookings</a></li>
+          <li><a href="customized-packages.html" class="nav-quick-link"><i class="bi bi-sliders"></i> Customized Packages</a></li>
+          <li><a href="destinations.html" class="nav-quick-link"><i class="bi bi-geo-alt"></i> Destinations</a></li>
+          <li><a href="payments.html" class="nav-quick-link"><i class="bi bi-credit-card"></i> Payments</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+          <span class="studio-pill-badge">
+            <span class="pulse-dot"></span> Admin Studio
+          </span>
+          <a
+            href="login.html"
+            class="btn-studio-logout"
+            title="Sign out of Admin Studio"
+            onclick="event.preventDefault(); window.TripKitGoAuth.logout();"
+          >
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Logout</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Landing Hub: Clean, Uncluttered Visual Options -->
+  <main class="container pb-5">
+    <header class="hub-hero">
+      <div class="brand-tagline">
+        <i class="bi bi-geo-alt-fill"></i> Travel Simplified
+      </div>
+      <h1 class="hub-title">Explore your <span>Admin Workspace</span></h1>
+      <p class="hub-subtitle mb-0">Your mission control for bespoke itineraries, live reservations, and effortless guest journeys.</p>
+    </header>
+
+    <!-- NEW: Quick Module Search & Active Circuits Strip -->
+    <!-- Quick Module Search Strip -->
+    <div class="metric-glass-card mb-4">
+      <div class="studio-input-group w-100">
+        <i class="bi bi-search"></i>
+        <input
+          type="search"
+          id="hubModuleSearch"
+          class="form-control studio-input"
+          placeholder="Quick-filter workspace modules (e.g., packages, payments, notes)..."
+        >
+      </div>
+    </div>
+
+    <div id="hubNoMatchNotice" class="alert alert-light border text-center d-none mb-4">
+      No matching studio module found. Clear the search box to view all workspace cards.
+    </div>
+
+    <!-- TIER 1: CORE OPERATIONS & CATALOG (5 Modules, No Overview) -->
+    <div class="section-divider-label hub-section-group">
+      <span class="pin-marker"></span> Core Operations &amp; Catalog
+    </div>
+    <div class="row g-4 hub-section-row">
+      <!-- Top Row: 2 Featured Primary Cards (Bookings & Packages) -->
+      <div class="col-12 col-md-6 hub-card-item" data-keywords="bookings reservations approvals manifests trips">
+        <a href="bookings.html" class="module-card featured-card delay-1">
+          <img src="../images/bookings.avif" alt="Bookings" class="module-card-bg">
+          <div class="module-card-overlay">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="module-icon-pill"><i class="bi bi-journal-check"></i></div>
+              <span class="featured-tag">Primary Desk</span>
+            </div>
+            <div>
+              <h3 class="module-card-title">
+                <span>Bookings</span>
+                <span class="arrow-badge"><i class="bi bi-arrow-right"></i></span>
+              </h3>
+              <p class="module-card-sub">Reservations, live status, approvals &amp; traveler manifests</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-12 col-md-6 hub-card-item" data-keywords="packages catalog itineraries inclusions slots pricing munnar wayanad alleppey goa ooty">
+        <a href="packages.html" class="module-card featured-card delay-2">
+          <img src="../images/packages.avif" alt="Packages" class="module-card-bg">
+          <div class="module-card-overlay">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="module-icon-pill"><i class="bi bi-suitcase2"></i></div>
+              <span class="featured-tag">Tour Catalog</span>
+            </div>
+            <div>
+              <h3 class="module-card-title">
+                <span>Packages</span>
+                <span class="arrow-badge"><i class="bi bi-arrow-right"></i></span>
+              </h3>
+              <p class="module-card-sub">Curated itineraries, inclusions, seasonal slots &amp; pricing</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Second Row: 3 Balanced Cards (Categories, Destinations, Customized Packages) -->
+      <div class="col-12 col-md-4 hub-card-item" data-keywords="categories themes trip styles taxonomy">
+        <a href="categories.html" class="module-card delay-3">
+          <img src="../images/categories.avif" alt="Categories" class="module-card-bg">
+          <div class="module-card-overlay">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="module-icon-pill"><i class="bi bi-grid-1x2"></i></div>
+            </div>
+            <div>
+              <h3 class="module-card-title">
+                <span>Categories</span>
+                <span class="arrow-badge"><i class="bi bi-arrow-right"></i></span>
+              </h3>
+              <p class="module-card-sub">Travel themes &amp; trip styles</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-12 col-md-4 hub-card-item" data-keywords="destinations regions guides hotspots carousel map">
+        <a href="destinations.html" class="module-card delay-4">
+          <img src="../images/destinations.avif" alt="Destinations" class="module-card-bg">
+          <div class="module-card-overlay">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="module-icon-pill"><i class="bi bi-geo-alt"></i></div>
+            </div>
+            <div>
+              <h3 class="module-card-title">
+                <span>Destinations</span>
+                <span class="arrow-badge"><i class="bi bi-arrow-right"></i></span>
+              </h3>
+              <p class="module-card-sub">Regions, guides &amp; hotspots</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-12 col-md-4 hub-card-item" data-keywords="customized packages bespoke tailor made quotes custom">
+        <a href="customized-packages.html" class="module-card delay-5">
+          <img src="../images/customized-packages.avif" alt="Customized Packages" class="module-card-bg">
+          <div class="module-card-overlay">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="module-icon-pill"><i class="bi bi-sliders"></i></div>
+            </div>
+            <div>
+              <h3 class="module-card-title">
+                <span>Customized Packages</span>
+                <span class="arrow-badge"><i class="bi bi-arrow-right"></i></span>
+              </h3>
+              <p class="module-card-sub">Bespoke tailor-made trips</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- TIER 2: PEOPLE & ADVISORY -->
+    <div class="section-divider-label hub-section-group">
+      <span class="pin-marker"></span> People &amp; Advisory
+    </div>
+    <div class="row g-4 hub-section-row">
+      <div class="col-12 col-md-6 hub-card-item" data-keywords="customers travelers profiles directory history">
+        <a href="customers.html" class="module-card delay-1">
+          <img src="../images/customers.avif" alt="Customers" class="module-card-bg">
+          <div class="module-card-overlay">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="module-icon-pill"><i class="bi bi-people"></i></div>
+            </div>
+            <div>
+              <h3 class="module-card-title">
+                <span>Customers</span>
+                <span class="arrow-badge"><i class="bi bi-arrow-right"></i></span>
+              </h3>
+              <p class="module-card-sub">Traveler profiles, preferences &amp; trip history</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-12 col-md-6 hub-card-item" data-keywords="consultants advisors trip planners specialists agents">
+        <a href="consultants.html" class="module-card delay-2">
+          <img src="../images/consultants.avif" alt="Consultants" class="module-card-bg">
+          <div class="module-card-overlay">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="module-icon-pill"><i class="bi bi-person-badge"></i></div>
+            </div>
+            <div>
+              <h3 class="module-card-title">
+                <span>Consultants</span>
+                <span class="arrow-badge"><i class="bi bi-arrow-right"></i></span>
+              </h3>
+              <p class="module-card-sub">Trip planners, specialists &amp; assigned agents</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- TIER 3: FINANCE, TRUST & PROMOTIONS -->
+    <div class="section-divider-label hub-section-group">
+      <span class="pin-marker"></span> Finance, Trust &amp; Promotions
+    </div>
+    <div class="row g-4 hub-section-row">
+      <div class="col-12 col-md-6 col-lg-4 hub-card-item" data-keywords="payments transactions invoices ledger refunds dues">
+        <a href="payments.html" class="module-card delay-1">
+          <img src="../images/payments.avif" alt="Payments" class="module-card-bg">
+          <div class="module-card-overlay">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="module-icon-pill"><i class="bi bi-credit-card"></i></div>
+            </div>
+            <div>
+              <h3 class="module-card-title">
+                <span>Payments</span>
+                <span class="arrow-badge"><i class="bi bi-arrow-right"></i></span>
+              </h3>
+              <p class="module-card-sub">Transactions, invoices &amp; payouts</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4 hub-card-item" data-keywords="reviews ratings feedback stories travelogues">
+        <a href="reviews.html" class="module-card delay-2">
+          <img src="../images/reviews.avif" alt="Reviews" class="module-card-bg">
+          <div class="module-card-overlay">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="module-icon-pill"><i class="bi bi-star"></i></div>
+            </div>
+            <div>
+              <h3 class="module-card-title">
+                <span>Reviews</span>
+                <span class="arrow-badge"><i class="bi bi-arrow-right"></i></span>
+              </h3>
+              <p class="module-card-sub">Traveler stories &amp; ratings</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4 hub-card-item" data-keywords="offers gift cards promo codes discounts vouchers">
+        <a href="offers-gift-cards.html" class="module-card delay-3">
+          <img src="../images/offers-discounts.avif" alt="Offers &amp; Gift Cards" class="module-card-bg">
+          <div class="module-card-overlay">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="module-icon-pill"><i class="bi bi-gift"></i></div>
+            </div>
+            <div>
+              <h3 class="module-card-title">
+                <span>Offers &amp; Gift Cards</span>
+                <span class="arrow-badge"><i class="bi bi-arrow-right"></i></span>
+              </h3>
+              <p class="module-card-sub">Promo codes &amp; travel vouchers</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- TIER 4: DOCUMENTATION & POLICIES -->
+    <div class="section-divider-label hub-section-group">
+      <span class="pin-marker"></span> Documentation &amp; Policies
+    </div>
+    <div class="row g-4 hub-section-row">
+      <div class="col-12 col-md-6 hub-card-item" data-keywords="notes memos reminders checklists">
+        <a href="notes.html" class="module-card delay-1">
+          <img src="../images/notes.avif" alt="Notes" class="module-card-bg">
+          <div class="module-card-overlay">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="module-icon-pill"><i class="bi bi-journal-text"></i></div>
+            </div>
+            <div>
+              <h3 class="module-card-title">
+                <span>Notes</span>
+                <span class="arrow-badge"><i class="bi bi-arrow-right"></i></span>
+              </h3>
+              <p class="module-card-sub">Internal memos &amp; operational reminders</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-12 col-md-6 hub-card-item" data-keywords="terms and conditions policies legal cancellation privacy">
+        <a href="terms-conditions.html" class="module-card delay-2">
+          <img src="../images/terms-conditions.avif" alt="Terms and Conditions" class="module-card-bg">
+          <div class="module-card-overlay">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="module-icon-pill"><i class="bi bi-shield-check"></i></div>
+            </div>
+            <div>
+              <h3 class="module-card-title">
+                <span>Terms and Conditions</span>
+                <span class="arrow-badge"><i class="bi bi-arrow-right"></i></span>
+              </h3>
+              <p class="module-card-sub">Booking policies, cancellation &amp; legal terms</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- TripKitGo Admin Studio Footer -->
+  <footer class="studio-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <!-- Brand & Tagline -->
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo-wrap">
+            <img src="../images/tripkitgo_logo.png" alt="TripKitGo Logo" class="footer-logo-img">
+          </a>
+          <p class="footer-tagline">Admin Studio &bull; Travel Operations &amp; Management</p>
+        </div>
+
+        <!-- Portal Status -->
+        <span class="footer-status">
+          <span class="status-dot"></span> Admin Portal v1.0
+        </span>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 TripKitGo. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/page-hub.js"></script>
+</body>
+</html>

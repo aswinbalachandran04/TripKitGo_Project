@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reviews &amp; Customer Stories — TripKitGo Admin Studio</title>
+
+  <!-- Plus Jakarta Sans Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS & Icons (Zero JS) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Shared Stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/auth-guard.js"></script>
+</head>
+<body data-page="reviews">
+
+  <!-- Responsive Sticky Glass Navbar (Zero JS Checkbox Toggler) -->
+  <nav class="studio-navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-logo-wrap">
+        <img src="../images/tripkitgo_logo.png" alt="TripKitGo Logo" class="navbar-logo-img">
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
+      <label for="nav-toggle" class="nav-toggler-btn" aria-label="Toggle navigation">
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+      </label>
+
+      <div class="navbar-collapse-custom">
+        <ul class="navbar-links-list">
+          <li><a href="index.html" class="nav-quick-link"><i class="bi bi-grid-fill"></i> Hub</a></li>
+          <li><a href="bookings.html" class="nav-quick-link"><i class="bi bi-journal-check"></i> Bookings</a></li>
+          <li><a href="customized-packages.html" class="nav-quick-link"><i class="bi bi-sliders"></i> Customized Packages</a></li>
+          <li><a href="destinations.html" class="nav-quick-link"><i class="bi bi-geo-alt"></i> Destinations</a></li>
+          <li><a href="payments.html" class="nav-quick-link"><i class="bi bi-credit-card"></i> Payments</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+          <span class="studio-pill-badge">
+            <span class="pulse-dot"></span> Admin Studio
+          </span>
+          <a
+            href="login.html"
+            class="btn-studio-logout"
+            title="Sign out of Admin Studio"
+            onclick="event.preventDefault(); window.TripKitGoAuth.logout();"
+          >
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Logout</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Reviews & Stories Workspace -->
+  <main class="container pb-5">
+
+    <!-- Editorial Hero Banner -->
+    <div class="workspace-banner">
+      <img src="../images/reviews.avif" alt="Reviews Banner">
+      <div class="workspace-banner-content">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+          <a href="index.html" class="btn-back-hub mb-0">
+            <i class="bi bi-arrow-left me-1"></i> Back to Hub
+          </a>
+          <span class="featured-tag"><i class="bi bi-star me-1"></i> Guest Experience</span>
+        </div>
+        <h1 class="display-6 fw-extrabold mb-1">Reviews &amp; Customer Stories</h1>
+        <p class="mb-0 text-white-50">Manage traveler ratings, moderate reviews, and curate customer travel stories.</p>
+      </div>
+    </div>
+
+    <!-- Pure CSS Sub-Option Radio Tabs -->
+    <div class="css-tabs-wrapper">
+      <input type="radio" name="review-tabs" id="tab-1" checked>
+      <input type="radio" name="review-tabs" id="tab-2">
+      <input type="radio" name="review-tabs" id="tab-3">
+
+      <!-- Sub-Option Pill Bar -->
+      <div class="suboption-bar">
+        <label for="tab-1" class="suboption-pill">
+          <i class="bi bi-compass me-1"></i> Overview
+        </label>
+        <label for="tab-2" class="suboption-pill">
+          <i class="bi bi-chat-square-quote me-1"></i> All Reviews
+        </label>
+        <label for="tab-3" class="suboption-pill">
+          <i class="bi bi-journal-richtext me-1"></i> Customer Stories
+        </label>
+      </div>
+
+      <!-- TAB PANELS -->
+      <div class="tab-panels">
+
+        <!-- ==========================================
+             PANEL 1: OVERVIEW
+             ========================================== -->
+        <div id="panel-1" class="tab-panel">
+          <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">Guest Sentiment</span>
+              <h3 class="fw-bold mb-0">Reviews &amp; Stories Overview</h3>
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-3 mt-md-0">
+              <label for="tab-2" class="btn-brand-teal">
+                <i class="bi bi-chat-square-quote me-1"></i> View Reviews
+              </label>
+              <label for="tab-3" class="btn-brand-outline">
+                <i class="bi bi-journal-richtext me-1"></i> Customer Stories
+              </label>
+            </div>
+          </div>
+
+          <!-- Metric Cards -->
+          <div class="row g-4 mb-4">
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box teal">
+                  <i class="bi bi-chat-heart"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Published Reviews</p>
+                  <h4 class="metric-value" id="publishedReviewsCount">3</h4>
+                  <span class="metric-sub">Live ratings &amp; feedback</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box coral">
+                  <i class="bi bi-star-fill"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Average Rating</p>
+                  <h4 class="metric-value" id="averageRatingValue">4.8</h4>
+                  <span class="metric-sub">Out of 5.0 stars</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box sky">
+                  <i class="bi bi-journal-richtext"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Customer Stories</p>
+                  <h4 class="metric-value" id="customerStoriesCount">2</h4>
+                  <span class="metric-sub">Travel journals &amp; photo logs</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box navy">
+                  <i class="bi bi-hourglass-split"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Pending Approval</p>
+                  <h4 class="metric-value" id="pendingApprovalCount">2</h4>
+                  <span class="metric-sub">Reviews &amp; stories in queue</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="metric-glass-card flex-column align-items-start">
+            <div class="fw-bold mb-1" style="color: var(--navy-primary);">Guest Feedback &amp; Travelogue Moderation</div>
+            <div class="small text-muted">
+              Recent reviews and travel stories highlight trips across <strong>Munnar</strong>, <strong>Wayanad</strong>, <strong>Alleppey</strong>, and <strong>Goa</strong>. Use <strong>All Reviews</strong> to approve or hide ratings, or <strong>Customer Stories</strong> to read and publish photo travelogues.
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             PANEL 2: ALL REVIEWS
+             ========================================== -->
+        <div id="panel-2" class="tab-panel">
+          <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">Feedback Ledger</span>
+              <h3 class="fw-bold mb-0">All Reviews</h3>
+            </div>
+          </div>
+
+          <!-- Filter & Search Bar -->
+          <div class="row g-3 mb-4">
+            <div class="col-12 col-md-4">
+              <div class="studio-input-group">
+                <i class="bi bi-search"></i>
+                <input type="text" id="revSearchInput" class="form-control studio-input" placeholder="Search traveler name, package, or keyword...">
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <select id="revRatingFilter" class="form-select studio-input">
+                <option value="">All Star Ratings</option>
+                <option value="5">5 Stars Only</option>
+                <option value="4">4 Stars &amp; Above</option>
+                <option value="3">3 Stars &amp; Below</option>
+              </select>
+            </div>
+            <div class="col-6 col-md-3">
+              <select id="revStatusFilter" class="form-select studio-input">
+                <option value="">All Statuses</option>
+                <option value="published">Published</option>
+                <option value="pending">Pending Moderation</option>
+                <option value="hidden">Hidden</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-2 d-grid">
+              <button type="button" id="revFilterBtn" class="btn-brand-outline justify-content-center">
+                <i class="bi bi-funnel me-1"></i> Filter
+              </button>
+            </div>
+          </div>
+
+          <!-- Reviews Table -->
+          <div class="table-responsive studio-table-wrap">
+            <table class="table studio-table align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>Review ID</th>
+                  <th>Traveler</th>
+                  <th>Package / Destination</th>
+                  <th>Rating</th>
+                  <th>Review</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="reviewsListBody">
+                <tr data-rating="5" data-status="published">
+                  <td class="fw-bold">REV-301</td>
+                  <td class="fw-semibold">Arjun Menon</td>
+                  <td>Munnar &amp; Tea Valley Escape</td>
+                  <td><span class="fw-bold text-warning">5.0 &#9733;</span></td>
+                  <td class="small">Smooth ghat transfers, spotless hillside stay, and early sunrise pickup at Kolukkumalai.</td>
+                  <td>2026-11-12</td>
+                  <td class="rev-status"><span class="badge bg-success-subtle text-success border border-success-subtle">Published</span></td>
+                  <td class="text-end">
+                    <button type="button" class="btn-brand-outline py-1 px-2 small js-toggle-review">Hide</button>
+                  </td>
+                </tr>
+                <tr data-rating="5" data-status="published">
+                  <td class="fw-bold">REV-302</td>
+                  <td class="fw-semibold">Kavya Nair</td>
+                  <td>Alleppey Backwater Retreat</td>
+                  <td><span class="fw-bold text-warning">5.0 &#9733;</span></td>
+                  <td class="small">The private houseboat crew and traditional Kerala lunch on Vembanad Lake were unforgettable.</td>
+                  <td>2026-11-15</td>
+                  <td class="rev-status"><span class="badge bg-success-subtle text-success border border-success-subtle">Published</span></td>
+                  <td class="text-end">
+                    <button type="button" class="btn-brand-outline py-1 px-2 small js-toggle-review">Hide</button>
+                  </td>
+                </tr>
+                <tr data-rating="4.5" data-status="published">
+                  <td class="fw-bold">REV-303</td>
+                  <td class="fw-semibold">Rohan Deshmukh</td>
+                  <td>Wayanad Rainforest Trail</td>
+                  <td><span class="fw-bold text-warning">4.5 &#9733;</span></td>
+                  <td class="small">Great itinerary pacing around Edakkal Caves and Banasura Sagar Dam with zero rush.</td>
+                  <td>2026-11-18</td>
+                  <td class="rev-status"><span class="badge bg-success-subtle text-success border border-success-subtle">Published</span></td>
+                  <td class="text-end">
+                    <button type="button" class="btn-brand-outline py-1 px-2 small js-toggle-review">Hide</button>
+                  </td>
+                </tr>
+                <tr data-rating="4" data-status="pending">
+                  <td class="fw-bold">REV-304</td>
+                  <td class="fw-semibold">Meera Krishnan</td>
+                  <td>Goa Coastal Getaway</td>
+                  <td><span class="fw-bold text-warning">4.0 &#9733;</span></td>
+                  <td class="small">Loved the South Goa cove recommendations and airport transfer coordination.</td>
+                  <td>2026-11-21</td>
+                  <td class="rev-status"><span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle">Pending</span></td>
+                  <td class="text-end">
+                    <button type="button" class="btn-brand-teal py-1 px-2 small js-toggle-review">Approve</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             PANEL 3: CUSTOMER STORIES
+             ========================================== -->
+        <div id="panel-3" class="tab-panel">
+          <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow" style="color: var(--coral-accent);">Travel Journals</span>
+              <h3 class="fw-bold mb-0">Stories by Customers</h3>
+            </div>
+            <span class="badge rounded-pill px-3 py-2" style="background: rgba(255, 107, 90, 0.12); color: var(--coral-accent);">
+              <i class="bi bi-journal-richtext me-1"></i> Community Travelogues
+            </span>
+          </div>
+
+          <!-- Filter & Search Bar for Stories -->
+          <div class="row g-3 mb-4">
+            <div class="col-12 col-md-5">
+              <div class="studio-input-group">
+                <i class="bi bi-search"></i>
+                <input type="text" id="storySearchInput" class="form-control studio-input" placeholder="Search story title, author, or destination...">
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <select id="storyDestFilter" class="form-select studio-input">
+                <option value="">All Destinations</option>
+                <option value="munnar">Munnar</option>
+                <option value="wayanad">Wayanad</option>
+                <option value="alleppey">Alleppey</option>
+              </select>
+            </div>
+            <div class="col-6 col-md-2">
+              <select id="storyStatusFilter" class="form-select studio-input">
+                <option value="">All Statuses</option>
+                <option value="published">Published</option>
+                <option value="pending">Pending Review</option>
+                <option value="hidden">Hidden</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-2 d-grid">
+              <button type="button" id="storyFilterBtn" class="btn-brand-outline justify-content-center">
+                <i class="bi bi-funnel me-1"></i> Filter
+              </button>
+            </div>
+          </div>
+
+          <!-- Customer Stories Table -->
+          <div class="table-responsive studio-table-wrap mb-4">
+            <table class="table studio-table align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>Story ID</th>
+                  <th>Author (Customer)</th>
+                  <th>Story Title</th>
+                  <th>Destination / Trip</th>
+                  <th>Photos</th>
+                  <th>Submitted Date</th>
+                  <th>Status</th>
+                  <th class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="storiesListBody">
+                <tr
+                  data-story-id="STR-101"
+                  data-status="published"
+                  data-content="We started our morning before sunrise along the high tea ridges of Munnar. Crisp mountain air, drifting mist over emerald slopes, and quiet stops at local tea stalls made every kilometer feel unhurried."
+                >
+                  <td class="fw-bold">STR-101</td>
+                  <td class="fw-semibold">Ananya Pillai</td>
+                  <td>Misty Mornings Above the Tea Valleys</td>
+                  <td>Munnar, Kerala</td>
+                  <td>6 Photos</td>
+                  <td>2026-11-08</td>
+                  <td class="story-status"><span class="badge bg-success-subtle text-success border border-success-subtle">Published</span></td>
+                  <td class="text-end">
+                    <div class="d-inline-flex gap-1">
+                      <button type="button" class="btn-brand-outline py-1 px-2 small js-view-story"><i class="bi bi-eye me-1"></i> View</button>
+                      <button type="button" class="btn-brand-outline py-1 px-2 small js-toggle-story">Hide</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  data-story-id="STR-102"
+                  data-status="published"
+                  data-content="Gliding through narrow palm-lined canals at dusk and waking up to calm backwaters in Alleppey was the reset we needed. Fresh coastal meals on board and peaceful evening skies capped off our trip."
+                >
+                  <td class="fw-bold">STR-102</td>
+                  <td class="fw-semibold">Karthik Varma</td>
+                  <td>Slow Canals &amp; Sunset Reflections</td>
+                  <td>Alleppey, Kerala</td>
+                  <td>4 Photos</td>
+                  <td>2026-11-16</td>
+                  <td class="story-status"><span class="badge bg-success-subtle text-success border border-success-subtle">Published</span></td>
+                  <td class="text-end">
+                    <div class="d-inline-flex gap-1">
+                      <button type="button" class="btn-brand-outline py-1 px-2 small js-view-story"><i class="bi bi-eye me-1"></i> View</button>
+                      <button type="button" class="btn-brand-outline py-1 px-2 small js-toggle-story">Hide</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  data-story-id="STR-103"
+                  data-status="pending"
+                  data-content="Driving into Wayanad through rain-washed ghat roads and spice plantations felt like entering another world. From misty viewpoints to quiet forest trails, it was an unforgettable weekend escape."
+                >
+                  <td class="fw-bold">STR-103</td>
+                  <td class="fw-semibold">Sneha Thomas</td>
+                  <td>Monsoon Roads Through Wayanad</td>
+                  <td>Wayanad, Kerala</td>
+                  <td>5 Photos</td>
+                  <td>2026-11-22</td>
+                  <td class="story-status"><span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle">Pending</span></td>
+                  <td class="text-end">
+                    <div class="d-inline-flex gap-1">
+                      <button type="button" class="btn-brand-outline py-1 px-2 small js-view-story"><i class="bi bi-eye me-1"></i> View</button>
+                      <button type="button" class="btn-brand-teal py-1 px-2 small js-toggle-story">Publish</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Story Submission / Publishing Form -->
+          <div class="pt-4 border-top">
+            <h6 class="form-section-heading mb-3"><i class="bi bi-pencil-square me-2"></i>Post or Curate a Customer Story</h6>
+            <form id="publishStoryForm" action="#" method="post" enctype="multipart/form-data" novalidate>
+              <div class="row g-4">
+                <div class="col-12 col-md-4">
+                  <label for="storyAuthor" class="studio-label">Customer / Author Name</label>
+                  <input type="text" id="storyAuthor" name="author_name" class="form-control studio-input" placeholder="Enter traveler name">
+                  <div class="field-error" id="err-storyAuthor"></div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                  <label for="storyTitle" class="studio-label">Story Title</label>
+                  <input type="text" id="storyTitle" name="story_title" class="form-control studio-input" placeholder="e.g., Monsoon Roads Through Wayanad">
+                  <div class="field-error" id="err-storyTitle"></div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                  <label for="storyDestination" class="studio-label">Destination / Package</label>
+                  <input type="text" id="storyDestination" name="story_destination" class="form-control studio-input" placeholder="e.g., Wayanad, Kerala">
+                  <div class="field-error" id="err-storyDestination"></div>
+                </div>
+
+                <div class="col-12 col-md-5">
+                  <label for="storyPhotosInput" class="studio-label">Story Photos (Multiple Allowed)</label>
+                  <label id="storyPhotosDropzone" class="media-dropzone" style="min-height: 138px;">
+                    <input type="file" id="storyPhotosInput" name="story_photos[]" accept="image/*" multiple class="d-none">
+                    <i class="bi bi-images fs-2 d-block mb-1" style="color: var(--coral-accent);"></i>
+                    <span class="fw-bold d-block small" id="storyPhotosLabel">Upload Story Gallery</span>
+                    <span class="text-muted" style="font-size: 0.74rem;">Select one or multiple trip photos</span>
+                  </label>
+                  <div class="field-error" id="err-storyPhotosInput"></div>
+                </div>
+
+                <div class="col-12 col-md-7">
+                  <label for="storyContent" class="studio-label">Story Content</label>
+                  <textarea id="storyContent" name="story_content" rows="4" class="form-control studio-input" placeholder="Write or paste the customer's travel experience..."></textarea>
+                  <div class="field-error" id="err-storyContent"></div>
+                </div>
+
+                <div class="col-12 d-flex justify-content-end gap-3 pt-3 border-top">
+                  <button type="reset" class="btn-brand-outline">Clear</button>
+                  <button type="submit" class="btn-brand-coral">
+                    <i class="bi bi-send-check me-1"></i> Publish Customer Story
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Customer Story Viewer Modal -->
+  <div id="customerStoryModal" class="d-none" style="position: fixed; inset: 0; z-index: 1055; background: rgba(11, 31, 58, 0.55); backdrop-filter: blur(4px); overflow-y: auto; padding: 1.5rem;">
+    <div class="container" style="max-width: 720px; margin-top: 2rem;">
+      <div class="metric-glass-card flex-column align-items-stretch p-4 bg-white shadow-lg">
+        <div class="d-flex justify-content-between align-items-start gap-3 pb-3 mb-3 border-bottom">
+          <div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <span id="storyModalId" class="fw-bold small" style="color: var(--coral-accent);">STR-101</span>
+              <span id="storyModalStatus"></span>
+            </div>
+            <h4 id="storyModalTitle" class="fw-bold mb-1" style="color: var(--navy-primary);">Story Title</h4>
+            <div class="small text-muted">
+              By <strong id="storyModalAuthor">Author</strong> &bull; <span id="storyModalDestination">Destination</span> &bull; <span id="storyModalDate">Date</span>
+            </div>
+          </div>
+          <button type="button" id="closeStoryModalBtn" class="btn-brand-outline py-1 px-2" aria-label="Close story">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <div id="storyModalGallery" class="row g-2 mb-3 d-none"></div>
+
+        <div class="p-3 rounded-3 mb-3" style="background: rgba(255, 107, 90, 0.06);">
+          <div class="d-flex justify-content-between align-items-center small fw-bold mb-2" style="color: var(--navy-primary);">
+            <span>Travel Journal</span>
+            <span id="storyModalPhotosCount" class="text-muted fw-normal">0 Photos</span>
+          </div>
+          <div id="storyModalContent" class="small text-muted" style="white-space: pre-line; line-height: 1.65;"></div>
+        </div>
+
+        <div class="d-flex justify-content-end pt-3 border-top">
+          <button type="button" id="cancelStoryModalBtn" class="btn-brand-outline">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TripKitGo Admin Studio Footer -->
+  <footer class="studio-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <!-- Brand & Tagline -->
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo-wrap">
+            <img src="../images/tripkitgo_logo.png" alt="TripKitGo Logo" class="footer-logo-img">
+          </a>
+          <p class="footer-tagline">Admin Studio &bull; Travel Operations &amp; Management</p>
+        </div>
+
+        <!-- Portal Status -->
+        <span class="footer-status">
+          <span class="status-dot"></span> Admin Portal v1.0
+        </span>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 TripKitGo. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/page-reviews.js"></script>
+</body>
+</html>

@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notes — TripKitGo Admin Studio</title>
+
+  <!-- Plus Jakarta Sans Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS & Icons (Zero JS) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Shared Stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/auth-guard.js"></script>
+</head>
+
+<body data-page="notes">
+
+  <!-- Responsive Sticky Glass Navbar (Zero JS Checkbox Toggler) -->
+  <nav class="studio-navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-logo-wrap">
+        <img src="../images/tripkitgo_logo.png" alt="TripKitGo Logo" class="navbar-logo-img">
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
+      <label for="nav-toggle" class="nav-toggler-btn" aria-label="Toggle navigation">
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+      </label>
+
+      <div class="navbar-collapse-custom">
+        <ul class="navbar-links-list">
+          <li><a href="index.html" class="nav-quick-link"><i class="bi bi-grid-fill"></i> Hub</a></li>
+          <li><a href="bookings.html" class="nav-quick-link"><i class="bi bi-journal-check"></i> Bookings</a></li>
+          <li><a href="customized-packages.html" class="nav-quick-link"><i class="bi bi-sliders"></i> Customized
+              Packages</a></li>
+          <li><a href="destinations.html" class="nav-quick-link"><i class="bi bi-geo-alt"></i> Destinations</a></li>
+          <li><a href="payments.html" class="nav-quick-link"><i class="bi bi-credit-card"></i> Payments</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+          <span class="studio-pill-badge">
+            <span class="pulse-dot"></span> Admin Studio
+          </span>
+          <a href="login.html" class="btn-studio-logout" title="Sign out of Admin Studio"
+            onclick="event.preventDefault(); window.TripKitGoAuth.logout();">
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Logout</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Notes Workspace -->
+  <main class="container pb-5">
+
+    <!-- Editorial Hero Banner -->
+    <div class="workspace-banner">
+      <img src="../images/notes.avif" alt="Notes Banner">
+      <div class="workspace-banner-content">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+          <a href="index.html" class="btn-back-hub mb-0">
+            <i class="bi bi-arrow-left me-1"></i> Back to Hub
+          </a>
+          <span class="featured-tag"><i class="bi bi-journal-text me-1"></i> Team Memos</span>
+        </div>
+        <h1 class="display-6 fw-extrabold mb-1">Notes &amp; Reminders</h1>
+        <p class="mb-0 text-white-50">Create, update, and organize operational notes, vendor reminders, and tour
+          follow-ups.</p>
+      </div>
+    </div>
+
+    <!-- Pure CSS Sub-Option Radio Tabs -->
+    <div class="css-tabs-wrapper">
+      <input type="radio" name="notes-tabs" id="tab-1" checked>
+      <input type="radio" name="notes-tabs" id="tab-2">
+      <input type="radio" name="notes-tabs" id="tab-3">
+      <input type="radio" name="notes-tabs" id="tab-4">
+
+      <!-- Sub-Option Pill Bar -->
+      <div class="suboption-bar">
+        <label for="tab-1" class="suboption-pill">
+          <i class="bi bi-compass me-1"></i> Overview
+        </label>
+        <label for="tab-2" class="suboption-pill">
+          <i class="bi bi-journals me-1"></i> All Notes
+        </label>
+        <label for="tab-3" class="suboption-pill">
+          <i class="bi bi-plus-circle me-1"></i> Create Note
+        </label>
+        <label for="tab-4" class="suboption-pill">
+          <i class="bi bi-pencil-square me-1"></i> Update Note
+        </label>
+      </div>
+
+      <!-- TAB PANELS -->
+      <div class="tab-panels">
+
+        <!-- ==========================================
+             PANEL 1: OVERVIEW
+             ========================================== -->
+        <div id="panel-1" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">Workspace Memos</span>
+              <h3 class="fw-bold mb-0">Notes Overview</h3>
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-3 mt-md-0">
+              <label for="tab-3" class="btn-brand-teal">
+                <i class="bi bi-plus-lg me-1"></i> Create Note
+              </label>
+              <label for="tab-4" class="btn-brand-outline">
+                <i class="bi bi-pencil-square me-1"></i> Update Note
+              </label>
+            </div>
+          </div>
+
+          <div class="row g-4 mb-4">
+            <div class="col-12 col-md-4">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box teal">
+                  <i class="bi bi-journal-text"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Total Notes</p>
+                  <h4 class="metric-value" id="totalNotesCount">4</h4>
+                  <span class="metric-sub">Saved operational memos</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box coral">
+                  <i class="bi bi-pin-angle"></i>
+                </div>
+                <div>
+                  <p class="metric-label">High Priority</p>
+                  <h4 class="metric-value" id="highPriorityNotesCount">2</h4>
+                  <span class="metric-sub">Urgent follow-ups</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box sky">
+                  <i class="bi bi-bell"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Scheduled Reminders</p>
+                  <h4 class="metric-value" id="scheduledRemindersCount">3</h4>
+                  <span class="metric-sub">Upcoming dates</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="metric-glass-card flex-column align-items-start">
+            <div class="fw-bold mb-1" style="color: var(--navy-primary);">Active Operational Checklists</div>
+            <div class="small text-muted">
+              Tracking resort seasonal tariffs, houseboat dock schedules, and customer follow-ups across
+              <strong>Munnar</strong>, <strong>Alleppey</strong>, and <strong>Wayanad</strong>. Open <strong>All
+                Notes</strong> to inspect or filter saved memos.
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             PANEL 2: ALL NOTES
+             ========================================== -->
+        <div id="panel-2" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">Memo Log</span>
+              <h3 class="fw-bold mb-0">All Notes</h3>
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-3 mt-md-0">
+              <label for="tab-3" class="btn-brand-teal">
+                <i class="bi bi-plus-lg me-1"></i> Create Note
+              </label>
+              <label for="tab-4" class="btn-brand-outline">
+                <i class="bi bi-pencil-square me-1"></i> Update Note
+              </label>
+            </div>
+          </div>
+
+          <div class="row g-3 mb-4">
+            <div class="col-12 col-md-6">
+              <div class="studio-input-group">
+                <i class="bi bi-search"></i>
+                <input type="text" id="noteSearchInput" class="form-control studio-input"
+                  placeholder="Search note ID, title, or content...">
+              </div>
+            </div>
+            <div class="col-6 col-md-4">
+              <select id="noteCategoryFilter" class="form-select studio-input">
+                <option value="">All Categories</option>
+                <option value="operations">Operations</option>
+                <option value="vendors">Hotels &amp; Vendors</option>
+                <option value="followup">Client Follow-Up</option>
+                <option value="general">General</option>
+              </select>
+            </div>
+            <div class="col-6 col-md-2 d-grid">
+              <button type="button" id="noteFilterBtn" class="btn-brand-outline justify-content-center">
+                <i class="bi bi-funnel me-1"></i> Filter
+              </button>
+            </div>
+          </div>
+
+          <div class="table-responsive studio-table-wrap">
+            <table class="table studio-table align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Note Title</th>
+                  <th>Category</th>
+                  <th>Priority</th>
+                  <th>Reminder Date</th>
+                  <th>Created</th>
+                  <th class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="notesListBody">
+                <tr data-note-id="NOTE-101" data-category="vendors" data-priority="high" data-reminder="2026-12-01"
+                  data-details="Confirm December peak-season room allotments and extra bed charges with Munnar tea-estate partner resorts before Friday.">
+                  <td class="fw-bold">NOTE-101</td>
+                  <td class="fw-semibold">Confirm Munnar resort seasonal rates</td>
+                  <td>Hotels &amp; Vendors</td>
+                  <td><span class="badge bg-danger-subtle text-danger border border-danger-subtle">High Priority</span>
+                  </td>
+                  <td>2026-12-01</td>
+                  <td>2026-11-18</td>
+                  <td class="text-end">
+                    <div class="d-inline-flex gap-1">
+                      <button type="button" class="btn-brand-outline py-1 px-2 small js-view-note"><i
+                          class="bi bi-eye me-1"></i> View</button>
+                      <button type="button" class="btn-brand-outline py-1 px-2 small text-danger border-danger-subtle js-delete-note"
+                        title="Delete note"><i class="bi bi-trash3"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-note-id="NOTE-102" data-category="followup" data-priority="high" data-reminder="2026-11-28"
+                  data-details="Follow up with Kavya Nair (BKG-1045) regarding balance installment of ₹14,000 and morning airport pickup timing at COK.">
+                  <td class="fw-bold">NOTE-102</td>
+                  <td class="fw-semibold">Client balance &amp; COK pickup confirmation</td>
+                  <td>Client Follow-Up</td>
+                  <td><span class="badge bg-danger-subtle text-danger border border-danger-subtle">High Priority</span>
+                  </td>
+                  <td>2026-11-28</td>
+                  <td>2026-11-20</td>
+                  <td class="text-end">
+                    <div class="d-inline-flex gap-1">
+                      <button type="button" class="btn-brand-outline py-1 px-2 small js-view-note"><i
+                          class="bi bi-eye me-1"></i> View</button>
+                      <button type="button" class="btn-brand-outline py-1 px-2 small text-danger border-danger-subtle js-delete-note"
+                        title="Delete note"><i class="bi bi-trash3"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-note-id="NOTE-103" data-category="operations" data-priority="normal" data-reminder="2026-12-04"
+                  data-details="Verify Alleppey finishing-point houseboat boarding passes and lunch menu preferences for weekend backwater departures.">
+                  <td class="fw-bold">NOTE-103</td>
+                  <td class="fw-semibold">Alleppey houseboat boarding checklist</td>
+                  <td>Operations</td>
+                  <td><span class="badge bg-info-subtle text-info-emphasis border border-info-subtle">Normal</span></td>
+                  <td>2026-12-04</td>
+                  <td>2026-11-21</td>
+                  <td class="text-end">
+                    <div class="d-inline-flex gap-1">
+                      <button type="button" class="btn-brand-outline py-1 px-2 small js-view-note"><i
+                          class="bi bi-eye me-1"></i> View</button>
+                      <button type="button" class="btn-brand-outline py-1 px-2 small text-danger border-danger-subtle js-delete-note"
+                        title="Delete note"><i class="bi bi-trash3"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-note-id="NOTE-104" data-category="general" data-priority="low" data-reminder=""
+                  data-details="Update gallery captions for Wayanad and Gokarna destination pages once new monsoon and coastal photographs arrive.">
+                  <td class="fw-bold">NOTE-104</td>
+                  <td class="fw-semibold">Refresh destination photo captions</td>
+                  <td>General</td>
+                  <td><span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">Low</span>
+                  </td>
+                  <td>&mdash;</td>
+                  <td>2026-11-22</td>
+                  <td class="text-end">
+                    <div class="d-inline-flex gap-1">
+                      <button type="button" class="btn-brand-outline py-1 px-2 small js-view-note"><i
+                          class="bi bi-eye me-1"></i> View</button>
+                      <button type="button" class="btn-brand-outline py-1 px-2 small text-danger border-danger-subtle js-delete-note"
+                        title="Delete note"><i class="bi bi-trash3"></i></button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             PANEL 3: CREATE NOTE
+             ========================================== -->
+        <div id="panel-3" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">New Memo</span>
+              <h3 class="fw-bold mb-0">Create Note</h3>
+            </div>
+          </div>
+
+          <form id="createNoteForm" action="#" method="post" novalidate>
+            <div class="row g-4">
+              <div class="col-12 col-md-6">
+                <label for="noteTitle" class="studio-label">Note Title</label>
+                <input type="text" id="noteTitle" name="note_title" class="form-control studio-input"
+                  placeholder="e.g., Confirm Munnar resort seasonal rates">
+                <div class="field-error" id="err-noteTitle"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="notePriority" class="studio-label">Priority</label>
+                <select id="notePriority" name="priority" class="form-select studio-input">
+                  <option value="normal">Normal</option>
+                  <option value="high">High Priority</option>
+                  <option value="low">Low</option>
+                </select>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="noteReminderDate" class="studio-label">Reminder Date (Optional)</label>
+                <input type="date" id="noteReminderDate" name="reminder_date" class="form-control studio-input">
+                <div class="field-error" id="err-noteReminderDate"></div>
+              </div>
+
+              <div class="col-12">
+                <label class="studio-label">Note Category</label>
+                <div class="inclusion-pill-grid mt-1">
+                  <label class="inclusion-check-pill">
+                    <input type="radio" name="note_category" value="operations" checked>
+                    <span><i class="bi bi-gear me-1"></i> Operations</span>
+                  </label>
+                  <label class="inclusion-check-pill">
+                    <input type="radio" name="note_category" value="vendors">
+                    <span><i class="bi bi-building me-1"></i> Hotels &amp; Vendors</span>
+                  </label>
+                  <label class="inclusion-check-pill">
+                    <input type="radio" name="note_category" value="followup">
+                    <span><i class="bi bi-telephone me-1"></i> Client Follow-Up</span>
+                  </label>
+                  <label class="inclusion-check-pill">
+                    <input type="radio" name="note_category" value="general">
+                    <span><i class="bi bi-bookmark me-1"></i> General</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="noteDetails" class="studio-label">Note Details</label>
+                <textarea id="noteDetails" name="note_details" rows="5" class="form-control studio-input"
+                  placeholder="Write your note, checklist, or reminder details..."></textarea>
+                <div class="field-error" id="err-noteDetails"></div>
+              </div>
+
+              <div class="col-12 d-flex justify-content-end gap-3 pt-3 border-top">
+                <button type="reset" class="btn-brand-outline">Clear</button>
+                <button type="submit" class="btn-brand-teal">
+                  <i class="bi bi-check2-circle me-1"></i> Save Note
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- ==========================================
+             PANEL 4: UPDATE NOTE (WITH SEARCH)
+             ========================================== -->
+        <div id="panel-4" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow" style="color: var(--coral-accent);">Edit Memo</span>
+              <h3 class="fw-bold mb-0">Update Note</h3>
+            </div>
+          </div>
+
+          <!-- Step 1: Search Note -->
+          <form id="findNoteForm" action="#" method="get" class="mb-4 pb-4 border-bottom" novalidate>
+            <label for="findNoteQuery" class="studio-label">Find Note</label>
+            <div class="row g-3">
+              <div class="col-12 col-md-9">
+                <div class="studio-input-group">
+                  <i class="bi bi-search"></i>
+                  <input type="search" id="findNoteQuery" name="note_query" list="note-suggestions"
+                    class="form-control studio-input" placeholder="Search note by ID or title...">
+                  <datalist id="note-suggestions"></datalist>
+                </div>
+                <div class="field-error" id="err-findNoteQuery"></div>
+              </div>
+              <div class="col-12 col-md-3 d-grid">
+                <button type="submit" class="btn-brand-teal justify-content-center">
+                  <i class="bi bi-search me-1"></i> Find Note
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- Step 2: Edit Note Details -->
+          <form id="updateNoteForm" action="#" method="post" novalidate>
+            <input type="hidden" id="editNoteId">
+            <div class="row g-4">
+              <div class="col-12 col-md-6">
+                <label for="editNoteTitle" class="studio-label">Note Title</label>
+                <input type="text" id="editNoteTitle" class="form-control studio-input"
+                  placeholder="Updated note title">
+                <div class="field-error" id="err-editNoteTitle"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="editNotePriority" class="studio-label">Priority</label>
+                <select id="editNotePriority" class="form-select studio-input">
+                  <option value="normal">Normal</option>
+                  <option value="high">High Priority</option>
+                  <option value="low">Low</option>
+                </select>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="editNoteReminderDate" class="studio-label">Reminder Date (Optional)</label>
+                <input type="date" id="editNoteReminderDate" class="form-control studio-input">
+                <div class="field-error" id="err-editNoteReminderDate"></div>
+              </div>
+
+              <div class="col-12">
+                <label class="studio-label">Note Category</label>
+                <div class="inclusion-pill-grid mt-1">
+                  <label class="inclusion-check-pill">
+                    <input type="radio" name="update_note_category" value="operations" checked>
+                    <span><i class="bi bi-gear me-1"></i> Operations</span>
+                  </label>
+                  <label class="inclusion-check-pill">
+                    <input type="radio" name="update_note_category" value="vendors">
+                    <span><i class="bi bi-building me-1"></i> Hotels &amp; Vendors</span>
+                  </label>
+                  <label class="inclusion-check-pill">
+                    <input type="radio" name="update_note_category" value="followup">
+                    <span><i class="bi bi-telephone me-1"></i> Client Follow-Up</span>
+                  </label>
+                  <label class="inclusion-check-pill">
+                    <input type="radio" name="update_note_category" value="general">
+                    <span><i class="bi bi-bookmark me-1"></i> General</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="editNoteDetails" class="studio-label">Note Details</label>
+                <textarea id="editNoteDetails" rows="5" class="form-control studio-input"
+                  placeholder="Update note details, checklist, or reminder notes..."></textarea>
+                <div class="field-error" id="err-editNoteDetails"></div>
+              </div>
+
+              <div class="col-12 d-flex justify-content-end gap-3 pt-3 border-top">
+                <button type="reset" class="btn-brand-outline">Reset</button>
+                <button type="submit" class="btn-brand-coral">
+                  <i class="bi bi-save me-1"></i> Update Note
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Note Details Modal -->
+  <div id="noteDetailsModal" class="d-none"
+    style="position: fixed; inset: 0; z-index: 1055; background: rgba(11, 31, 58, 0.55); backdrop-filter: blur(4px); overflow-y: auto; padding: 1.5rem;">
+    <div class="container" style="max-width: 680px; margin-top: 2rem;">
+      <div class="metric-glass-card flex-column align-items-stretch p-4 bg-white shadow-lg">
+        <div class="d-flex justify-content-between align-items-start gap-3 pb-3 mb-3 border-bottom">
+          <div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <span id="noteModalId" class="fw-bold small" style="color: var(--teal-primary);">NOTE-101</span>
+              <span id="noteModalPriority"></span>
+            </div>
+            <h4 id="noteModalTitle" class="fw-bold mb-1" style="color: var(--navy-primary);">Note Title</h4>
+            <div class="small text-muted">
+              <span id="noteModalCategory">Category</span> &bull; Reminder: <strong
+                id="noteModalReminder">&mdash;</strong> &bull; Created <span id="noteModalCreated">&mdash;</span>
+            </div>
+          </div>
+          <button type="button" id="closeNoteModalBtn" class="btn-brand-outline py-1 px-2" aria-label="Close note">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <div class="p-3 rounded-3 mb-4" style="background: rgba(14, 159, 154, 0.06);">
+          <div class="small fw-bold mb-1" style="color: var(--navy-primary);">Memo Details</div>
+          <div id="noteModalDetails" class="small text-muted" style="white-space: pre-line; line-height: 1.65;"></div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center gap-2 pt-3 border-top">
+          <button type="button" id="deleteFromNoteModalBtn" class="btn-brand-outline text-danger border-danger-subtle">
+            <i class="bi bi-trash3 me-1"></i> Delete Note
+          </button>
+          <div class="d-flex gap-2">
+            <button type="button" id="cancelNoteModalBtn" class="btn-brand-outline">Close</button>
+            <button type="button" id="editFromNoteModalBtn" class="btn-brand-teal">
+              <i class="bi bi-pencil-square me-1"></i> Edit in Update Tab
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TripKitGo Admin Studio Footer -->
+  <footer class="studio-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <!-- Brand & Tagline -->
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo-wrap">
+            <img src="../images/tripkitgo_logo.png" alt="TripKitGo Logo" class="footer-logo-img">
+          </a>
+          <p class="footer-tagline">Admin Studio &bull; Travel Operations &amp; Management</p>
+        </div>
+
+        <!-- Portal Status -->
+        <span class="footer-status">
+          <span class="status-dot"></span> Admin Portal v1.0
+        </span>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 TripKitGo. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/page-notes.js"></script>
+</body>
+
+</html>

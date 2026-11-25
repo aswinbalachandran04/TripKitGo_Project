@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customized Packages — TripKitGo Admin Studio</title>
+
+  <!-- Plus Jakarta Sans Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS & Icons (Zero JS) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Shared Stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/auth-guard.js"></script>
+</head>
+
+<body data-page="custom">
+
+  <!-- Responsive Sticky Glass Navbar (Zero JS Checkbox Toggler) -->
+  <nav class="studio-navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-logo-wrap">
+        <img src="../images/tripkitgo_logo.png" alt="TripKitGo Logo" class="navbar-logo-img">
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
+      <label for="nav-toggle" class="nav-toggler-btn" aria-label="Toggle navigation">
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+      </label>
+
+      <div class="navbar-collapse-custom">
+        <ul class="navbar-links-list">
+          <li><a href="index.html" class="nav-quick-link"><i class="bi bi-grid-fill"></i> Hub</a></li>
+          <li><a href="bookings.html" class="nav-quick-link"><i class="bi bi-journal-check"></i> Bookings</a></li>
+          <li><a href="customized-packages.html" class="nav-quick-link active"><i class="bi bi-sliders"></i> Customized
+              Packages</a></li>
+          <li><a href="destinations.html" class="nav-quick-link"><i class="bi bi-geo-alt"></i> Destinations</a></li>
+          <li><a href="payments.html" class="nav-quick-link"><i class="bi bi-credit-card"></i> Payments</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+          <span class="studio-pill-badge">
+            <span class="pulse-dot"></span> Admin Studio
+          </span>
+          <a href="login.html" class="btn-studio-logout" title="Sign out of Admin Studio"
+            onclick="event.preventDefault(); window.TripKitGoAuth.logout();">
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Logout</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Customized Packages Workspace -->
+  <main class="container pb-5">
+
+    <!-- Editorial Hero Banner -->
+    <div class="workspace-banner">
+      <img src="../images/customized-packages.avif" alt="Customized Packages Banner">
+      <div class="workspace-banner-content">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+          <a href="index.html" class="btn-back-hub mb-0">
+            <i class="bi bi-arrow-left me-1"></i> Back to Hub
+          </a>
+          <span class="featured-tag"><i class="bi bi-sliders me-1"></i> Bespoke Itineraries</span>
+        </div>
+        <h1 class="display-6 fw-extrabold mb-1">Customized Packages Desk</h1>
+        <p class="mb-0 text-white-50">Review tailor-made trip requests, craft custom quotes, and manage client-approved
+          bespoke itineraries.</p>
+      </div>
+    </div>
+
+    <!-- Pure CSS Sub-Option Radio Tabs -->
+    <div class="css-tabs-wrapper">
+      <input type="radio" name="custom-pkg-tabs" id="tab-1" checked>
+      <input type="radio" name="custom-pkg-tabs" id="tab-2">
+      <input type="radio" name="custom-pkg-tabs" id="tab-3">
+      <input type="radio" name="custom-pkg-tabs" id="tab-4">
+
+      <!-- Sub-Option Pill Bar -->
+      <div class="suboption-bar">
+        <label for="tab-1" class="suboption-pill">
+          <i class="bi bi-compass me-1"></i> Custom Overview
+        </label>
+        <label for="tab-2" class="suboption-pill">
+          <i class="bi bi-inbox me-1"></i> Custom Requests
+        </label>
+        <label for="tab-3" class="suboption-pill">
+          <i class="bi bi-calculator me-1"></i> Build Custom Quote
+        </label>
+        <label for="tab-4" class="suboption-pill">
+          <i class="bi bi-patch-check me-1"></i> Approved Custom Trips
+        </label>
+      </div>
+
+      <!-- TAB PANELS -->
+      <div class="tab-panels">
+
+        <!-- ==========================================
+             PANEL 1: CUSTOM OVERVIEW
+             ========================================== -->
+        <div id="panel-1" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">Bespoke Pipeline</span>
+              <h3 class="fw-bold mb-0">Customized Packages Overview</h3>
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-3 mt-md-0">
+              <label for="tab-3" class="btn-brand-coral">
+                <i class="bi bi-plus-lg me-1"></i> Build Custom Quote
+              </label>
+              <label for="tab-2" class="btn-brand-outline">
+                <i class="bi bi-inbox me-1"></i> View Requests
+              </label>
+            </div>
+          </div>
+
+          <!-- Metric Cards -->
+          <div class="row g-4 mb-4">
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box coral">
+                  <i class="bi bi-envelope-paper-heart"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Open Inquiries</p>
+                  <h4 class="metric-value" id="openInquiriesCount">2</h4>
+                  <span class="metric-sub">Awaiting custom proposal</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box sky">
+                  <i class="bi bi-send-check"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Quotes Sent</p>
+                  <h4 class="metric-value" id="quotesSentCount">1</h4>
+                  <span class="metric-sub">Under traveler review</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box teal">
+                  <i class="bi bi-check2-all"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Approved Trips</p>
+                  <h4 class="metric-value" id="approvedTripsCount">1</h4>
+                  <span class="metric-sub">Ready for confirmation</span>
+                </div>
+              </div>
+            </div>
+
+            
+          </div>
+
+          <div class="metric-glass-card flex-column align-items-start">
+            <div class="fw-bold mb-1" style="color: var(--navy-primary);">Bespoke Multi-Stop Pipeline</div>
+            <div class="small text-muted">
+              Managing custom routes across <strong>Wayanad</strong>, <strong>Munnar</strong>,
+              <strong>Alleppey</strong>, and <strong>Goa</strong>. Use <strong>Build Custom Quote</strong> to create a
+              tailored estimate or <strong>Approved Custom Trips</strong> to track confirmed plans.
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             PANEL 2: CUSTOM REQUESTS QUEUE
+             ========================================== -->
+        <div id="panel-2" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">Traveler Inquiries</span>
+              <h3 class="fw-bold mb-0">Customized Package Requests</h3>
+            </div>
+            <label for="tab-3" class="btn-brand-coral mt-3 mt-md-0">
+              <i class="bi bi-plus-lg me-1"></i> New Custom Quote
+            </label>
+          </div>
+
+          <!-- Filter & Search Bar -->
+          <div class="row g-3 mb-4">
+            <div class="col-12 col-md-4">
+              <div class="studio-input-group">
+                <i class="bi bi-search"></i>
+                <input type="text" id="customSearchInput" class="form-control studio-input"
+                  placeholder="Search inquiry ID, client name, or route...">
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <select id="customStageFilter" class="form-select studio-input">
+                <option value="">All Pipeline Stages</option>
+                <option value="new">New Inquiry</option>
+                <option value="draft">Draft Quote</option>
+                <option value="sent">Quote Sent</option>
+                <option value="approved">Approved</option>
+              </select>
+            </div>
+            <div class="col-6 col-md-3">
+              <input type="date" id="customDateFilter" class="form-control studio-input"
+                aria-label="Filter by start date">
+            </div>
+            <div class="col-12 col-md-2 d-grid">
+              <button type="button" id="customFilterBtn" class="btn-brand-outline justify-content-center">
+                <i class="bi bi-funnel me-1"></i> Filter
+              </button>
+            </div>
+          </div>
+
+          <!-- Queue Table -->
+          <div class="table-responsive studio-table-wrap">
+            <table class="table studio-table align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>Request ID</th>
+                  <th>Client</th>
+                  <th>Requested Route</th>
+                  <th>Dates &amp; Pax</th>
+                  <th>Quoted / Target</th>
+                  <th>Stage</th>
+                  <th class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="customRequestsBody">
+                <tr data-stage="new" data-start-date="2026-12-12">
+                  <td class="fw-bold">CST-501</td>
+                  <td class="fw-semibold">Arjun Menon</td>
+                  <td>Kochi &rarr; Wayanad (2N) &rarr; Munnar (2N) &rarr; Kochi</td>
+                  <td class="small">2026-12-12 to 2026-12-16 &bull; 4 Pax</td>
+                  <td class="fw-semibold">&#8377;68,000</td>
+                  <td><span class="badge bg-info-subtle text-info-emphasis border border-info-subtle">New Inquiry</span>
+                  </td>
+                  <td class="text-end">
+                    <label for="tab-3" class="btn-brand-outline py-1 px-2 small">Quote</label>
+                  </td>
+                </tr>
+                <tr data-stage="sent" data-start-date="2026-12-18">
+                  <td class="fw-bold">CST-502</td>
+                  <td class="fw-semibold">Kavya Nair</td>
+                  <td>Bengaluru &rarr; Alleppey (2N) &rarr; Varkala (1N)</td>
+                  <td class="small">2026-12-18 to 2026-12-21 &bull; 2 Pax</td>
+                  <td class="fw-semibold">&#8377;49,500</td>
+                  <td><span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle">Quote
+                      Sent</span></td>
+                  <td class="text-end">
+                    <label for="tab-3" class="btn-brand-outline py-1 px-2 small">Revise</label>
+                  </td>
+                </tr>
+                <tr data-stage="new" data-start-date="2026-12-26">
+                  <td class="fw-bold">CST-503</td>
+                  <td class="fw-semibold">Rohan Deshmukh</td>
+                  <td>Chennai &rarr; Munnar (2N) &rarr; Thekkady (1N)</td>
+                  <td class="small">2026-12-26 to 2026-12-29 &bull; 6 Pax</td>
+                  <td class="fw-semibold">&#8377;84,000</td>
+                  <td><span class="badge bg-info-subtle text-info-emphasis border border-info-subtle">New Inquiry</span>
+                  </td>
+                  <td class="text-end">
+                    <label for="tab-3" class="btn-brand-outline py-1 px-2 small">Quote</label>
+                  </td>
+                </tr>
+                <tr data-stage="approved" data-start-date="2026-12-08">
+                  <td class="fw-bold">CST-504</td>
+                  <td class="fw-semibold">Meera Krishnan</td>
+                  <td>Hyderabad &rarr; Goa Coastal Circuit (3N)</td>
+                  <td class="small">2026-12-08 to 2026-12-11 &bull; 3 Pax</td>
+                  <td class="fw-semibold">&#8377;56,000</td>
+                  <td><span class="badge bg-success-subtle text-success border border-success-subtle">Approved</span>
+                  </td>
+                  <td class="text-end">
+                    <label for="tab-4" class="btn-brand-outline py-1 px-2 small">Approved</label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             PANEL 3: BUILD CUSTOM QUOTE
+             ========================================== -->
+        <div id="panel-3" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow" style="color: var(--coral-accent);">Bespoke Proposal Builder</span>
+              <h3 class="fw-bold mb-0">Build Customized Package Quote</h3>
+            </div>
+            <span class="badge rounded-pill px-3 py-2"
+              style="background: rgba(255, 107, 90, 0.12); color: var(--coral-accent);">
+              <i class="bi bi-sliders me-1"></i> Tailor-Made Pricing &amp; Route
+            </span>
+          </div>
+
+          <form id="buildCustomQuoteForm" action="#" method="post" novalidate>
+            <div class="row g-4">
+              <!-- Section 1: Client & Trip Window -->
+              <div class="col-12">
+                <h6 class="form-section-heading"><i class="bi bi-person-lines-fill me-2"></i>1. Traveler &amp; Trip
+                  Window</h6>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <label for="cstClientName" class="studio-label">Client Full Name</label>
+                <input type="text" id="cstClientName" name="client_name" class="form-control studio-input"
+                  placeholder="Enter client name">
+                <div class="field-error" id="err-cstClientName"></div>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <label for="cstClientContact" class="studio-label">Email or Phone / WhatsApp</label>
+                <input type="text" id="cstClientContact" name="client_contact" class="form-control studio-input"
+                  placeholder="client@email.com or +91 9847011204">
+                <div class="field-error" id="err-cstClientContact"></div>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <label for="cstConsultant" class="studio-label">Assigned Trip Consultant</label>
+                <select id="cstConsultant" name="consultant" class="form-select studio-input">
+                  <option value="" selected>Select consultant...</option>
+                  <option value="Neha Kurian">Neha Kurian (Senior Trip Planner)</option>
+                  <option value="Devika Shenoy">Devika Shenoy (Custom Itinerary Architect)</option>
+                  <option value="Pranav Hegde">Pranav Hegde (On-Ground Coordinator)</option>
+                </select>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="cstStartDate" class="studio-label">Start Date</label>
+                <input type="date" id="cstStartDate" name="start_date" class="form-control studio-input">
+                <div class="field-error" id="err-cstStartDate"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="cstEndDate" class="studio-label">End Date</label>
+                <input type="date" id="cstEndDate" name="end_date" class="form-control studio-input">
+                <div class="field-error" id="err-cstEndDate"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="cstPax" class="studio-label">Total Travelers (Pax)</label>
+                <input type="number" id="cstPax" name="pax" min="1" class="form-control studio-input"
+                  placeholder="e.g., 4">
+                <div class="field-error" id="err-cstPax"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="cstQuoteStatus" class="studio-label">Quote Status</label>
+                <select id="cstQuoteStatus" name="quote_status" class="form-select studio-input">
+                  <option value="draft">Draft Quote</option>
+                  <option value="sent">Ready to Send</option>
+                  <option value="approved">Approved by Client</option>
+                </select>
+              </div>
+
+              <!-- Section 2: Multi-Stop Route & Preferences -->
+              <div class="col-12 mt-4">
+                <h6 class="form-section-heading"><i class="bi bi-signpost-2 me-2"></i>2. Custom Multi-Stop Route &amp;
+                  Preferences</h6>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="cstRoute" class="studio-label">Route Sequence (Origin &rarr; Stops &rarr; Return)</label>
+                <input type="text" id="cstRoute" name="route_sequence" class="form-control studio-input"
+                  placeholder="e.g., Kochi &rarr; Wayanad (2N) &rarr; Munnar (2N) &rarr; Alleppey (1N) &rarr; Kochi">
+                <div class="field-error" id="err-cstRoute"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="cstStayCategory" class="studio-label">Stay Category</label>
+                <select id="cstStayCategory" name="stay_category" class="form-select studio-input">
+                  <option value="boutique">Boutique &amp; Heritage</option>
+                  <option value="5star">5-Star Luxury</option>
+                  <option value="4star">4-Star Comfort</option>
+                  <option value="homestay">Homestay / Eco-Stay</option>
+                </select>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="cstVehicle" class="studio-label">Vehicle / Transport</label>
+                <select id="cstVehicle" name="vehicle_type" class="form-select studio-input">
+                  <option value="suv">Private SUV</option>
+                  <option value="sedan">Private Sedan</option>
+                  <option value="traveller">Tempo Traveller</option>
+                  <option value="custom">Custom / Self-Planned</option>
+                </select>
+              </div>
+
+              <!-- Pure CSS Custom Experience Tags -->
+              <div class="col-12">
+                <label class="studio-label">Custom Experience Highlights Included</label>
+                <div class="inclusion-pill-grid">
+                  <label class="inclusion-check-pill">
+                    <input type="checkbox" name="custom_perks" value="private_cab" checked>
+                    <span><i class="bi bi-car-front me-1"></i> Dedicated Chauffeur</span>
+                  </label>
+                  <label class="inclusion-check-pill">
+                    <input type="checkbox" name="custom_perks" value="meals">
+                    <span><i class="bi bi-cup-hot me-1"></i> Custom Meal Plan</span>
+                  </label>
+                  <label class="inclusion-check-pill">
+                    <input type="checkbox" name="custom_perks" value="houseboat">
+                    <span><i class="bi bi-water me-1"></i> Private Boat / Cruise</span>
+                  </label>
+                  <label class="inclusion-check-pill">
+                    <input type="checkbox" name="custom_perks" value="guide">
+                    <span><i class="bi bi-person-badge me-1"></i> Local Guide / Trek</span>
+                  </label>
+                  <label class="inclusion-check-pill">
+                    <input type="checkbox" name="custom_perks" value="decor">
+                    <span><i class="bi bi-balloon-heart me-1"></i> Special Occasion Setup</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Section 3: Cost Breakdown & Itinerary -->
+              <div class="col-12 mt-4">
+                <h6 class="form-section-heading"><i class="bi bi-receipt me-2"></i>3. Pricing Estimate &amp; Day-by-Day
+                  Plan</h6>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="cstStayCost" class="studio-label">Accommodation Cost (&#8377;)</label>
+                <input type="number" id="cstStayCost" name="stay_cost" min="0" class="form-control studio-input"
+                  placeholder="0">
+                <div class="field-error" id="err-cstStayCost"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="cstTransportCost" class="studio-label">Transport &amp; Transfers (&#8377;)</label>
+                <input type="number" id="cstTransportCost" name="transport_cost" min="0"
+                  class="form-control studio-input" placeholder="0">
+                <div class="field-error" id="err-cstTransportCost"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="cstActivityCost" class="studio-label">Activities &amp; Add-Ons (&#8377;)</label>
+                <input type="number" id="cstActivityCost" name="activity_cost" min="0" class="form-control studio-input"
+                  placeholder="0">
+                <div class="field-error" id="err-cstActivityCost"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="cstFinalQuote" class="studio-label">Final Quoted Total (&#8377;)</label>
+                <input type="number" id="cstFinalQuote" name="final_quote" min="1" class="form-control studio-input"
+                  placeholder="e.g., 68000">
+                <div class="field-error" id="err-cstFinalQuote"></div>
+              </div>
+
+              <div class="col-12">
+                <label for="cstItineraryNotes" class="studio-label">Custom Day-by-Day Itinerary &amp; Terms
+                  Notes</label>
+                <textarea id="cstItineraryNotes" name="itinerary_notes" rows="4" class="form-control studio-input"
+                  placeholder="Outline each day's stops, hotel names or tiers, inclusions, exclusions, and quote validity..."></textarea>
+                <div class="field-error" id="err-cstItineraryNotes"></div>
+              </div>
+
+              <div class="col-12 d-flex justify-content-end gap-3 pt-3 border-top">
+                <button type="reset" class="btn-brand-outline">Clear Quote</button>
+                <button type="submit" class="btn-brand-coral">
+                  <i class="bi bi-send me-1"></i> Save Custom Quote
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- ==========================================
+             PANEL 4: APPROVED CUSTOM TRIPS
+             ========================================== -->
+        <div id="panel-4" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">Confirmed Proposals</span>
+              <h3 class="fw-bold mb-0">Approved Customized Trips</h3>
+            </div>
+            <a href="bookings.html" class="btn-brand-teal mt-3 mt-md-0">
+              <i class="bi bi-journal-check me-1"></i> Go to Bookings Desk
+            </a>
+          </div>
+
+          <div class="table-responsive studio-table-wrap">
+            <table class="table studio-table align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>Custom Trip ID</th>
+                  <th>Client</th>
+                  <th>Approved Route</th>
+                  <th>Travel Dates</th>
+                  <th>Approved Quote</th>
+                  <th>Booking Status</th>
+                  <th class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="approvedCustomTripsBody">
+                <tr>
+                  <td class="fw-bold">CST-504</td>
+                  <td class="fw-semibold">Meera Krishnan</td>
+                  <td>Hyderabad &rarr; Goa Coastal Circuit (3N)</td>
+                  <td>2026-12-08 to 2026-12-11</td>
+                  <td class="fw-semibold">&#8377;56,000</td>
+                  <td><span class="badge bg-success-subtle text-success border border-success-subtle">Approved</span>
+                  </td>
+                  <td class="text-end">
+                    <a href="bookings.html" class="btn-brand-outline py-1 px-2 small">Book</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- TripKitGo Admin Studio Footer -->
+  <footer class="studio-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <!-- Brand & Tagline -->
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo-wrap">
+            <img src="../images/tripkitgo_logo.png" alt="TripKitGo Logo" class="footer-logo-img">
+          </a>
+          <p class="footer-tagline">Admin Studio &bull; Travel Operations &amp; Management</p>
+        </div>
+
+        <!-- Portal Status -->
+        <span class="footer-status">
+          <span class="status-dot"></span> Admin Portal v1.0
+        </span>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 TripKitGo. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/page-customized-packages.js"></script>
+</body>
+
+</html>

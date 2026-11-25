@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Destinations — TripKitGo Admin Studio</title>
+
+  <!-- Plus Jakarta Sans Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS & Icons (Zero JS) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Shared Stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/auth-guard.js"></script>
+
+</head>
+
+<body data-page="destinations">
+
+  <!-- Responsive Sticky Glass Navbar (Zero JS Checkbox Toggler) -->
+  <nav class="studio-navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-logo-wrap">
+        <img src="../images/tripkitgo_logo.png" alt="TripKitGo Logo" class="navbar-logo-img">
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
+      <label for="nav-toggle" class="nav-toggler-btn" aria-label="Toggle navigation">
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+      </label>
+
+      <div class="navbar-collapse-custom">
+        <ul class="navbar-links-list">
+          <li><a href="index.html" class="nav-quick-link"><i class="bi bi-grid-fill"></i> Hub</a></li>
+          <li><a href="bookings.html" class="nav-quick-link"><i class="bi bi-journal-check"></i> Bookings</a></li>
+          <li><a href="customized-packages.html" class="nav-quick-link"><i class="bi bi-sliders"></i> Customized
+              Packages</a></li>
+          <li><a href="destinations.html" class="nav-quick-link active"><i class="bi bi-geo-alt"></i> Destinations</a>
+          </li>
+          <li><a href="payments.html" class="nav-quick-link"><i class="bi bi-credit-card"></i> Payments</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+          <span class="studio-pill-badge">
+            <span class="pulse-dot"></span> Admin Studio
+          </span>
+          <a href="login.html" class="btn-studio-logout" title="Sign out of Admin Studio"
+            onclick="event.preventDefault(); window.TripKitGoAuth.logout();">
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Logout</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Destinations Workspace -->
+  <main class="container pb-5">
+
+    <!-- Editorial Hero Banner -->
+    <div class="workspace-banner">
+      <img src="../images/destinations.avif" alt="Destinations Banner">
+      <div class="workspace-banner-content">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+          <a href="index.html" class="btn-back-hub mb-0">
+            <i class="bi bi-arrow-left me-1"></i> Back to Hub
+          </a>
+          <span class="featured-tag"><i class="bi bi-geo-alt me-1"></i> Geography &amp; Guides</span>
+        </div>
+        <h1 class="display-6 fw-extrabold mb-1">Destinations Atlas</h1>
+        <p class="mb-0 text-white-50">Curate travel regions, multi-photo galleries, local attractions, transit hubs, and
+          seasonal guides.</p>
+      </div>
+    </div>
+
+    <!-- Pure CSS Sub-Option Radio Tabs -->
+    <div class="css-tabs-wrapper">
+      <input type="radio" name="destination-tabs" id="tab-1" checked>
+      <input type="radio" name="destination-tabs" id="tab-2">
+      <input type="radio" name="destination-tabs" id="tab-3">
+      <input type="radio" name="destination-tabs" id="tab-4">
+
+      <!-- Sub-Option Pill Bar -->
+      <div class="suboption-bar">
+        <label for="tab-1" class="suboption-pill">
+          <i class="bi bi-compass me-1"></i> Destination Overview
+        </label>
+        <label for="tab-2" class="suboption-pill">
+          <i class="bi bi-map me-1"></i> Destination Directory
+        </label>
+        <label for="tab-3" class="suboption-pill">
+          <i class="bi bi-plus-circle me-1"></i> Add New Destination
+        </label>
+      </div>
+
+      <!-- TAB PANELS -->
+      <div class="tab-panels">
+
+        <!-- ==========================================
+             PANEL 1: DESTINATION OVERVIEW
+             ========================================== -->
+        <div id="panel-1" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">Regional Footprint</span>
+              <h3 class="fw-bold mb-0">Destination Overview</h3>
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-3 mt-md-0">
+              <label for="tab-3" class="btn-brand-teal">
+                <i class="bi bi-plus-lg me-1"></i> Add Destination
+              </label>
+              <label for="tab-2" class="btn-brand-outline">
+                <i class="bi bi-map me-1"></i> View Directory
+              </label>
+            </div>
+          </div>
+
+          <!-- Metric Cards -->
+          <div class="row g-4 mb-4">
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box teal">
+                  <i class="bi bi-geo-alt"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Total Destinations</p>
+                  <h4 class="metric-value" id="totalDestinationsCount">4</h4>
+                  <span class="metric-sub">Curated regions</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box sky">
+                  <i class="bi bi-check2-circle"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Active (Bookable)</p>
+                  <h4 class="metric-value" id="activeDestinationsCount">3</h4>
+                  <span class="metric-sub">Live on booking portal</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box coral">
+                  <i class="bi bi-fire"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Featured / Trending</p>
+                  <h4 class="metric-value" id="trendingDestinationsCount">1</h4>
+                  <span class="metric-sub">Highlighted picks</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box navy">
+                  <i class="bi bi-file-earmark-text"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Drafts</p>
+                  <h4 class="metric-value" id="draftDestinationsCount">0</h4>
+                  <span class="metric-sub">Pending review</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Destinations Overview Table -->
+          <div class="table-responsive studio-table-wrap">
+            <table class="table studio-table align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Destination</th>
+                  <th>State / Circuit</th>
+                  <th>Terrain</th>
+                  <th>Best Months</th>
+                  <th>Stay</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="destinationsOverviewBody">
+                <tr data-dest-code="DEST-MNR" data-status="trending">
+                  <td class="fw-bold">DEST-MNR</td>
+                  <td>
+                    <div class="fw-semibold">Munnar</div>
+                    <div class="small text-muted">Emerald tea slopes, colonial bungalows, and cool mountain air</div>
+                  </td>
+                  <td>Kerala &bull; South India Circuit</td>
+                  <td>Misty Hills &amp; Tea Estates</td>
+                  <td>September to March</td>
+                  <td>2 to 3 Nights</td>
+                  <td><span class="badge bg-danger-subtle text-danger border border-danger-subtle">Featured / Trending</span></td>
+                </tr>
+                <tr data-dest-code="DEST-WYD" data-status="active">
+                  <td class="fw-bold">DEST-WYD</td>
+                  <td>
+                    <div class="fw-semibold">Wayanad</div>
+                    <div class="small text-muted">Spice plantations, ancient caves, and misty forest trails</div>
+                  </td>
+                  <td>Kerala &bull; Western Ghats &amp; Coast</td>
+                  <td>Forest &amp; Wildlife Reserve</td>
+                  <td>October to May</td>
+                  <td>2 to 3 Nights</td>
+                  <td><span class="badge bg-success-subtle text-success border border-success-subtle">Active (Bookable)</span></td>
+                </tr>
+                <tr data-dest-code="DEST-ALP" data-status="active">
+                  <td class="fw-bold">DEST-ALP</td>
+                  <td>
+                    <div class="fw-semibold">Alleppey</div>
+                    <div class="small text-muted">Serene palm-fringed canals and private overnight houseboats</div>
+                  </td>
+                  <td>Kerala &bull; South India Circuit</td>
+                  <td>Backwaters &amp; Lagoons</td>
+                  <td>November to February</td>
+                  <td>1 to 2 Nights</td>
+                  <td><span class="badge bg-success-subtle text-success border border-success-subtle">Active (Bookable)</span></td>
+                </tr>
+                <tr data-dest-code="DEST-GOK" data-status="active">
+                  <td class="fw-bold">DEST-GOK</td>
+                  <td>
+                    <div class="fw-semibold">Gokarna</div>
+                    <div class="small text-muted">Cliffside beach treks and tranquil Arabian Sea coves</div>
+                  </td>
+                  <td>Karnataka &bull; Western Ghats &amp; Coast</td>
+                  <td>Coastal &amp; Beaches</td>
+                  <td>October to March</td>
+                  <td>2 to 3 Nights</td>
+                  <td><span class="badge bg-success-subtle text-success border border-success-subtle">Active (Bookable)</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             PANEL 2: DESTINATION DIRECTORY
+             ========================================== -->
+        <div id="panel-2" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">Location Ledger</span>
+              <h3 class="fw-bold mb-0">Destination Directory</h3>
+            </div>
+            <label for="tab-3" class="btn-brand-teal mt-3 mt-md-0">
+              <i class="bi bi-plus-lg me-1"></i> New Destination
+            </label>
+          </div>
+
+          <!-- Filter & Search Bar -->
+          <div class="row g-3 mb-4">
+            <div class="col-12 col-md-4">
+              <div class="studio-input-group">
+                <i class="bi bi-search"></i>
+                <input type="text" id="destSearchInput" class="form-control studio-input"
+                  placeholder="Search destination name, state, or region code...">
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <select id="destTerrainFilter" class="form-select studio-input">
+                <option value="">All Terrain Types</option>
+                <option value="hills">Misty Hills &amp; Tea Estates</option>
+                <option value="backwaters">Backwaters &amp; Lagoons</option>
+                <option value="beach">Coastal &amp; Beaches</option>
+                <option value="wildlife">Forest &amp; Wildlife Reserve</option>
+                <option value="heritage">Heritage &amp; Architecture</option>
+              </select>
+            </div>
+            <div class="col-6 col-md-3">
+              <select id="destStatusFilter" class="form-select studio-input">
+                <option value="">All Statuses</option>
+                <option value="active">Active (Bookable)</option>
+                <option value="trending">Featured / Trending</option>
+                <option value="draft">Save as Draft</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-2 d-grid">
+              <button type="button" id="destFilterBtn" class="btn-brand-outline justify-content-center">
+                <i class="bi bi-funnel me-1"></i> Filter
+              </button>
+            </div>
+          </div>
+
+          <!-- Destination Cards Directory (With Carousel, View & Delete) -->
+          <div id="destinationsDirectoryList" class="row g-4">
+            <!-- DEST-MNR -->
+            <div
+              class="col-12 col-md-6 dest-card-col"
+              data-dest-code="DEST-MNR"
+              data-status="trending"
+              data-terrain="hills"
+              data-name="Munnar"
+              data-state="Kerala"
+              data-circuit="South India Circuit"
+              data-terrain-label="Misty Hills &amp; Tea Estates"
+              data-duration="2 to 3 Nights"
+              data-best-months="September to March"
+              data-airport="Cochin International Airport (COK)"
+              data-railway="Aluva / Ernakulam Jn"
+              data-hook="Emerald tea slopes, colonial bungalows, and cool mountain air"
+              data-captions="Top Station Sunrise|Mattupetty Lake|Tea Museum Trail"
+              data-overview="High-altitude tea estates, Eravikulam viewpoints, and winding ghat roads ideal for slow scenic stays."
+              data-slides='[{"src":"../images/destinations.avif","caption":"Munnar Ridge &amp; Tea Slopes"},{"src":"../images/packages.avif","caption":"Highland Plantation Trails"},{"src":"../images/categories.avif","caption":"Scenic Mountain Getaway"}]'
+            >
+              <div class="metric-glass-card flex-column align-items-start h-100 p-0 overflow-hidden">
+                <div class="position-relative w-100" style="height: 190px; background: #0b1f3a;">
+                  <img src="../images/destinations.avif" alt="Munnar" class="w-100 h-100 dest-carousel-img" style="object-fit: cover;">
+                  <button type="button" class="btn btn-sm btn-dark bg-opacity-75 border-0 position-absolute top-50 start-0 translate-middle-y ms-2 js-carousel-prev" aria-label="Previous image">
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-dark bg-opacity-75 border-0 position-absolute top-50 end-0 translate-middle-y me-2 js-carousel-next" aria-label="Next image">
+                    <i class="bi bi-chevron-right"></i>
+                  </button>
+                  <div class="position-absolute bottom-0 start-0 end-0 px-3 py-2 d-flex justify-content-between align-items-center text-white small" style="background: linear-gradient(transparent, rgba(11,31,58,0.82));">
+                    <span class="dest-carousel-caption">Munnar Ridge &amp; Tea Slopes</span>
+                    <span class="badge bg-dark bg-opacity-75 dest-carousel-counter">1 / 3</span>
+                  </div>
+                </div>
+
+                <div class="p-4 w-100 d-flex flex-column flex-grow-1">
+                  <div class="d-flex justify-content-between align-items-center w-100 mb-2">
+                    <span class="fw-bold small" style="color: var(--teal-primary);">DEST-MNR</span>
+                    <span class="badge bg-danger-subtle text-danger border border-danger-subtle">Featured / Trending</span>
+                  </div>
+                  <h6 class="fw-bold mb-1" style="color: var(--navy-primary);">Munnar &mdash; Kerala</h6>
+                  <div class="small fw-semibold mb-2">Emerald tea slopes, colonial bungalows, and cool mountain air</div>
+                  <div class="small mb-1"><i class="bi bi-trees me-1"></i> Misty Hills &amp; Tea Estates &bull; 2 to 3 Nights</div>
+                  <div class="small mb-1"><i class="bi bi-calendar3 me-1"></i> Peak: September to March</div>
+                  <div class="small text-muted mb-3"><i class="bi bi-airplane me-1"></i> Cochin International Airport (COK) &bull; Aluva / Ernakulam Jn</div>
+
+                  <div class="d-flex justify-content-between align-items-center gap-2 pt-3 mt-auto border-top w-100">
+                    <button type="button" class="btn-brand-teal py-1 px-3 small js-view-destination">
+                      <i class="bi bi-eye me-1"></i> View
+                    </button>
+                    <button type="button" class="btn-brand-outline py-1 px-3 small text-danger border-danger-subtle js-delete-destination">
+                      <i class="bi bi-trash3 me-1"></i> Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- DEST-WYD -->
+            <div
+              class="col-12 col-md-6 dest-card-col"
+              data-dest-code="DEST-WYD"
+              data-status="active"
+              data-terrain="wildlife"
+              data-name="Wayanad"
+              data-state="Kerala"
+              data-circuit="Western Ghats &amp; Coast"
+              data-terrain-label="Forest &amp; Wildlife Reserve"
+              data-duration="2 to 3 Nights"
+              data-best-months="October to May"
+              data-airport="Calicut International Airport (CCJ)"
+              data-railway="Kozhikode Railway Station"
+              data-hook="Spice plantations, ancient caves, and misty forest trails"
+              data-captions="Edakkal Caves|Banasura Sagar Dam|Spice Estate Trail"
+              data-overview="Lush rainforest resorts, Edakkal Caves, and Banasura Sagar Dam viewpoints across the Western Ghats."
+              data-slides='[{"src":"../images/packages.avif","caption":"Wayanad Forest &amp; Spice Trails"},{"src":"../images/destinations.avif","caption":"Western Ghats Viewpoints"},{"src":"../images/categories.avif","caption":"Nature &amp; Adventure Escapes"}]'
+            >
+              <div class="metric-glass-card flex-column align-items-start h-100 p-0 overflow-hidden">
+                <div class="position-relative w-100" style="height: 190px; background: #0b1f3a;">
+                  <img src="../images/packages.avif" alt="Wayanad" class="w-100 h-100 dest-carousel-img" style="object-fit: cover;">
+                  <button type="button" class="btn btn-sm btn-dark bg-opacity-75 border-0 position-absolute top-50 start-0 translate-middle-y ms-2 js-carousel-prev" aria-label="Previous image">
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-dark bg-opacity-75 border-0 position-absolute top-50 end-0 translate-middle-y me-2 js-carousel-next" aria-label="Next image">
+                    <i class="bi bi-chevron-right"></i>
+                  </button>
+                  <div class="position-absolute bottom-0 start-0 end-0 px-3 py-2 d-flex justify-content-between align-items-center text-white small" style="background: linear-gradient(transparent, rgba(11,31,58,0.82));">
+                    <span class="dest-carousel-caption">Wayanad Forest &amp; Spice Trails</span>
+                    <span class="badge bg-dark bg-opacity-75 dest-carousel-counter">1 / 3</span>
+                  </div>
+                </div>
+
+                <div class="p-4 w-100 d-flex flex-column flex-grow-1">
+                  <div class="d-flex justify-content-between align-items-center w-100 mb-2">
+                    <span class="fw-bold small" style="color: var(--teal-primary);">DEST-WYD</span>
+                    <span class="badge bg-success-subtle text-success border border-success-subtle">Active (Bookable)</span>
+                  </div>
+                  <h6 class="fw-bold mb-1" style="color: var(--navy-primary);">Wayanad &mdash; Kerala</h6>
+                  <div class="small fw-semibold mb-2">Spice plantations, ancient caves, and misty forest trails</div>
+                  <div class="small mb-1"><i class="bi bi-trees me-1"></i> Forest &amp; Wildlife Reserve &bull; 2 to 3 Nights</div>
+                  <div class="small mb-1"><i class="bi bi-calendar3 me-1"></i> Peak: October to May</div>
+                  <div class="small text-muted mb-3"><i class="bi bi-airplane me-1"></i> Calicut International Airport (CCJ) &bull; Kozhikode Railway Station</div>
+
+                  <div class="d-flex justify-content-between align-items-center gap-2 pt-3 mt-auto border-top w-100">
+                    <button type="button" class="btn-brand-teal py-1 px-3 small js-view-destination">
+                      <i class="bi bi-eye me-1"></i> View
+                    </button>
+                    <button type="button" class="btn-brand-outline py-1 px-3 small text-danger border-danger-subtle js-delete-destination">
+                      <i class="bi bi-trash3 me-1"></i> Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- DEST-ALP -->
+            <div
+              class="col-12 col-md-6 dest-card-col"
+              data-dest-code="DEST-ALP"
+              data-status="active"
+              data-terrain="backwaters"
+              data-name="Alleppey"
+              data-state="Kerala"
+              data-circuit="South India Circuit"
+              data-terrain-label="Backwaters &amp; Lagoons"
+              data-duration="1 to 2 Nights"
+              data-best-months="November to February"
+              data-airport="Cochin International Airport (COK)"
+              data-railway="Alappuzha Railway Station"
+              data-hook="Serene palm-fringed canals and private overnight houseboats"
+              data-captions="Vembanad Lake Cruise|Kuttanad Canals|Coconut Lagoon Sunset"
+              data-overview="Slow cruises through Vembanad Lake, Kuttanad paddy fields, and traditional Kerala coastal cuisine."
+              data-slides='[{"src":"../images/categories.avif","caption":"Vembanad Backwater Canals"},{"src":"../images/destinations.avif","caption":"Palm-Lined Lagoon Views"},{"src":"../images/packages.avif","caption":"Overnight Houseboat Retreat"}]'
+            >
+              <div class="metric-glass-card flex-column align-items-start h-100 p-0 overflow-hidden">
+                <div class="position-relative w-100" style="height: 190px; background: #0b1f3a;">
+                  <img src="../images/categories.avif" alt="Alleppey" class="w-100 h-100 dest-carousel-img" style="object-fit: cover;">
+                  <button type="button" class="btn btn-sm btn-dark bg-opacity-75 border-0 position-absolute top-50 start-0 translate-middle-y ms-2 js-carousel-prev" aria-label="Previous image">
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-dark bg-opacity-75 border-0 position-absolute top-50 end-0 translate-middle-y me-2 js-carousel-next" aria-label="Next image">
+                    <i class="bi bi-chevron-right"></i>
+                  </button>
+                  <div class="position-absolute bottom-0 start-0 end-0 px-3 py-2 d-flex justify-content-between align-items-center text-white small" style="background: linear-gradient(transparent, rgba(11,31,58,0.82));">
+                    <span class="dest-carousel-caption">Vembanad Backwater Canals</span>
+                    <span class="badge bg-dark bg-opacity-75 dest-carousel-counter">1 / 3</span>
+                  </div>
+                </div>
+
+                <div class="p-4 w-100 d-flex flex-column flex-grow-1">
+                  <div class="d-flex justify-content-between align-items-center w-100 mb-2">
+                    <span class="fw-bold small" style="color: var(--teal-primary);">DEST-ALP</span>
+                    <span class="badge bg-success-subtle text-success border border-success-subtle">Active (Bookable)</span>
+                  </div>
+                  <h6 class="fw-bold mb-1" style="color: var(--navy-primary);">Alleppey &mdash; Kerala</h6>
+                  <div class="small fw-semibold mb-2">Serene palm-fringed canals and private overnight houseboats</div>
+                  <div class="small mb-1"><i class="bi bi-trees me-1"></i> Backwaters &amp; Lagoons &bull; 1 to 2 Nights</div>
+                  <div class="small mb-1"><i class="bi bi-calendar3 me-1"></i> Peak: November to February</div>
+                  <div class="small text-muted mb-3"><i class="bi bi-airplane me-1"></i> Cochin International Airport (COK) &bull; Alappuzha Railway Station</div>
+
+                  <div class="d-flex justify-content-between align-items-center gap-2 pt-3 mt-auto border-top w-100">
+                    <button type="button" class="btn-brand-teal py-1 px-3 small js-view-destination">
+                      <i class="bi bi-eye me-1"></i> View
+                    </button>
+                    <button type="button" class="btn-brand-outline py-1 px-3 small text-danger border-danger-subtle js-delete-destination">
+                      <i class="bi bi-trash3 me-1"></i> Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- DEST-GOK -->
+            <div
+              class="col-12 col-md-6 dest-card-col"
+              data-dest-code="DEST-GOK"
+              data-status="active"
+              data-terrain="beach"
+              data-name="Gokarna"
+              data-state="Karnataka"
+              data-circuit="Western Ghats &amp; Coast"
+              data-terrain-label="Coastal &amp; Beaches"
+              data-duration="2 to 3 Nights"
+              data-best-months="October to March"
+              data-airport="Goa Dabolim Airport (GOI)"
+              data-railway="Gokarna Road / Kumta"
+              data-hook="Cliffside beach treks and tranquil Arabian Sea coves"
+              data-captions="Om Beach Cliffs|Kudle Cove|Coastal Sunset Trail"
+              data-overview="Scenic coastal trails linking Kudle, Om, and Half Moon beaches with laid-back cliffside cafes."
+              data-slides='[{"src":"../images/destinations.avif","caption":"Om Beach Cliffs &amp; Coves"},{"src":"../images/categories.avif","caption":"Arabian Sea Coastal Trail"},{"src":"../images/packages.avif","caption":"Cliffside Retreat Views"}]'
+            >
+              <div class="metric-glass-card flex-column align-items-start h-100 p-0 overflow-hidden">
+                <div class="position-relative w-100" style="height: 190px; background: #0b1f3a;">
+                  <img src="../images/destinations.avif" alt="Gokarna" class="w-100 h-100 dest-carousel-img" style="object-fit: cover;">
+                  <button type="button" class="btn btn-sm btn-dark bg-opacity-75 border-0 position-absolute top-50 start-0 translate-middle-y ms-2 js-carousel-prev" aria-label="Previous image">
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-dark bg-opacity-75 border-0 position-absolute top-50 end-0 translate-middle-y me-2 js-carousel-next" aria-label="Next image">
+                    <i class="bi bi-chevron-right"></i>
+                  </button>
+                  <div class="position-absolute bottom-0 start-0 end-0 px-3 py-2 d-flex justify-content-between align-items-center text-white small" style="background: linear-gradient(transparent, rgba(11,31,58,0.82));">
+                    <span class="dest-carousel-caption">Om Beach Cliffs &amp; Coves</span>
+                    <span class="badge bg-dark bg-opacity-75 dest-carousel-counter">1 / 3</span>
+                  </div>
+                </div>
+
+                <div class="p-4 w-100 d-flex flex-column flex-grow-1">
+                  <div class="d-flex justify-content-between align-items-center w-100 mb-2">
+                    <span class="fw-bold small" style="color: var(--teal-primary);">DEST-GOK</span>
+                    <span class="badge bg-success-subtle text-success border border-success-subtle">Active (Bookable)</span>
+                  </div>
+                  <h6 class="fw-bold mb-1" style="color: var(--navy-primary);">Gokarna &mdash; Karnataka</h6>
+                  <div class="small fw-semibold mb-2">Cliffside beach treks and tranquil Arabian Sea coves</div>
+                  <div class="small mb-1"><i class="bi bi-trees me-1"></i> Coastal &amp; Beaches &bull; 2 to 3 Nights</div>
+                  <div class="small mb-1"><i class="bi bi-calendar3 me-1"></i> Peak: October to March</div>
+                  <div class="small text-muted mb-3"><i class="bi bi-airplane me-1"></i> Goa Dabolim Airport (GOI) &bull; Gokarna Road / Kumta</div>
+
+                  <div class="d-flex justify-content-between align-items-center gap-2 pt-3 mt-auto border-top w-100">
+                    <button type="button" class="btn-brand-teal py-1 px-3 small js-view-destination">
+                      <i class="bi bi-eye me-1"></i> View
+                    </button>
+                    <button type="button" class="btn-brand-outline py-1 px-3 small text-danger border-danger-subtle js-delete-destination">
+                      <i class="bi bi-trash3 me-1"></i> Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             PANEL 3: ADD NEW DESTINATION (MULTI-IMAGE)
+             ========================================== -->
+        <div id="panel-3" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">Location Architect</span>
+              <h3 class="fw-bold mb-0">Add New Destination</h3>
+            </div>
+            <span class="badge rounded-pill px-3 py-2"
+              style="background: rgba(14, 159, 154, 0.12); color: var(--teal-primary);">
+              <i class="bi bi-images me-1"></i> Multi-Photo Atlas Entry
+            </span>
+          </div>
+
+          <form id="createDestinationForm" action="#" method="post" enctype="multipart/form-data" novalidate>
+            <div class="row g-4">
+              <!-- Section 1: Location Identity -->
+              <div class="col-12">
+                <h6 class="form-section-heading"><i class="bi bi-geo me-2"></i>1. Destination Identity &amp; Region</h6>
+              </div>
+
+              <div class="col-12 col-md-5">
+                <label for="destName" class="studio-label">Destination Name</label>
+                <input type="text" id="destName" name="destination_name" class="form-control studio-input"
+                  placeholder="e.g., Munnar, Wayanad, Alleppey, Goa, Ooty">
+                <div class="field-error" id="err-destName"></div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <label for="destCode" class="studio-label">Location Code / Slug</label>
+                <input type="text" id="destCode" name="location_code" class="form-control studio-input"
+                  placeholder="e.g., DEST-MNR">
+                <div class="field-error" id="err-destCode"></div>
+              </div>
+
+              <div class="col-6 col-md-4">
+                <label for="destVisibility" class="studio-label">Visibility Status</label>
+                <select id="destVisibility" name="visibility_status" class="form-select studio-input">
+                  <option value="active">Active (Bookable)</option>
+                  <option value="trending">Featured / Trending</option>
+                  <option value="draft">Save as Draft</option>
+                </select>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <label for="destState" class="studio-label">State / Province</label>
+                <input type="text" id="destState" name="state_province" class="form-control studio-input"
+                  placeholder="e.g., Kerala, Tamil Nadu, Goa">
+                <div class="field-error" id="err-destState"></div>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <label for="destCircuit" class="studio-label">Tourism Circuit / Zone</label>
+                <select id="destCircuit" name="tourism_circuit" class="form-select studio-input">
+                  <option value="south">South India Circuit</option>
+                  <option value="west">Western Ghats &amp; Coast</option>
+                  <option value="north">North &amp; Himalayan Circuit</option>
+                  <option value="international">International</option>
+                </select>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <label for="destDuration" class="studio-label">Recommended Stay Duration</label>
+                <input type="text" id="destDuration" name="stay_duration" class="form-control studio-input"
+                  placeholder="e.g., 2 to 3 Nights">
+                <div class="field-error" id="err-destDuration"></div>
+              </div>
+
+              <!-- Section 2: Pure CSS Terrain Classification -->
+              <div class="col-12 mt-4">
+                <h6 class="form-section-heading"><i class="bi bi-trees me-2"></i>2. Primary Landscape &amp; Terrain</h6>
+                <p class="text-muted small mb-2">Choose the primary landscape badge shown on destination cards:</p>
+                <div class="inclusion-pill-grid">
+                  <label class="inclusion-check-pill">
+                    <input type="radio" name="terrain_type" value="hills" checked>
+                    <span><i class="bi bi-cloud-haze2 me-1"></i> Misty Hills &amp; Tea Estates</span>
+                  </label>
+                  <label class="inclusion-check-pill">
+                    <input type="radio" name="terrain_type" value="backwaters">
+                    <span><i class="bi bi-water me-1"></i> Backwaters &amp; Lagoons</span>
+                  </label>
+                  <label class="inclusion-check-pill">
+                    <input type="radio" name="terrain_type" value="beach">
+                    <span><i class="bi bi-umbrella me-1"></i> Coastal &amp; Beaches</span>
+                  </label>
+                  <label class="inclusion-check-pill">
+                    <input type="radio" name="terrain_type" value="wildlife">
+                    <span><i class="bi bi-tree me-1"></i> Forest &amp; Wildlife Reserve</span>
+                  </label>
+                  <label class="inclusion-check-pill">
+                    <input type="radio" name="terrain_type" value="heritage">
+                    <span><i class="bi bi-bank me-1"></i> Heritage &amp; Architecture</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Section 3: Seasonality & Transit Connectivity -->
+              <div class="col-12 mt-4">
+                <h6 class="form-section-heading"><i class="bi bi-airplane me-2"></i>3. Seasonality &amp; Transit
+                  Connectivity</h6>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <label for="destBestMonths" class="studio-label">Peak / Best Months to Visit</label>
+                <input type="text" id="destBestMonths" name="best_months" class="form-control studio-input"
+                  placeholder="e.g., September to March">
+                <div class="field-error" id="err-destBestMonths"></div>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <label for="destAirport" class="studio-label">Nearest Airport Hub</label>
+                <input type="text" id="destAirport" name="nearest_airport" class="form-control studio-input"
+                  placeholder="e.g., Cochin International Airport (COK)">
+                <div class="field-error" id="err-destAirport"></div>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <label for="destRailway" class="studio-label">Nearest Major Railway Junction</label>
+                <input type="text" id="destRailway" name="nearest_railway" class="form-control studio-input"
+                  placeholder="e.g., Ernakulam Jn / Aluva / Kozhikode">
+                <div class="field-error" id="err-destRailway"></div>
+              </div>
+
+              <!-- Section 4: Multi-Image Gallery & Destination Guide -->
+              <div class="col-12 mt-4">
+                <h6 class="form-section-heading"><i class="bi bi-images me-2"></i>4. Hero Cover &amp; Multi-Image
+                  Destination Gallery</h6>
+                <p class="text-muted small mb-3">Upload a primary cover banner along with multiple gallery photos
+                  showcasing viewpoints, stays, and local culture.</p>
+              </div>
+
+              <!-- Primary Cover + 4 Multi-Image Gallery Slots -->
+              <div class="col-12 col-lg-5">
+                <label for="destHeroInput" class="studio-label">1. Primary Hero Cover (Main Banner)</label>
+                <label id="destHeroDropzone" class="media-dropzone mb-1">
+                  <input type="file" id="destHeroInput" name="destination_hero" accept="image/*" class="d-none">
+                  <i class="bi bi-image-fill fs-2 d-block mb-2" style="color: var(--teal-primary);"></i>
+                  <span class="fw-bold d-block" id="destHeroLabel">Upload Main Cover Photo</span>
+                  <span class="text-muted small">Landscape 16:9 (1600&times;900px)</span>
+                </label>
+                <div class="field-error mb-3" id="err-destHeroInput"></div>
+
+                <label class="studio-label">2. Destination Photo Gallery (Multiple Images)</label>
+                <div class="gallery-upload-grid">
+                  <label class="gallery-slot-dropzone bulk-slot">
+                    <input type="file" id="destGalleryBulk" name="destination_gallery[]" accept="image/*" multiple
+                      class="d-none">
+                    <i class="bi bi-collection-play-fill"></i>
+                    <span class="slot-title" id="destBulkLabel">Add Multiple Photos</span>
+                    <span class="slot-sub">Ctrl/Shift + select files</span>
+                  </label>
+
+                  <label class="gallery-slot-dropzone">
+                    <input type="file" id="destSpot1" name="gallery_spot_1" accept="image/*" class="d-none">
+                    <i class="bi bi-plus-circle-dotted"></i>
+                    <span class="slot-title" id="destSpot1Label">Landscape / Viewpoint</span>
+                    <span class="slot-sub">Gallery Slot 1</span>
+                  </label>
+
+                  <label class="gallery-slot-dropzone">
+                    <input type="file" id="destSpot2" name="gallery_spot_2" accept="image/*" class="d-none">
+                    <i class="bi bi-plus-circle-dotted"></i>
+                    <span class="slot-title" id="destSpot2Label">Activity / Waterway</span>
+                    <span class="slot-sub">Gallery Slot 2</span>
+                  </label>
+
+                  <label class="gallery-slot-dropzone">
+                    <input type="file" id="destSpot3" name="gallery_spot_3" accept="image/*" class="d-none">
+                    <i class="bi bi-plus-circle-dotted"></i>
+                    <span class="slot-title" id="destSpot3Label">Culture / Local Stay</span>
+                    <span class="slot-sub">Gallery Slot 3</span>
+                  </label>
+                </div>
+                <div class="field-error" id="err-destGalleryBulk"></div>
+              </div>
+
+              <!-- Editorial Guide & Highlights -->
+              <div class="col-12 col-lg-7">
+                <label for="destHook" class="studio-label">One-Line Destination Hook</label>
+                <input type="text" id="destHook" name="destination_hook" class="form-control studio-input"
+                  placeholder="e.g., Emerald tea slopes, colonial bungalows, and cool mountain air">
+                <div class="field-error mb-3" id="err-destHook"></div>
+
+                <label for="destCaptions" class="studio-label">Gallery Image Captions / Highlights (Optional)</label>
+                <input type="text" id="destCaptions" name="gallery_captions" class="form-control studio-input mb-3"
+                  placeholder="e.g., Top Station Sunrise, Mattupetty Lake, Tea Museum Trail">
+
+                <label for="destOverview" class="studio-label">Destination Overview &amp; Travel Notes</label>
+                <textarea id="destOverview" name="destination_overview" rows="8" class="form-control studio-input"
+                  placeholder="Write a concise editorial overview covering the region's atmosphere, climate, road conditions, and signature cultural highlights..."></textarea>
+                <div class="field-error" id="err-destOverview"></div>
+              </div>
+
+              <div class="col-12 d-flex justify-content-end gap-3 pt-3 border-top">
+                <button type="reset" class="btn-brand-outline">Clear Form</button>
+                <button type="submit" class="btn-brand-teal">
+                  <i class="bi bi-check2-circle me-1"></i> Publish Destination &amp; Gallery
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Destination Complete Details Modal -->
+  <div id="destinationDetailsModal" class="d-none" style="position: fixed; inset: 0; z-index: 1055; background: rgba(11, 31, 58, 0.55); backdrop-filter: blur(4px); overflow-y: auto; padding: 1.5rem;">
+    <div class="container" style="max-width: 760px; margin-top: 2rem;">
+      <div class="metric-glass-card flex-column align-items-stretch p-4 bg-white shadow-lg">
+        <div class="d-flex justify-content-between align-items-start gap-3 pb-3 mb-3 border-bottom">
+          <div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <span id="destModalCode" class="fw-bold small" style="color: var(--teal-primary);">DEST-MNR</span>
+              <span id="destModalStatus"></span>
+            </div>
+            <h4 id="destModalTitle" class="fw-bold mb-1" style="color: var(--navy-primary);">Destination Name</h4>
+            <div id="destModalHook" class="small text-muted">Destination Hook</div>
+          </div>
+          <button type="button" id="closeDestModalBtn" class="btn-brand-outline py-1 px-2" aria-label="Close details">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <div id="destModalGallery" class="row g-2 mb-3"></div>
+
+        <div class="row g-3 small mb-3">
+          <div class="col-12 col-sm-6">
+            <div class="text-muted">State &amp; Circuit</div>
+            <div id="destModalCircuit" class="fw-semibold">&mdash;</div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="text-muted">Terrain &amp; Stay Duration</div>
+            <div id="destModalTerrainStay" class="fw-semibold">&mdash;</div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="text-muted">Peak / Best Months</div>
+            <div id="destModalMonths" class="fw-semibold">&mdash;</div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="text-muted">Nearest Airport</div>
+            <div id="destModalAirport" class="fw-semibold">&mdash;</div>
+          </div>
+          <div class="col-12">
+            <div class="text-muted">Nearest Railway Junction</div>
+            <div id="destModalRailway" class="fw-semibold">&mdash;</div>
+          </div>
+        </div>
+
+        <div class="p-3 rounded-3 mb-4" style="background: rgba(14, 159, 154, 0.06);">
+          <div class="small fw-bold mb-1" style="color: var(--navy-primary);">Destination Overview &amp; Travel Notes</div>
+          <div id="destModalOverview" class="small text-muted" style="white-space: pre-line; line-height: 1.65;"></div>
+        </div>
+
+        <div class="d-flex justify-content-end gap-2 pt-3 border-top">
+          <button type="button" id="cancelDestModalBtn" class="btn-brand-outline">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TripKitGo Admin Studio Footer -->
+  <footer class="studio-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <!-- Brand & Tagline -->
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo-wrap">
+            <img src="../images/tripkitgo_logo.png" alt="TripKitGo Logo" class="footer-logo-img">
+          </a>
+          <p class="footer-tagline">Admin Studio &bull; Travel Operations &amp; Management</p>
+        </div>
+
+        <!-- Portal Status -->
+        <span class="footer-status">
+          <span class="status-dot"></span> Admin Portal v1.0
+        </span>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 TripKitGo. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+  <script src="../js/page-destinations.js"></script>
+</body>
+
+</html>

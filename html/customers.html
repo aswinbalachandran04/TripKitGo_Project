@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customers — TripKitGo Admin Studio</title>
+
+  <!-- Plus Jakarta Sans Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS & Icons (Zero JS) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Shared Stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/auth-guard.js"></script>
+</head>
+
+<body data-page="customers">
+
+  <!-- Responsive Sticky Glass Navbar (Zero JS Checkbox Toggler) -->
+  <nav class="studio-navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-logo-wrap">
+        <img src="../images/tripkitgo_logo.png" alt="TripKitGo Logo" class="navbar-logo-img">
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
+      <label for="nav-toggle" class="nav-toggler-btn" aria-label="Toggle navigation">
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+      </label>
+
+      <div class="navbar-collapse-custom">
+        <ul class="navbar-links-list">
+          <li><a href="index.html" class="nav-quick-link"><i class="bi bi-grid-fill"></i> Hub</a></li>
+          <li><a href="bookings.html" class="nav-quick-link"><i class="bi bi-journal-check"></i> Bookings</a></li>
+          <li><a href="customized-packages.html" class="nav-quick-link"><i class="bi bi-sliders"></i> Customized
+              Packages</a></li>
+          <li><a href="destinations.html" class="nav-quick-link"><i class="bi bi-geo-alt"></i> Destinations</a></li>
+          <li><a href="payments.html" class="nav-quick-link"><i class="bi bi-credit-card"></i> Payments</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+          <span class="studio-pill-badge">
+            <span class="pulse-dot"></span> Admin Studio
+          </span>
+          <a href="login.html" class="btn-studio-logout" title="Sign out of Admin Studio"
+            onclick="event.preventDefault(); window.TripKitGoAuth.logout();">
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Logout</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Customers Workspace -->
+  <main class="container pb-5">
+
+    <!-- Editorial Hero Banner -->
+    <div class="workspace-banner">
+      <img src="../images/customers.avif" alt="Customers Banner">
+      <div class="workspace-banner-content">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+          <a href="index.html" class="btn-back-hub mb-0">
+            <i class="bi bi-arrow-left me-1"></i> Back to Hub
+          </a>
+          <span class="featured-tag"><i class="bi bi-people me-1"></i> Customers</span>
+        </div>
+        <h1 class="display-6 fw-extrabold mb-1">Customers</h1>
+        <p class="mb-0 text-white-50">View and manage your tour customers and their contact details.</p>
+      </div>
+    </div>
+
+    <!-- Pure CSS Sub-Option Radio Tabs -->
+    <div class="css-tabs-wrapper">
+      <input type="radio" name="customer-tabs" id="tab-1" checked>
+      <input type="radio" name="customer-tabs" id="tab-2">
+      <input type="radio" name="customer-tabs" id="tab-3">
+      <input type="radio" name="customer-tabs" id="tab-4">
+
+      <!-- Sub-Option Pill Bar -->
+      <div class="suboption-bar">
+        <label for="tab-1" class="suboption-pill">
+          <i class="bi bi-compass me-1"></i> Overview
+        </label>
+        <label for="tab-2" class="suboption-pill">
+          <i class="bi bi-person-lines-fill me-1"></i> Customer List
+        </label>
+        <label for="tab-3" class="suboption-pill">
+          <i class="bi bi-person-plus me-1"></i> Add Customer
+        </label>
+        <label for="tab-4" class="suboption-pill">
+          <i class="bi bi-pencil-square me-1"></i> Update Customer
+        </label>
+      </div>
+
+      <!-- TAB PANELS -->
+      <div class="tab-panels">
+
+        <!-- ==========================================
+             PANEL 1: OVERVIEW
+             ========================================== -->
+        <div id="panel-1" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">Customers</span>
+              <h3 class="fw-bold mb-0">Customer Overview</h3>
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-3 mt-md-0">
+              <label for="tab-3" class="btn-brand-teal">
+                <i class="bi bi-person-plus me-1"></i> Add Customer
+              </label>
+              <label for="tab-2" class="btn-brand-outline">
+                <i class="bi bi-person-lines-fill me-1"></i> Customer List
+              </label>
+            </div>
+          </div>
+
+          <div class="row g-4 mb-4">
+            <div class="col-12 col-md-4">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box teal">
+                  <i class="bi bi-people"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Total Customers</p>
+                  <h4 class="metric-value" id="totalCustomersCount">4</h4>
+                  <span class="metric-sub">All registered customers</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box coral">
+                  <i class="bi bi-arrow-repeat"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Repeat Customers</p>
+                  <h4 class="metric-value" id="repeatCustomersCount">2</h4>
+                  <span class="metric-sub">Booked more than once</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <div class="metric-glass-card">
+                <div class="metric-icon-box sky">
+                  <i class="bi bi-person-check"></i>
+                </div>
+                <div>
+                  <p class="metric-label">Active Customers</p>
+                  <h4 class="metric-value" id="activeCustomersCount">3</h4>
+                  <span class="metric-sub">Current active accounts</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="metric-glass-card flex-column align-items-start">
+            <div class="fw-bold mb-1" style="color: var(--navy-primary);">Recent Traveler Directory Snapshot</div>
+            <div class="small text-muted">
+              Tracking traveler profiles across <strong>Kochi</strong>, <strong>Bengaluru</strong>,
+              <strong>Chennai</strong>, and <strong>Hyderabad</strong>. Open <strong>Customer List</strong> to filter
+              profiles or <strong>Add Customer</strong> to register a new traveler.
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             PANEL 2: CUSTOMER LIST
+             ========================================== -->
+        <div id="panel-2" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">Directory</span>
+              <h3 class="fw-bold mb-0">Customer List</h3>
+            </div>
+            <label for="tab-3" class="btn-brand-teal mt-3 mt-md-0">
+              <i class="bi bi-person-plus me-1"></i> Add Customer
+            </label>
+          </div>
+
+          <div class="row g-3 mb-4">
+            <div class="col-12 col-md-6">
+              <div class="studio-input-group">
+                <i class="bi bi-search"></i>
+                <input type="text" id="custSearchInput" class="form-control studio-input"
+                  placeholder="Search by ID, name, email, phone, or city...">
+              </div>
+            </div>
+            <div class="col-6 col-md-4">
+              <select id="custStatusFilter" class="form-select studio-input">
+                <option value="">All Statuses</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+            </div>
+            <div class="col-6 col-md-2 d-grid">
+              <button type="button" id="custFilterBtn" class="btn-brand-outline justify-content-center">
+                <i class="bi bi-funnel me-1"></i> Filter
+              </button>
+            </div>
+          </div>
+
+          <div class="table-responsive studio-table-wrap">
+            <table class="table studio-table align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>City</th>
+                  <th>Bookings</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="customersListBody">
+                <tr data-customer-id="CUST-201" data-status="active" data-bookings="3"
+                  data-notes="Prefers hill-station resorts and morning airport pickups.">
+                  <td class="fw-bold">CUST-201</td>
+                  <td class="fw-semibold">Arjun Menon</td>
+                  <td>arjun.menon@example.com</td>
+                  <td>+91 9847011204</td>
+                  <td>Kochi</td>
+                  <td>3</td>
+                  <td><span class="badge bg-success-subtle text-success border border-success-subtle">Active</span></td>
+                </tr>
+                <tr data-customer-id="CUST-202" data-status="active" data-bookings="2"
+                  data-notes="Travels with family; requests spacious SUV transfers.">
+                  <td class="fw-bold">CUST-202</td>
+                  <td class="fw-semibold">Kavya Nair</td>
+                  <td>kavya.nair@example.com</td>
+                  <td>+91 9845022318</td>
+                  <td>Bengaluru</td>
+                  <td>2</td>
+                  <td><span class="badge bg-success-subtle text-success border border-success-subtle">Active</span></td>
+                </tr>
+                <tr data-customer-id="CUST-203" data-status="active" data-bookings="1"
+                  data-notes="Interested in coastal stays and backwater cruises.">
+                  <td class="fw-bold">CUST-203</td>
+                  <td class="fw-semibold">Rohan Deshmukh</td>
+                  <td>rohan.deshmukh@example.com</td>
+                  <td>+91 9884033451</td>
+                  <td>Chennai</td>
+                  <td>1</td>
+                  <td><span class="badge bg-success-subtle text-success border border-success-subtle">Active</span></td>
+                </tr>
+                <tr data-customer-id="CUST-204" data-status="inactive" data-bookings="1"
+                  data-notes="Past weekend getaway customer; follow up for winter trips.">
+                  <td class="fw-bold">CUST-204</td>
+                  <td class="fw-semibold">Meera Krishnan</td>
+                  <td>meera.krishnan@example.com</td>
+                  <td>+91 9849044582</td>
+                  <td>Hyderabad</td>
+                  <td>1</td>
+                  <td><span
+                      class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">Inactive</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             PANEL 3: ADD CUSTOMER
+             ========================================== -->
+        <div id="panel-3" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow">New Record</span>
+              <h3 class="fw-bold mb-0">Add Customer</h3>
+            </div>
+          </div>
+
+          <form id="addCustomerForm" action="#" method="post" novalidate>
+            <div class="row g-4">
+              <div class="col-12 col-md-6">
+                <label for="custFullName" class="studio-label">Full Name</label>
+                <input type="text" id="custFullName" name="full_name" class="form-control studio-input"
+                  placeholder="Enter customer name">
+                <div class="field-error" id="err-custFullName"></div>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="custEmail" class="studio-label">Email Address</label>
+                <input type="email" id="custEmail" name="email" class="form-control studio-input"
+                  placeholder="customer@email.com">
+                <div class="field-error" id="err-custEmail"></div>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="custPhone" class="studio-label">Phone Number</label>
+                <input type="tel" id="custPhone" name="phone" class="form-control studio-input"
+                  placeholder="+91 9847011204">
+                <div class="field-error" id="err-custPhone"></div>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="custCity" class="studio-label">City</label>
+                <input type="text" id="custCity" name="city" class="form-control studio-input" placeholder="Enter city">
+                <div class="field-error" id="err-custCity"></div>
+              </div>
+
+              <div class="col-12">
+                <label for="custNotes" class="studio-label">Notes</label>
+                <textarea id="custNotes" name="notes" rows="3" class="form-control studio-input"
+                  placeholder="Optional notes about the customer..."></textarea>
+                <div class="field-error" id="err-custNotes"></div>
+              </div>
+
+              <div class="col-12 d-flex justify-content-end gap-3 pt-3 border-top">
+                <button type="reset" class="btn-brand-outline">Clear</button>
+                <button type="submit" class="btn-brand-teal">
+                  <i class="bi bi-check2 me-1"></i> Save Customer
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- ==========================================
+             PANEL 4: UPDATE CUSTOMER (WITH SEARCH)
+             ========================================== -->
+        <div id="panel-4" class="tab-panel">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom">
+            <div>
+              <span class="panel-eyebrow" style="color: var(--coral-accent);">Edit Details</span>
+              <h3 class="fw-bold mb-0">Update Customer</h3>
+            </div>
+          </div>
+
+          <!-- Step 1: Search Customer -->
+          <form id="findCustomerForm" action="#" method="get" class="mb-4 pb-4 border-bottom" novalidate>
+            <label for="findCustomerQuery" class="studio-label">Find Customer</label>
+            <div class="row g-3">
+              <div class="col-12 col-md-9">
+                <div class="studio-input-group">
+                  <i class="bi bi-search"></i>
+                  <input type="search" id="findCustomerQuery" name="customer_query" list="customer-suggestions"
+                    class="form-control studio-input"
+                    placeholder="Search customer by ID, name, email, or phone number...">
+                  <datalist id="customer-suggestions"></datalist>
+                </div>
+                <div class="field-error" id="err-findCustomerQuery"></div>
+              </div>
+              <div class="col-12 col-md-3 d-grid">
+                <button type="submit" class="btn-brand-teal justify-content-center">
+                  <i class="bi bi-search me-1"></i> Find Customer
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- Step 2: Edit Customer Details -->
+          <form id="updateCustomerForm" action="#" method="post" novalidate>
+            <input type="hidden" id="editCustomerId">
+            <div class="row g-4">
+              <div class="col-12 col-md-6">
+                <label for="editCustName" class="studio-label">Full Name</label>
+                <input type="text" id="editCustName" class="form-control studio-input" placeholder="Full name">
+                <div class="field-error" id="err-editCustName"></div>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="editCustStatus" class="studio-label">Status</label>
+                <select id="editCustStatus" class="form-select studio-input">
+                  <option value="active">Active</option>
+                  <option value="inactive">Inactive</option>
+                </select>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="editCustEmail" class="studio-label">Email Address</label>
+                <input type="email" id="editCustEmail" class="form-control studio-input" placeholder="Email address">
+                <div class="field-error" id="err-editCustEmail"></div>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="editCustPhone" class="studio-label">Phone Number</label>
+                <input type="tel" id="editCustPhone" class="form-control studio-input" placeholder="Phone number">
+                <div class="field-error" id="err-editCustPhone"></div>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="editCustCity" class="studio-label">City</label>
+                <input type="text" id="editCustCity" class="form-control studio-input" placeholder="City">
+                <div class="field-error" id="err-editCustCity"></div>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="editCustNotes" class="studio-label">Notes</label>
+                <input type="text" id="editCustNotes" class="form-control studio-input" placeholder="Customer notes">
+                <div class="field-error" id="err-editCustNotes"></div>
+              </div>
+
+              <div class="col-12 d-flex justify-content-end gap-3 pt-3 border-top">
+                <button type="reset" class="btn-brand-outline">Reset</button>
+                <button type="submit" class="btn-brand-coral">
+                  <i class="bi bi-save me-1"></i> Update Customer
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- TripKitGo Admin Studio Footer -->
+  <footer class="studio-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <!-- Brand & Tagline -->
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo-wrap">
+            <img src="../images/tripkitgo_logo.png" alt="TripKitGo Logo" class="footer-logo-img">
+          </a>
+          <p class="footer-tagline">Admin Studio &bull; Travel Operations &amp; Management</p>
+        </div>
+
+        <!-- Portal Status -->
+        <span class="footer-status">
+          <span class="status-dot"></span> Admin Portal v1.0
+        </span>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 TripKitGo. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/page-customers.js"></script>
+</body>
+
+</html>
